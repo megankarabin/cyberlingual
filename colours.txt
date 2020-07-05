@@ -1,0 +1,28 @@
+
+theme background:
+
+green
+#90a959
+--------------
+sidebar:
+
+closest lighter
+#AFC878
+
+light green
+#C3DC8C
+
+lighter green
+#FFFFCC
+
+very light Green
+#FFFFE3
+
+--------------
+darker green
+#718A3A
+
+
+-------------
+closest text match to bio/lead (sidebar footer)
+#BDD096
