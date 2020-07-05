@@ -241,7 +241,7 @@ This step is crucial to ensuring that the template can communicate with/access v
 <h3>Custom functions &amp; setting variables in Jinja</h3>
 <p>The beauty of filters is that we can write any function in python and "import" it into jinja this way.</p>
 <p>Building on top of the last example, where we built in the random generator, let's say that I only like fire pokemon, and want to print "good" every time the randomly selected pokemon is a fire type and "bad" for every one <em>not</em> of type fire, along with their actual type. I can write a quick function to do this and then use a filter to bring it into Jinja.</p>
-<p>Note that because we want to reuse the randomly generated pokemon, we'll have to use a variable (Jinja's syntax isn't as flexible as python's and doesn't allow for infinite nesting using brackets). This is made fairly simple using Jinja's {% raw %} <code>{% set x = y %}</code> {% endraw %} syntax.</p>
+<p>Note that because we want to reuse the randomly generated pokemon, we'll have to use a variable (Jinja's syntax isn't as flexible as python's and doesn't allow for infinite nesting using brackets). This is made fairly simple using Jinja's <code>{% set x = y %}</code> syntax.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_fire_pokemon</span><span class="p">(</span><span class="n">pokemon</span><span class="o">=</span><span class="s1">&#39;Charmander&#39;</span><span class="p">):</span>
     <span class="n">poketype_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">pokemon</span><span class="p">][</span><span class="s1">&#39;type_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">poketype_1</span> <span class="o">==</span> <span class="s1">&#39;Fire&#39;</span><span class="p">:</span>
@@ -291,12 +291,11 @@ This step is crucial to ensuring that the template can communicate with/access v
 <h3>Setting variables</h3>
 <p>Now that we're familiar with the calling of functions in Jinja through filters, we can add another layer: variables!</p>
 <p>If you've made it this far, I probably don't need to elaborate on the usefulness of local variables, so let's dive right into the code.</p>
-<p _="%" raw>The instantiation process is quite straightforward: identical to how one assigns variables in regular python, with the one added step of wrapping your variable assignment inside</p>
+<p>The instantiation process is quite straightforward: identical to how one assigns variables in regular python, with the one added step of wrapping your variable assignment inside</p>
 <div class="highlight"><pre><span></span>{% var = goes here %}
 </pre></div>
 
 
-<p>{% endraw %}</p>
 <div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">j</span><span class="o">-</span><span class="n">templates</span><span class="o">/</span><span class="n">fun2</span><span class="o">.</span><span class="n">html</span>
 
 <span class="o">&lt;</span><span class="err">!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
@@ -305,9 +304,9 @@ This step is crucial to ensuring that the template can communicate with/access v
     <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">pokemon</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
 
- <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">randomly</span> <span class="n">selected</span> <span class="n">pokémon</span> <span class="p">:</span> <span class="p">{</span><span class="o">%</span> <span class="n">raw</span> <span class="o">%</span><span class="p">}</span>
+ <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">randomly</span> <span class="n">selected</span> <span class="n">pokémon</span> <span class="p">:</span>
         <span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">p</span> <span class="o">=</span> <span class="n">my_pokemon</span><span class="o">|</span><span class="n">select_random</span> <span class="o">%</span><span class="p">}</span>
-        <span class="p">{{</span> <span class="n">p</span><span class="o">|</span><span class="n">is_fire</span> <span class="p">}}</span> <span class="p">{</span><span class="o">%</span> <span class="n">endraw</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">{{</span> <span class="n">p</span><span class="o">|</span><span class="n">is_fire</span> <span class="p">}}</span>
     <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
 <span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
