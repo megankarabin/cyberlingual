@@ -212,7 +212,7 @@ The beauty of filters is that we can write any function in python and "import" i
 
 Building on top of the last example, where we built in the random generator, let's say that I only like fire pokemon, and want to print "good" every time the randomly selected pokemon is a fire type and "bad" for every one _not_ of type fire, along with their actual type. I can write a quick function to do this and then use a filter to bring it into Jinja.
 
-Note that because we want to reuse the randomly generated pokemon, we'll have to use a variable (Jinja's syntax isn't as flexible as python's and doesn't allow for infinite nesting using brackets). This is made fairly simple using Jinja's `{% set x = y %}` syntax.
+Note that because we want to reuse the randomly generated pokemon, we'll have to use a variable (Jinja's syntax isn't as flexible as python's and doesn't allow for infinite nesting using brackets). This is made fairly simple using Jinja's ```{% set x = y %}``` syntax.
 
 
 ```python
