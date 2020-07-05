@@ -280,10 +280,11 @@ Now that we're familiar with the calling of functions in Jinja through filters, 
 If you've made it this far, I probably don't need to elaborate on the usefulness of local variables, so let's dive right into the code.
 
 The instantiation process is quite straightforward: identical to how one assigns variables in regular python, with the one added step of wrapping your variable assignment inside
+{% raw %}
 ```
 {% var = goes here %}
 ```
-
+{% endraw %}
 
 
 ```python
