@@ -296,9 +296,9 @@ The instantiation process is quite straightforward: identical to how one assigns
     <title>My pokemon</title>
 </head>
 
- <p>My randomly selected pokémon :
+ <p>My randomly selected pokémon : {% raw %}
         {% set p = my_pokemon|select_random %}
-        {{ p|is_fire }}
+        {{ p|is_fire }} {% endraw %}
     </p>
 
 </html>
