@@ -266,7 +266,7 @@ This step is crucial to ensuring that the template can communicate with/access v
 
 &lt;p&gt;&lt;/html&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src='https://vignette.wikia.nocookie.net/looneytunes/images/e/e1/All.jpg/revision/latest?cb=20150313020828' style='width:500px;'&gt;&lt;/p&gt;
-&lt;p&gt;Good luck on your Jinja adventures!&lt;/p&gt;</content><category term="python"></category><category term="Jinja2"></category></entry><entry><title>Intro to spaCy</title><link href="https://megankarabin.github.io/cyberlingual/blog_4.html" rel="alternate"></link><published>2019-07-28T15:46:00-04:00</published><updated>2019-07-28T15:46:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-28:/cyberlingual/blog_4.html</id><summary type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data (imho). Although spaCy definitely has ease-of-use on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data (imho). Although spaCy definitely has ease-of-use on its side, I know there are people out there who are quite comfortable using NLTK. However, there are several features available in spaCy that simply don't exist in NLTK, so hopefully after this tutorial you'll be convinced that spaCy is the way to go!&lt;/p&gt;
+&lt;p&gt;Good luck on your Jinja adventures!&lt;/p&gt;</content><category term="python"></category><category term="jinja2"></category></entry><entry><title>Intro to spaCy</title><link href="https://megankarabin.github.io/cyberlingual/blog_4.html" rel="alternate"></link><published>2019-07-28T15:46:00-04:00</published><updated>2019-07-28T15:46:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-28:/cyberlingual/blog_4.html</id><summary type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data. Although spaCy definitely has ease-of-use on its …&lt;/p&gt;</summary><content type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data. Although spaCy definitely has ease-of-use on its side, I know there are people out there who are quite comfortable using NLTK. However, there are several features available in spaCy that simply don't exist in NLTK, so hopefully after this tutorial you'll be convinced that spaCy is the way to go!&lt;/p&gt;
 &lt;p&gt;In this tutorial, I'll go over the basics of spaCy, showing you first how to install and get started, and then helping you to become familiar with some of the core concepts and features built into spaCy.&lt;/p&gt;
 &lt;p&gt;&lt;b&gt; Outline&lt;/b&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -288,26 +288,28 @@ This step is crucial to ensuring that the template can communicate with/access v
 
 
 &lt;h2&gt;Installing and downloading&lt;/h2&gt;
+&lt;p&gt;To install spaCy, simply run the following lines of code.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt;
 &lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="n"&gt;en_core_web_sm&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;You should get the following output:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;✔ Download and installation successful
 You can now load the model via spacy.load(&amp;#39;en_core_web_sm&amp;#39;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;The NLP object and the Doc object&lt;/h2&gt;
-&lt;p&gt;The NLP object contains the processing pipeline. Once instantiated, we can use it to analyze text!&lt;/p&gt;
-&lt;p&gt;We instantiate as such:&lt;/p&gt;
+&lt;p&gt;The NLP object contains the processing pipeline. Once instantiated, we can use it to analyze text.&lt;/p&gt;
+&lt;p&gt;We instantiate like so:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;spacy.lang.en&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;English&lt;/span&gt;
 
 &lt;span class="n"&gt;nlp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;English&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Next, we pass our text to the nlp object, and assign this to a variable, the standard name is &lt;code&gt;doc&lt;/code&gt;. This &lt;code&gt;doc&lt;/code&gt; variable now contains a Doc object, which we'll see below.&lt;/p&gt;
+&lt;p&gt;Next, we pass our text data to the nlp object, and assign this to a variable, the standard name is &lt;code&gt;doc&lt;/code&gt;. This &lt;code&gt;doc&lt;/code&gt; variable now contains a Doc object, which we'll see below.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;The alien spaceship travelled 12 billion light years to explore new galaxies.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -319,7 +321,8 @@ You can now load the model via spacy.load(&amp;#39;en_core_web_sm&amp;#39;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;It behaves the same as a python sequence in that you can iterate over and index its contents.&lt;/p&gt;
+&lt;p&gt;It behaves the same as a python sequence in that you can iterate over and index its contents.
+[Note: for the sake of being explicit I passed a raw string to &lt;code&gt;nlp&lt;/code&gt;, but you can just as easily pass a variable that contains your text.]&lt;/p&gt;
 &lt;p&gt;We can run the &lt;code&gt;.text&lt;/code&gt; method to get the full text contents of the doc object.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -329,8 +332,8 @@ You can now load the model via spacy.load(&amp;#39;en_core_web_sm&amp;#39;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;spaCy uses statistical models to make predictions based on context, which is critically important when processing language. Without context analysis, there's very little we can say about the words in a given sentence or phrase &amp;mdash; one of the features of key importance of language is that words don't always mean the same thing, depending on where they occur in a sentence and with which other words.&lt;/p&gt;
-&lt;p&gt;Things we can do with statstical models:&lt;/p&gt;
+&lt;p&gt;spaCy uses statistical models to make predictions based on context, which is critically important when processing language. Without context analysis, there's very little we can say about the words in a given sentence or phrase &amp;mdash; a feature of key importance of language is that words which look identical don't always mean the same thing or have the same structural role, depending on where they occur in a sentence and with which other words. (E.g., "She ate &lt;strong&gt;baked&lt;/strong&gt; potatoes" vs. "She &lt;strong&gt;baked&lt;/strong&gt; potatoes": in the first sentence, baked is an adjective, but in the second, it's a verb.)&lt;/p&gt;
+&lt;p&gt;Things we can do in spaCy with statistical models:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;parts-of-speech (POS) tagging&lt;/li&gt;
 &lt;li&gt;(named) entity identification&lt;/li&gt;
@@ -596,15 +599,8 @@ shape_
 &lt;p&gt;However, all is not lost! We can use a special feature called &lt;strong&gt;match patterns&lt;/strong&gt;, along with manually adding this element to our list of entities, &lt;code&gt;doc.ents&lt;/code&gt; (which we'll get to shortly), to set things straight.&lt;/p&gt;
 &lt;h2&gt;Match Patterns&lt;/h2&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/OlxGPEH.jpg" title="source: imgur.com" style='width:400px;' /&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;spacy.matcher&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Matcher&lt;/span&gt;
-
-&lt;span class="c1"&gt;# initialize matcher using vocabulary shared with the nlp object&lt;/span&gt;
-&lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Matcher&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;h5&gt;What do they &lt;b&gt;do? &lt;/b&gt;&lt;/h5&gt;
-&lt;p&gt;One of the coolest things about spaCy is its built-in ability to let us search for patterns without having to rely on regular expressions. &lt;strong&gt;Match patterns&lt;/strong&gt; (the spaCy regex equivalent) let you search for a pattern within a text, which can be a string, a doc or a token object &amp;mdash; regular expressions can only take string arguemnts.&lt;/p&gt;
+&lt;p&gt;One of the coolest things about spaCy is its built-in ability to let us search for patterns without having to rely on regular expressions. &lt;strong&gt;Match patterns&lt;/strong&gt; (the spaCy regex equivalent) let you search for a pattern within a text, which can be a string, a doc or a token object &amp;mdash; whereas regular expressions can only take string arguments.&lt;/p&gt;
 &lt;p&gt;Match patterns also let you customize what &lt;em&gt;kind&lt;/em&gt; of pattern you're looking for &amp;mdash; which isn't always a simple sequence of characters. When we're doing NLP analyses, we might want to look for words belonging to a particular POS category, or words with a particular lemma. For instance, setting the lemma search to "run" would return tokens that contain the base form, such as "running" or "runs".&lt;/p&gt;
 &lt;h5&gt;So... what exactly are match patterns? What do they look like?&lt;/h5&gt;
 &lt;p&gt;Match patterns are lists of dictionaries, wherein each key is the attribute and each value is the corresponding value you're looking for.&lt;/p&gt;
@@ -628,7 +624,15 @@ OP          IS_STOP
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This &lt;a href="https://explosion.ai/demos/matcher"&gt;Matcher Explorer&lt;/a&gt; is a really cool tool for checking and trying out various match patterns, and if you're using spaCy for text analysis I would highly recommend giving it a whirl!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To start using match patterns, run the following lines of code:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;spacy.matcher&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Matcher&lt;/span&gt;
+
+&lt;span class="c1"&gt;# initialize matcher using vocabulary shared with the nlp object&lt;/span&gt;
+&lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Matcher&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note: this &lt;a href="https://explosion.ai/demos/matcher"&gt;Matcher Explorer&lt;/a&gt; is a really nice tool for checking and trying out various match patterns &amp;mdash; give it a whirl.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# first we set the pattern&lt;/span&gt;
 &lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;TEXT&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SpaceX&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;
 
@@ -709,24 +713,12 @@ doc.vocab.strings[hash]
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# this is what happens when you search for a hash that doesn&amp;#39;t correspond to any string in the vocab&lt;/span&gt;
-&lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4523523&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;p&gt;If you search for a hash that doesn't correspond to any string in the vocab, it'll throw an error:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4523523&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# has no corresponding string in the vocab&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;---------------------------------------------------------------------------
-
-KeyError                                  Traceback (most recent call last)
-
-&amp;lt;ipython-input-17-4c77b5a5c88e&amp;gt; in &amp;lt;module&amp;gt;
-      1 # this is what happens when you search for a hash that doesn&amp;#39;t correspond to any string in the vocab
-----&amp;gt; 2 nlp.vocab.strings[4523523]
-
-
-strings.pyx in spacy.strings.StringStore.__getitem__()
-
-
-KeyError: &amp;quot;[E018] Can&amp;#39;t retrieve string for hash &amp;#39;4523523&amp;#39;.&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KeyError: &amp;quot;[E018] Can&amp;#39;t retrieve string for hash &amp;#39;4523523&amp;#39;.&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 

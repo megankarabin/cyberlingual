@@ -23,6 +23,7 @@
  * Container
  * Masthead
  * Posts and pages
+ * Tags
  * Pagination
  * Reverse layout
  * Themes
@@ -366,7 +367,7 @@ tbody tr:nth-child(odd) th {
   padding-right: 9px;
   padding-bottom: 4px;
   padding-top: 4px;
-  border-radius: 10px;
+  border-radius: 6px;
   -webkit-transition: background-color 0.4s ease-in-out;
   /* margin: 0 30px 0 0; */
   /* text-decoration: none; */
