@@ -336,7 +336,7 @@ tbody tr:nth-child(odd) th {
 .page-title,
 .post-title,
 .post-title a {
-  color: #303030;
+  color: #718A3A;
 }
 .page-title,
 .post-title {
@@ -362,7 +362,10 @@ tbody tr:nth-child(odd) th {
   display: inline-block;
   color: #fff;
   position: relative;
-  padding: 8px;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-bottom: 4px;
+  padding-top: 4px;
   border-radius: 10px;
   -webkit-transition: background-color 0.4s ease-in-out;
   /* margin: 0 30px 0 0; */

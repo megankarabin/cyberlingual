@@ -43,18 +43,10 @@ pip install Jinja2
 &lt;p&gt;The template class "&lt;code&gt;Environment&lt;/code&gt;" is the core component of Jinja. Instances of it are used to store global variables and load templates, but generally you won't need to configure custom instances of it when you're using Jinja in an application &amp;mdash; most instantiate just once (automatically) upon initializing the application.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I'm going to be using a pokemon dataset, so here I'm just bringing that in and cleaning up the column names.&lt;/p&gt;
+&lt;p&gt;I'm going to be using a pokemon dataset, so here I'm just reading that in.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hackathon/data/pokemon.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pokemon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;Mew&amp;#39;
+&lt;span class="n"&gt;pokemon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -72,18 +64,22 @@ pip install Jinja2
 
 
 &lt;p&gt;Now, as you can see in the following code output, my new &lt;code&gt;select_random&lt;/code&gt; key has been added to the dictionary (at the very bottom).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# this is how many actual keys there are&lt;/span&gt;
-&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;  
-&lt;span class="c1"&gt;# ^ here I&amp;#39;m indexing the last 10 just to demonstrate what the dict looks like without having 50+ k-v pairs&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# this will tell us how many actual keys there are&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;54
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# here I&amp;#39;m indexing the last 10 just to demonstrate what the&lt;/span&gt;
+&lt;span class="c1"&gt;# dictionary looks like without having 50+ key-value pairs&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;:]:&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;{i}&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt; :&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;54
-
-&amp;#39;striptags&amp;#39; : &amp;lt;function do_striptags at 0x115287730&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;striptags&amp;#39; : &amp;lt;function do_striptags at 0x115287730&amp;gt;
 &amp;#39;sum&amp;#39; : &amp;lt;function do_sum at 0x1155909d8&amp;gt;
 &amp;#39;title&amp;#39; : &amp;lt;function do_title at 0x1152999d8&amp;gt;
 &amp;#39;trim&amp;#39; : &amp;lt;function do_trim at 0x1152876a8&amp;gt;
@@ -199,17 +195,22 @@ This step is crucial to ensuring that the template can communicate with/access v
 &lt;p&gt;&lt;strong&gt;Sidenote of interest:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Notice that we don't write &lt;code&gt;is_fire_pokemon(pokemon)&lt;/code&gt;, rather we input it &lt;strong&gt;without&lt;/strong&gt; the brackets. We do this when we don't want the function to be called at the point it's being written, but rather to serve as a reference to the function object. Take a look at the difference in what's being stored when we set &lt;code&gt;env.filters['is_fire'] = is_fire_pokemon&lt;/code&gt; versus &lt;code&gt;is_fire_pokemon(pokemon)&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;is_fire&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;is_fire_pokemon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pokemon&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;is_fire&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-
-&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;is_fire&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;is_fire_pokemon&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;is_fire&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Charmander, Good
+&lt;/pre&gt;&lt;/div&gt;
 
-&amp;lt;function is_fire_pokemon at 0x114e422f0&amp;gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;is_fire&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;is_fire_pokemon&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;is_fire&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;function is_fire_pokemon at 0x114e422f0&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -265,7 +266,7 @@ This step is crucial to ensuring that the template can communicate with/access v
 
 &lt;p&gt;&lt;/html&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src='https://vignette.wikia.nocookie.net/looneytunes/images/e/e1/All.jpg/revision/latest?cb=20150313020828' style='width:500px;'&gt;&lt;/p&gt;
-&lt;p&gt;Good luck on your Jinja adventures!&lt;/p&gt;</content><category term="python"></category><category term="jinja"></category></entry><entry><title>Intro to spaCy</title><link href="https://megankarabin.github.io/cyberlingual/blog_4.html" rel="alternate"></link><published>2019-07-28T15:46:00-04:00</published><updated>2019-07-28T15:46:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-28:/cyberlingual/blog_4.html</id><summary type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data (imho). Although spaCy definitely has ease-of-use on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data (imho). Although spaCy definitely has ease-of-use on its side, I know there are people out there who are quite comfortable using NLTK. However, there are several features available in spaCy that simply don't exist in NLTK, so hopefully after this tutorial you'll be convinced that spaCy is the way to go!&lt;/p&gt;
+&lt;p&gt;Good luck on your Jinja adventures!&lt;/p&gt;</content><category term="python"></category><category term="Jinja2"></category></entry><entry><title>Intro to spaCy</title><link href="https://megankarabin.github.io/cyberlingual/blog_4.html" rel="alternate"></link><published>2019-07-28T15:46:00-04:00</published><updated>2019-07-28T15:46:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-28:/cyberlingual/blog_4.html</id><summary type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data (imho). Although spaCy definitely has ease-of-use on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data (imho). Although spaCy definitely has ease-of-use on its side, I know there are people out there who are quite comfortable using NLTK. However, there are several features available in spaCy that simply don't exist in NLTK, so hopefully after this tutorial you'll be convinced that spaCy is the way to go!&lt;/p&gt;
 &lt;p&gt;In this tutorial, I'll go over the basics of spaCy, showing you first how to install and get started, and then helping you to become familiar with some of the core concepts and features built into spaCy.&lt;/p&gt;
 &lt;p&gt;&lt;b&gt; Outline&lt;/b&gt;&lt;/p&gt;
 &lt;ul&gt;

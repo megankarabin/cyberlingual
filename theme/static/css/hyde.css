@@ -88,22 +88,11 @@ html {
   color: #fff;
   margin-top: 0;
   font-size: 2rem;
+  /* font-family: 'Mina'; */
   text-decoration: none;
   font-weight: normal;
-  /* -webkit-transition-duration: all 1s ease; */
+  margin-bottom: 10px;
 }
-
-/* .sidebar-about a { */
-  /* color: #fff; */
-  /* -webkit-transition: color 0.6s ease-in-out; */
-/* } */
-
-/* a.sidebar-about:hover, */
-/* a.sidebar-about:focus { */
-  /* color: #FFFFE3; */
-  /* transition-duration: 0.6s; */
-  /* -webkit-transition-duration: 0.6s; /* for Safari & Chrome */
-/* } */
 
 .sidebar-about .lead {
   font-size: .6rem;
@@ -116,28 +105,31 @@ html {
   /* padding: 0px; */
   font-size: 14pt;
   -webkit-transition: color 0.4s ease-in-out;
+  /* margin-bottom: 30px; */
 }
 
+ul.pages-list {
+  align: center;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
 ul.pages-list:hover {
   color: #fff;
 }
 
 .sidebar-about .profile-picture {
   padding: 0px;
-  /* width: 7rem;
-  height: 7rem;
-  line-height: 7rem; */
-
   margin: 0 auto;
   border-radius: 50%;
   border: 2px solid #8BA454;
   max-width: 8rem;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* Sidebar nav */
 .sidebar-nav {
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 .sidebar-nav-item {
   display: inline-block;

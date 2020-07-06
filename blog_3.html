@@ -34,14 +34,18 @@
 					cyberlingual
 				</a>
 			</h1>
-			<p class="lead"></p>
 			<!-- <p class="lead" style="font-size: 11pt"> </p> -->
+			<!-- <div class='pages-list'> -->
 			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/about.html">
 				<ul class="pages-list"> about </ul>
+			</a>
+			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
+				<ul class="pages-list"> projects </ul>
 			</a>
 			<a class="lead" href="https://megankarabin.github.io/cyberlingual">
 				<ul class="pages-list"> posts </ul>
 			</a>
+			<!-- </div> -->
 		</div>
 		<nav class="sidebar-nav">
 			<!-- <a class="sidebar-nav-item" href="megankarabin12@gmail.com">
@@ -116,18 +120,10 @@ pip install Jinja2
 <p>The template class "<code>Environment</code>" is the core component of Jinja. Instances of it are used to store global variables and load templates, but generally you won't need to configure custom instances of it when you're using Jinja in an application &mdash; most instantiate just once (automatically) upon initializing the application.</p>
 </li>
 </ul>
-<p>I'm going to be using a pokemon dataset, so here I'm just bringing that in and cleaning up the column names.</p>
+<p>I'm going to be using a pokemon dataset, so here I'm just reading that in.</p>
 <div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;hackathon/data/pokemon.csv&#39;</span><span class="p">)</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="n">pokemon</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>&#39;Mew&#39;
+<span class="n">pokemon</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 
 
@@ -145,18 +141,22 @@ pip install Jinja2
 
 
 <p>Now, as you can see in the following code output, my new <code>select_random</code> key has been added to the dictionary (at the very bottom).</p>
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># this is how many actual keys there are</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">)[</span><span class="mi">40</span><span class="p">:]</span>  
-<span class="c1"># ^ here I&#39;m indexing the last 10 just to demonstrate what the dict looks like without having 50+ k-v pairs</span>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">))</span> <span class="c1"># this will tell us how many actual keys there are</span>
+</pre></div>
 
+
+<div class="highlight"><pre><span></span>54
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># here I&#39;m indexing the last 10 just to demonstrate what the</span>
+<span class="c1"># dictionary looks like without having 50+ key-value pairs</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">)[</span><span class="mi">40</span><span class="p">:]:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">{i}</span><span class="se">\&#39;</span><span class="s1"> :&#39;</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>54
-
-&#39;striptags&#39; : &lt;function do_striptags at 0x115287730&gt;
+<div class="highlight"><pre><span></span>&#39;striptags&#39; : &lt;function do_striptags at 0x115287730&gt;
 &#39;sum&#39; : &lt;function do_sum at 0x1155909d8&gt;
 &#39;title&#39; : &lt;function do_title at 0x1152999d8&gt;
 &#39;trim&#39; : &lt;function do_trim at 0x1152876a8&gt;
@@ -272,17 +272,22 @@ This step is crucial to ensuring that the template can communicate with/access v
 <p><strong>Sidenote of interest:</strong></p>
 <p>Notice that we don't write <code>is_fire_pokemon(pokemon)</code>, rather we input it <strong>without</strong> the brackets. We do this when we don't want the function to be called at the point it's being written, but rather to serve as a reference to the function object. Take a look at the difference in what's being stored when we set <code>env.filters['is_fire'] = is_fire_pokemon</code> versus <code>is_fire_pokemon(pokemon)</code>:</p>
 <div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_fire_pokemon</span><span class="p">(</span><span class="n">pokemon</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">],</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-
-<span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_fire_pokemon</span>
 <span class="k">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">])</span>
 </pre></div>
 
 
 <div class="highlight"><pre><span></span>Charmander, Good
+</pre></div>
 
-&lt;function is_fire_pokemon at 0x114e422f0&gt;
+
+<div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_fire_pokemon</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;function is_fire_pokemon at 0x114e422f0&gt;
 </pre></div>
 
 
@@ -340,6 +345,15 @@ This step is crucial to ensuring that the template can communicate with/access v
 <p><img src='https://vignette.wikia.nocookie.net/looneytunes/images/e/e1/All.jpg/revision/latest?cb=20150313020828' style='width:500px;'></p>
 <p>Good luck on your Jinja adventures!</p>
 </div>
+<footer class="page-footer">
+	<div style="font-size:8pt">
+			&copy; <script>document.write(new Date().getFullYear());</script> Megan Karabin
+	</div>
+	<div style="font-size:8pt;">
+		Built with Pelican <i class="fa fa-heart-o" aria-hidden="true"></i> Theme derived from
+		<a href="https://github.com/jvanz/pelican-hyde"> pelican-hyde </a>
+	</div>
+ </footer>
 		</div>
 	</body>
 </html>
