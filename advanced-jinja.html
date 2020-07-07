@@ -14,9 +14,9 @@
 		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
 		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
 
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/poole.css" />
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/hyde.css" />
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/syntax.css" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/poole.css" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/hyde.css?v=1" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/syntax.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 		<!-- RSS -->
@@ -31,20 +31,20 @@
 				<a class="sidebar-about" href="https://megankarabin.github.io/cyberlingual">
 					<img class="profile-picture"
 					src="https://lh3.googleusercontent.com/c4Lq6ofLQEJgrxFZyB8GW9MHBAheCcecymUM-8LRfyGwH01YtEyMWnIV4KEpSe8hyMsyNRFtU1VPKtF8M1WqtEWZAtjyoFGbmRToy369ETUJCvDA0P3zJGPiXyCdmunYHZT8Sjv7jw=w2400?source=screenshot.guru">
-					cyberlingual
+					<!-- cyberlingual -->
+					<p style="opacity:0.85"> c y b e r l i n g u a l </p>
 				</a>
 			</h1>
-			<!-- <p class="lead" style="font-size: 11pt"> </p> -->
+			<!-- <p class="lead" style="font-size: 11pt">  </p> -->
 			<!-- <div class='pages-list'> -->
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/about.html">
-				<ul class="pages-list"> about </ul>
-			</a>
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
-				<ul class="pages-list"> projects </ul>
-			</a>
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual">
-				<ul class="pages-list"> posts </ul>
-			</a>
+			<ul class="pages-list">
+			<li><a href="https://megankarabin.github.io/cyberlingual">
+				posts </a></li>
+			<li><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
+				projects</a></li>
+			<li><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
+				about</a></li>
+				 </ul>
 			<!-- </div> -->
 		</div>
 		<nav class="sidebar-nav">
@@ -75,22 +75,22 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Advanced Jinja: filters & variables</h1>
+	<h1 class="post-title">Advanced Jinja: filters <span class="amp">&amp;</span>&nbsp;variables</h1>
 	<span class="post-date">Tue 06 August 2019</span>
-	<p>Want to learn how to be a Jinja ninja? (Since discovering Jinja I've wanted to use those words together in a sentence and this seemed like the perfect opportunity #notsorry)</p>
-<p>In this post I'll explain how you can use Jinja filters to access python functions and libraries from within an html doc, as well as how to create new variables from <em>within</em> your Jinja template (rather than from the python script linked to the template). I'll be assuming that readers are familiar with basic Jinja, but if you're totally new to it and want to brush up on the basics before reading further, check out <a href="https://vishalsharma01.github.io/Blog/blog-3.html">this blog post</a>!</p>
-<h3>Recap: What is Jinja?</h3>
+	<p>Want to learn how to be a Jinja ninja? (Since discovering Jinja I&#8217;ve wanted to use those words together in a sentence and this seemed like the perfect opportunity&nbsp;#notsorry)</p>
+<p>In this post I&#8217;ll explain how you can use Jinja filters to access python functions and libraries from within an html doc, as well as how to create new variables from <em>within</em> your Jinja template (rather than from the python script linked to the template). I&#8217;ll be assuming that readers are familiar with basic Jinja, but if you&#8217;re totally new to it and want to brush up on the basics before reading further, check out <a href="https://vishalsharma01.github.io/Blog/blog-3.html">this blog post</a>!</p>
+<h3>Recap: What is&nbsp;Jinja?</h3>
 <p>Jinja is a python library and a <strong>template engine</strong>, which is a software designed to let you produce a text output from your code. Of course, in python, we could just do that using <code>print('your text output')</code>.</p>
-<p>So, what's special about a template engine and why might we need one?</p>
-<p>Basically, Jinja enables your code to communicate with a template, like an HTML document, for example, which traditionally only allows for static inputs/outputs. HTML doesn't have an ability to use control flow, or encode mutable variables, for instance. There are many template engines out there, but Jinja is built specifically to interact with python. Using Jinja, we can actually use python programming within a text/HTML document such that our result outputs are consistent with any data (in models) we're using for our web application.</p>
+<p>So, what&#8217;s special about a template engine and why might we need&nbsp;one?</p>
+<p>Basically, Jinja enables your code to communicate with a template, like an <span class="caps">HTML</span> document, for example, which traditionally only allows for static inputs/outputs. <span class="caps">HTML</span> doesn&#8217;t have an ability to use control flow, or encode mutable variables, for instance. There are many template engines out there, but Jinja is built specifically to interact with python. Using Jinja, we can actually use python programming within a text/<span class="caps">HTML</span> document such that our result outputs are consistent with any data (in models) we&#8217;re using for our web&nbsp;application.</p>
 <h3>Installation</h3>
-<p>If you haven't already done so, you can install Jinja by running either of the following commands:</p>
+<p>If you haven&#8217;t already done so, you can install Jinja by running either of the following&nbsp;commands:</p>
 <div class="highlight"><pre><span></span>easy_install Jinja2
 pip install Jinja2
 </pre></div>
 
 
-<p>If neither of these work and you're having trouble installing, check out the documentation <a href="http://jinja.pocoo.org/docs/2.10/intro/#installation">here</a> for more detailed instructions.</p>
+<p>If neither of these work and you&#8217;re having trouble installing, check out the documentation <a href="http://jinja.pocoo.org/docs/2.10/intro/#installation">here</a> for more detailed&nbsp;instructions.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
@@ -114,13 +114,13 @@ pip install Jinja2
 
 <ul>
 <li>
-<p>The template loader is the file system (i.e., directory) from which you'll be accessing files/templates. It's helpful to do this when you'll be spinning up toy files to practice on or for the sake of demonstration, like I'll be doing in this post.</p>
+<p>The template loader is the file system (i.e., directory) from which you&#8217;ll be accessing files/templates. It&#8217;s helpful to do this when you&#8217;ll be spinning up toy files to practice on or for the sake of demonstration, like I&#8217;ll be doing in this&nbsp;post.</p>
 </li>
 <li>
-<p>The template class "<code>Environment</code>" is the core component of Jinja. Instances of it are used to store global variables and load templates, but generally you won't need to configure custom instances of it when you're using Jinja in an application &mdash; most instantiate just once (automatically) upon initializing the application.</p>
+<p>The template class &#8220;<code>Environment</code>&#8221; is the core component of Jinja. Instances of it are used to store global variables and load templates, but generally you won&#8217;t need to configure custom instances of it when you&#8217;re using Jinja in an application &mdash; most instantiate just once (automatically) upon initializing the&nbsp;application.</p>
 </li>
 </ul>
-<p>I'm going to be using a pokemon dataset, so here I'm just reading that in.</p>
+<p>I&#8217;m going to be using a pokemon dataset, so here I&#8217;m just reading that&nbsp;in.</p>
 <div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;hackathon/data/pokemon.csv&#39;</span><span class="p">)</span>
 
 <span class="n">pokemon</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -128,19 +128,19 @@ pip install Jinja2
 
 
 <h3>Filters</h3>
-<p>Filters are an incredibly helpful feature baked into Jinja &ndash; <strong>they allow you to use any desired python functions (including ones you've written), libraries and/or modules along with their associated methods.</strong></p>
-<p>Below, I want to get a randomly generated pokemon from my list of pokemon, and for that I'll need <code>np.random.choice</code>. I am <strong>not</strong> able to simply use code that looks like the following code block:</p>
+<p>Filters are an incredibly helpful feature baked into Jinja &ndash; <strong>they allow you to use any desired python functions (including ones you&#8217;ve written), libraries and/or modules along with their associated&nbsp;methods.</strong></p>
+<p>Below, I want to get a randomly generated pokemon from my list of pokemon, and for that I&#8217;ll need <code>np.random.choice</code>. I am <strong>not</strong> able to simply use code that looks like the following code&nbsp;block:</p>
 <p><img src='https://i.imgur.com/ySrLNu6.png' width=350px;></p>
-<p>This code is invalid and won't run. But it isn't over yet &mdash; <strong>Jinja can still access libraries through filters!</strong></p>
+<p>This code is invalid and won&#8217;t run. But it isn&#8217;t over yet &mdash; <strong>Jinja can still access libraries through&nbsp;filters!</strong></p>
 <h3><code>env.filters</code></h3>
-<p>The filters for an environment can be viewed by calling the dot filters method, which will provide you with a dictionary whose keys are the filters (their names) and whose values are the particular object they house.</p>
-<p>By creating our own filter as a key-value pair, we can use virtually any function (or library) available to us in Python in Jinja! Below I'm setting a new key called <code>"select_random"</code> containing the random choice function.</p>
-<p><em>Make sure to import the necessary libraries, modules and/or functions beforehand and create any aliases you want to use &mdash; e.g., I imported numpy as np earlier.</em></p>
+<p>The filters for an environment can be viewed by calling the dot filters method, which will provide you with a dictionary whose keys are the filters (their names) and whose values are the particular object they&nbsp;house.</p>
+<p>By creating our own filter as a key-value pair, we can use virtually any function (or library) available to us in Python in Jinja! Below I&#8217;m setting a new key called <code>"select_random"</code> containing the random choice&nbsp;function.</p>
+<p><em>Make sure to import the necessary libraries, modules and/or functions beforehand and create any aliases you want to use &mdash; e.g., I imported numpy as np&nbsp;earlier.</em></p>
 <div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;select_random&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span>
 </pre></div>
 
 
-<p>Now, as you can see in the following code output, my new <code>select_random</code> key has been added to the dictionary (at the very bottom).</p>
+<p>Now, as you can see in the following code output, my new <code>select_random</code> key has been added to the dictionary (at the very&nbsp;bottom).</p>
 <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">))</span> <span class="c1"># this will tell us how many actual keys there are</span>
 </pre></div>
 
@@ -173,12 +173,12 @@ pip install Jinja2
 </pre></div>
 
 
-<p>Now we can call the function that it contains <strong>in</strong> Jinja! The way this is done is quite simple, though slightly different from how we're used to calling functions with the usual python syntax. For a function in python code that looks like this:</p>
+<p>Now we can call the function that it contains <strong>in</strong> Jinja! The way this is done is quite simple, though slightly different from how we&#8217;re used to calling functions with the usual python syntax. For a function in python code that looks like&nbsp;this:</p>
 <div class="highlight"><pre><span></span>function(arg)
 </pre></div>
 
 
-<p>here's how it's formulated in Jinja:</p>
+<p>here&#8217;s how it&#8217;s formulated in&nbsp;Jinja:</p>
 <div class="highlight"><pre><span></span><span class="cp">{{</span> <span class="nv">arg</span> <span class="o">|</span> <span class="nf">function</span> <span class="cp">}}</span><span class="x"></span>
 </pre></div>
 
@@ -218,16 +218,16 @@ pip install Jinja2
     <title>My pokemon</title>
 </head>
 
-<p><p>My randomly selected pokémon : Starmie </p></p>
+<p><p>My randomly selected pokémon :&nbsp;Starmie </p></p>
 <p></html></p>
-<p>Let's break down what's happening here:</p>
+<p>Let&#8217;s break down what&#8217;s happening&nbsp;here:</p>
 <div class="highlight"><pre><span></span>env.get_template()
 </pre></div>
 
 
 <blockquote>
 <p>Calling this method on our environment will load whatever we input (i.e., the desired file) as a Jinja template.
-This is how we "tell" Jinja that this is the file we want to use. We're then throwing the result into a variable called <code>template</code>.</p>
+This is how we &#8220;tell&#8221; Jinja that this is the file we want to use. We&#8217;re then throwing the result into a variable called <code>template</code>.</p>
 </blockquote>
 <div class="highlight"><pre><span></span>template.render
 </pre></div>
@@ -235,12 +235,12 @@ This is how we "tell" Jinja that this is the file we want to use. We're then thr
 
 <blockquote>
 <p>Performing the previous step sets up the file as a Jinja template, which then means we can use the <code>.render</code> method on it. The arguments passed to <code>template.render</code> are the names of all variables to be used in the script.
-This step is crucial to ensuring that the template can communicate with/access variables in our python script.</p>
+This step is crucial to ensuring that the template can communicate with/access variables in our python&nbsp;script.</p>
 </blockquote>
-<h3>Custom functions &amp; setting variables in Jinja</h3>
-<p>The beauty of filters is that we can write any function in python and "import" it into jinja this way.</p>
-<p>Building on top of the last example, where we built in the random generator, let's say that I only like fire pokemon, and want to print "good" every time the randomly selected pokemon is a fire type and "bad" for every one <em>not</em> of type fire, along with their actual type. I can write a quick function to do this and then use a filter to bring it into Jinja.</p>
-<p>Note that because we want to reuse the randomly generated pokemon, we'll have to use a variable (Jinja's syntax isn't as flexible as python's and doesn't allow for infinite nesting using brackets). This is made fairly simple using Jinja's <code>{% set x = y %}</code> syntax.</p>
+<h3>Custom functions <span class="amp">&amp;</span> setting variables in&nbsp;Jinja</h3>
+<p>The beauty of filters is that we can write any function in python and &#8220;import&#8221; it into jinja this&nbsp;way.</p>
+<p>Building on top of the last example, where we built in the random generator, let&#8217;s say that I only like fire pokemon, and want to print &#8220;good&#8221; every time the randomly selected pokemon is a fire type and &#8220;bad&#8221; for every one <em>not</em> of type fire, along with their actual type. I can write a quick function to do this and then use a filter to bring it into&nbsp;Jinja.</p>
+<p>Note that because we want to reuse the randomly generated pokemon, we&#8217;ll have to use a variable (Jinja&#8217;s syntax isn&#8217;t as flexible as python&#8217;s and doesn&#8217;t allow for infinite nesting using brackets). This is made fairly simple using Jinja&#8217;s <code>{% set x = y %}</code> syntax.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_fire_pokemon</span><span class="p">(</span><span class="n">pokemon</span><span class="o">=</span><span class="s1">&#39;Charmander&#39;</span><span class="p">):</span>
     <span class="n">poketype_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">pokemon</span><span class="p">][</span><span class="s1">&#39;type_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">poketype_1</span> <span class="o">==</span> <span class="s1">&#39;Fire&#39;</span><span class="p">:</span>
@@ -258,7 +258,7 @@ This step is crucial to ensuring that the template can communicate with/access v
 </pre></div>
 
 
-<p>Now that we have our custom function, let's make a filter for it.</p>
+<p>Now that we have our custom function, let&#8217;s make a filter for&nbsp;it.</p>
 <div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_fire_pokemon</span>
 
 <span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">]</span>
@@ -269,8 +269,9 @@ This step is crucial to ensuring that the template can communicate with/access v
 </pre></div>
 
 
-<p><strong>Sidenote of interest:</strong></p>
-<p>Notice that we don't write <code>is_fire_pokemon(pokemon)</code>, rather we input it <strong>without</strong> the brackets. We do this when we don't want the function to be called at the point it's being written, but rather to serve as a reference to the function object. Take a look at the difference in what's being stored when we set <code>env.filters['is_fire'] = is_fire_pokemon</code> versus <code>is_fire_pokemon(pokemon)</code>:</p>
+<p><strong>Important:</strong></p>
+<p>Notice that we don&#8217;t write <code>is_fire_pokemon(pokemon)</code>&mdash; instead, we input the function as its name on its own, <strong>without</strong> brackets. We don&#8217;t want to call the function at this point, because the the function&#8217;s output  would get stored as the value of the key we&#8217;re setting. Rather, we want to provide a reference to the function&nbsp;object.</p>
+<p>Take a look at the difference in what&#8217;s being stored when we set <code>env.filters['is_fire'] = is_fire_pokemon</code> versus <code>is_fire_pokemon(pokemon)</code>:</p>
 <div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_fire_pokemon</span><span class="p">(</span><span class="n">pokemon</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;is_fire&#39;</span><span class="p">])</span>
@@ -291,11 +292,11 @@ This step is crucial to ensuring that the template can communicate with/access v
 </pre></div>
 
 
-<p>In the first case, what we're storing as the filter is the actual value returned by the function &ndash; essentially, we're calling our function <em>as</em> we store it, and in doing so, saving whatever it returns as the filter, which isn't what we want. We want to set the function itself as a filter, and we do this by <em>not</em> using brackets and arguments!</p>
-<h3>Setting variables</h3>
-<p>Now that we're familiar with the calling of functions in Jinja through filters, we can add another layer: variables!</p>
-<p>If you've made it this far, I probably don't need to elaborate on the usefulness of local variables, so let's dive right into the code.</p>
-<p>The instantiation process is quite straightforward: identical to how one assigns variables in regular python, with the one added step of wrapping your variable assignment inside</p>
+<p>In the first case, what we&#8217;re storing as the filter is the actual value returned by the function &ndash; essentially, we&#8217;re calling our function <em>as</em> we store it, and in doing so, saving whatever it returns as the filter, which isn&#8217;t what we want. We want to set the function itself as a filter, and we do this by omitting brackets and&nbsp;arguments.</p>
+<h3>Setting&nbsp;variables</h3>
+<p>Now that we&#8217;re familiar with the calling of functions in Jinja through filters, we can add another layer:&nbsp;variables.</p>
+<p>If you&#8217;ve made it this far, I probably don&#8217;t need to elaborate on the usefulness of local variables, so let&#8217;s dive right into the&nbsp;code.</p>
+<p>The instantiation process is quite straightforward: identical to how one assigns variables in regular python, with the one added step of wrapping your variable assignment&nbsp;inside</p>
 <div class="highlight"><pre><span></span>{% var = goes here %}
 </pre></div>
 
@@ -321,7 +322,7 @@ This step is crucial to ensuring that the template can communicate with/access v
 </pre></div>
 
 
-<p>Here I've set <code>p = my_pokemon|select_random</code> in order to pass it to my <code>is_fire_pokemon</code> function (which is contained in the <code>is_fire</code> filter).</p>
+<p>Here I&#8217;ve set <code>p = my_pokemon|select_random</code> in order to pass it to my <code>is_fire_pokemon</code> function (which is contained in the <code>is_fire</code> filter).</p>
 <div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;fun2.html&#39;</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">my_pokemon</span><span class="o">=</span><span class="n">pokemon</span><span class="p">)</span>
 
@@ -335,7 +336,7 @@ This step is crucial to ensuring that the template can communicate with/access v
     <title>My pokemon</title>
 </head>
 
-<p><p>My randomly selected pokémon :</p>
+<p><p>My randomly selected pokémon&nbsp;:</p>
 <div class="highlight"><pre><span></span>    Cubone, Bad: Ground
 &lt;/p&gt;
 </pre></div>
@@ -343,8 +344,9 @@ This step is crucial to ensuring that the template can communicate with/access v
 
 <p></html></p>
 <p><img src='https://vignette.wikia.nocookie.net/looneytunes/images/e/e1/All.jpg/revision/latest?cb=20150313020828' style='width:500px;'></p>
-<p>Good luck on your Jinja adventures!</p>
+<p>Good luck on your Jinja adventures&nbsp;:-)</p>
 </div>
+<!--  -->
 <footer class="page-footer">
 	<div style="font-size:8pt">
 			&copy; <script>document.write(new Date().getFullYear());</script> Megan Karabin

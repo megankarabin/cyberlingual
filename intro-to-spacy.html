@@ -14,9 +14,9 @@
 		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
 		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
 
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/poole.css" />
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/hyde.css" />
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/syntax.css" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/poole.css" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/hyde.css?v=1" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/syntax.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 		<!-- RSS -->
@@ -31,20 +31,20 @@
 				<a class="sidebar-about" href="https://megankarabin.github.io/cyberlingual">
 					<img class="profile-picture"
 					src="https://lh3.googleusercontent.com/c4Lq6ofLQEJgrxFZyB8GW9MHBAheCcecymUM-8LRfyGwH01YtEyMWnIV4KEpSe8hyMsyNRFtU1VPKtF8M1WqtEWZAtjyoFGbmRToy369ETUJCvDA0P3zJGPiXyCdmunYHZT8Sjv7jw=w2400?source=screenshot.guru">
-					cyberlingual
+					<!-- cyberlingual -->
+					<p style="opacity:0.85"> c y b e r l i n g u a l </p>
 				</a>
 			</h1>
-			<!-- <p class="lead" style="font-size: 11pt"> </p> -->
+			<!-- <p class="lead" style="font-size: 11pt">  </p> -->
 			<!-- <div class='pages-list'> -->
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/about.html">
-				<ul class="pages-list"> about </ul>
-			</a>
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
-				<ul class="pages-list"> projects </ul>
-			</a>
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual">
-				<ul class="pages-list"> posts </ul>
-			</a>
+			<ul class="pages-list">
+			<li><a href="https://megankarabin.github.io/cyberlingual">
+				posts </a></li>
+			<li><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
+				projects</a></li>
+			<li><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
+				about</a></li>
+				 </ul>
 			<!-- </div> -->
 		</div>
 		<nav class="sidebar-nav">
@@ -75,19 +75,19 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Intro to spaCy</h1>
+	<h1 class="post-title">Intro to&nbsp;spaCy</h1>
 	<span class="post-date">Sun 28 July 2019</span>
-	<p>spaCy is an NLP tool for language and text processing. The most well-known package for NLP is NLTK, which though it's a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data. Although spaCy definitely has ease-of-use on its side, I know there are people out there who are quite comfortable using NLTK. However, there are several features available in spaCy that simply don't exist in NLTK, so hopefully after this tutorial you'll be convinced that spaCy is the way to go!</p>
-<p>In this tutorial, I'll go over the basics of spaCy, showing you first how to install and get started, and then helping you to become familiar with some of the core concepts and features built into spaCy.</p>
-<p><b> Outline</b></p>
+	<p>spaCy is an <span class="caps">NLP</span> tool for language and text processing. The most well-known package for <span class="caps">NLP</span> is <span class="caps">NLTK</span>, which though it&#8217;s a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data. Although spaCy definitely has ease-of-use on its side, I know there are people out there who are quite comfortable using <span class="caps">NLTK</span>. However, there are several features available in spaCy that simply don&#8217;t exist in <span class="caps">NLTK</span>, so hopefully after this tutorial you&#8217;ll be convinced that spaCy is the way to&nbsp;go!</p>
+<p>In this tutorial, I&#8217;ll go over the basics of spaCy, showing you first how to install and get started, and then helping you to become familiar with some of the core concepts and features built into&nbsp;spaCy.</p>
+<p><b>&nbsp;Outline</b></p>
 <ul>
-<li>the NLP and Doc objects</li>
-<li>tokens / tokenization (and lexical attributes of tokens, including parts-of-speech tags, syntactic dependencies, and lemmas, among several others)</li>
-<li>match patterns (spaCy's superior version of regex)</li>
-<li>entity identification</li>
+<li>the <span class="caps">NLP</span> and Doc&nbsp;objects</li>
+<li>tokens / tokenization (and lexical attributes of tokens, including parts-of-speech tags, syntactic dependencies, and lemmas, among several&nbsp;others)</li>
+<li>match patterns (spaCy&#8217;s superior version of&nbsp;regex)</li>
+<li>entity&nbsp;identification</li>
 <li>displaCy</li>
 </ul>
-<p>displaCy is spaCy's visualization package. With displaCy, we can view the syntactic dependencies of a doc (text object) in really pretty visualizations, as well as label and colour-code entities.</p>
+<p>displaCy is spaCy&#8217;s visualization package. With displaCy, we can view the syntactic dependencies of a doc (text object) in really pretty visualizations, as well as label and colour-code&nbsp;entities.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -98,29 +98,29 @@
 </pre></div>
 
 
-<h2>Installing and downloading</h2>
-<p>To install spaCy, simply run the following lines of code.</p>
+<h2>Installing and&nbsp;downloading</h2>
+<p>To install spaCy, simply run the following lines of&nbsp;code.</p>
 <div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">spacy</span>
 <span class="err">!</span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">spacy</span> <span class="n">download</span> <span class="n">en_core_web_sm</span>
 </pre></div>
 
 
-<p>You should get the following output:</p>
+<p>You should get the following&nbsp;output:</p>
 <div class="highlight"><pre><span></span>✔ Download and installation successful
 You can now load the model via spacy.load(&#39;en_core_web_sm&#39;)
 </pre></div>
 
 
-<h2>The NLP object and the Doc object</h2>
-<p>The NLP object contains the processing pipeline. Once instantiated, we can use it to analyze text.</p>
-<p>We instantiate like so:</p>
+<h2>The <span class="caps">NLP</span> object and the Doc&nbsp;object</h2>
+<p>The <span class="caps">NLP</span> object contains the processing pipeline. Once instantiated, we can use it to analyze&nbsp;text.</p>
+<p>We instantiate like&nbsp;so:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy.lang.en</span> <span class="kn">import</span> <span class="n">English</span>
 
 <span class="n">nlp</span> <span class="o">=</span> <span class="n">English</span><span class="p">()</span>
 </pre></div>
 
 
-<p>Next, we pass our text data to the nlp object, and assign this to a variable, the standard name is <code>doc</code>. This <code>doc</code> variable now contains a Doc object, which we'll see below.</p>
+<p>Next, we pass our text data to the nlp object, and assign this to a variable, the standard name is <code>doc</code>. This <code>doc</code> variable now contains a Doc object, which we&#8217;ll see&nbsp;below.</p>
 <div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="s1">&#39;The alien spaceship travelled 12 billion light years to explore new galaxies.&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
@@ -133,8 +133,8 @@ You can now load the model via spacy.load(&#39;en_core_web_sm&#39;)
 
 
 <p>It behaves the same as a python sequence in that you can iterate over and index its contents.
-[Note: for the sake of being explicit I passed a raw string to <code>nlp</code>, but you can just as easily pass a variable that contains your text.]</p>
-<p>We can run the <code>.text</code> method to get the full text contents of the doc object.</p>
+[Note: for the sake of being explicit I passed a raw string to <code>nlp</code>, but you can just as easily pass a variable that contains your&nbsp;text.]</p>
+<p>We can run the <code>.text</code> method to get the full text contents of the doc&nbsp;object.</p>
 <div class="highlight"><pre><span></span><span class="n">doc</span><span class="o">.</span><span class="n">text</span>
 </pre></div>
 
@@ -143,15 +143,15 @@ You can now load the model via spacy.load(&#39;en_core_web_sm&#39;)
 </pre></div>
 
 
-<p>spaCy uses statistical models to make predictions based on context, which is critically important when processing language. Without context analysis, there's very little we can say about the words in a given sentence or phrase &mdash; a feature of key importance of language is that words which look identical don't always mean the same thing or have the same structural role, depending on where they occur in a sentence and with which other words. (E.g., "She ate <strong>baked</strong> potatoes" vs. "She <strong>baked</strong> potatoes": in the first sentence, baked is an adjective, but in the second, it's a verb.)</p>
-<p>Things we can do in spaCy with statistical models:</p>
+<p>spaCy uses statistical models to make predictions based on context, which is critically important when processing language. Without context analysis, there&#8217;s very little we can say about the words in a given sentence or phrase &mdash; a feature of key importance of language is that words which look identical don&#8217;t always mean the same thing or have the same structural role, depending on where they occur in a sentence and with which other words. (E.g., &#8220;She ate <strong>baked</strong> potatoes&#8221; vs. &#8220;She <strong>baked</strong> potatoes&#8221;: in the first sentence, baked is an adjective, but in the second, it&#8217;s a&nbsp;verb.)</p>
+<p>Things we can do in spaCy with statistical&nbsp;models:</p>
 <ul>
-<li>parts-of-speech (POS) tagging</li>
-<li>(named) entity identification</li>
-<li>syntactic dependency parsing</li>
+<li>parts-of-speech (<span class="caps">POS</span>)&nbsp;tagging</li>
+<li>(named) entity&nbsp;identification</li>
+<li>syntactic dependency&nbsp;parsing</li>
 </ul>
-<p>To use one of spaCy's models, you'll need to import spacy, then load a package, such as the <code>en_core_web_sm</code> package.</p>
-<p>You can use:</p>
+<p>To use one of spaCy&#8217;s models, you&#8217;ll need to import spacy, then load a package, such as the <code>en_core_web_sm</code> package.</p>
+<p>You can&nbsp;use:</p>
 <p><code>$ python install -m spacy download en_core_web_sm</code></p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
 
@@ -164,8 +164,8 @@ You can now load the model via spacy.load(&#39;en_core_web_sm&#39;)
 
 
 <h2>Tokens</h2>
-<p>Tokens are just another word for "item". In NLP, any individual, discrete object within the text (e.g., a word, punctuation mark, or number) would be a token. We can access individual tokens in a text by iterating over the doc object, and can thus see what types of tokens it contains, along with their lexical attributes.</p>
-<p><em>Lexical just means "relating to the words or vocabulary of a language", and so a "lexical attribute" is just some feature relating to the words/vocabulary of your doc.</em></p>
+<p>Tokens are just another word for &#8220;item&#8221;. In <span class="caps">NLP</span>, any individual, discrete object within the text (e.g., a word, punctuation mark, or number) would be a token. We can access individual tokens in a text by iterating over the doc object, and can thus see what types of tokens it contains, along with their lexical&nbsp;attributes.</p>
+<p><em>Lexical just means &#8220;relating to the words or vocabulary of a language&#8221;, and so a &#8220;lexical attribute&#8221; is just some feature relating to the words/vocabulary of your&nbsp;doc.</em></p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
 </pre></div>
@@ -187,22 +187,22 @@ galaxies
 </pre></div>
 
 
-<h3>Lexical Attributes in spaCy</h3>
-<h5>Mini linguistics refresher:</h5>
-<p><strong>POS</strong>: the syntactic category a word (or here, token) belongs to, e.g., noun, verb, adjective</p>
-<p><strong>Dependency</strong>: the grammatical role of a word, relative to the other words in the sentence, e.g. direct/indirect object</p>
-<p><strong>Head</strong>: the lexical node (on a tree) that governs the word in question</p>
-<p><strong>Lemma</strong>: the base form of a word (its simplest morphological realization), e.g. "run" is the lemma for "running"</p>
-<p><strong>Shape</strong>: not linguistics-related per se, but this one is actually pretty cool &mdash; the shape attribute shows you what the token "looks like" without showing you the token itself (is it a digit, does it contain capital letters, etc.).</p>
-<p>The following are some useful and interesting token attributes.</p>
-<p><strong>These return boolean values:</strong></p>
+<h3>Lexical Attributes in&nbsp;spaCy</h3>
+<h5>Mini linguistics&nbsp;refresher:</h5>
+<p><strong><span class="caps">POS</span></strong>: the syntactic category a word (or here, token) belongs to, e.g., noun, verb,&nbsp;adjective</p>
+<p><strong>Dependency</strong>: the grammatical role of a word, relative to the other words in the sentence, e.g. direct/indirect&nbsp;object</p>
+<p><strong>Head</strong>: the lexical node (on a tree) that governs the word in&nbsp;question</p>
+<p><strong>Lemma</strong>: the base form of a word (its simplest morphological realization), e.g. &#8220;run&#8221; is the lemma for&nbsp;&#8220;running&#8221;</p>
+<p><strong>Shape</strong>: not linguistics-related per se, but this one is actually pretty cool &mdash; the shape attribute shows you what the token &#8220;looks like&#8221; without showing you the token itself (is it a digit, does it contain capital letters,&nbsp;etc.).</p>
+<p>The following are some useful and interesting token&nbsp;attributes.</p>
+<p><strong>These return boolean&nbsp;values:</strong></p>
 <div class="highlight"><pre><span></span>is_alpha  (is it an alphanumeric character)
 is_punct  (is it punctuation)
 like_num  (is it a number)
 </pre></div>
 
 
-<p><strong>These return the index, the POS, the dependency, the lemma and the shape of a token, respectively:</strong></p>
+<p><strong>These return the index, the <span class="caps">POS</span>, the dependency, the lemma and the shape of a token,&nbsp;respectively:</strong></p>
 <div class="highlight"><pre><span></span>i
 pos_
 dep_
@@ -212,9 +212,9 @@ shape_
 </pre></div>
 
 
-<h4>Additional Attributes</h4>
-<p>We can call <code>doc.ents</code> to get the entities and iterate over this to find the label (i.e., the category) for each entity (which we'll do in a minute) using the <code>label_</code> attribute.</p>
-<p>Below I'll run each of the attributes for every token using list comprehensions and toss those outputs into a dataframe, which will now contain all the relevant lexical information we gathered for each of the tokens.</p>
+<h4>Additional&nbsp;Attributes</h4>
+<p>We can call <code>doc.ents</code> to get the entities and iterate over this to find the label (i.e., the category) for each entity (which we&#8217;ll do in a minute) using the <code>label_</code> attribute.</p>
+<p>Below I&#8217;ll run each of the attributes for every token using list comprehensions and toss those outputs into a dataframe, which will now contain all the relevant lexical information we gathered for each of the&nbsp;tokens.</p>
 <div class="highlight"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
 <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">pos_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
 <span class="n">dep</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">dep_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
@@ -266,7 +266,7 @@ shape_
     <tr>
       <th>0</th>
       <td>The</td>
-      <td>DET</td>
+      <td><span class="caps">DET</span></td>
       <td>det</td>
       <td>spaceship</td>
       <td>the</td>
@@ -275,7 +275,7 @@ shape_
     <tr>
       <th>1</th>
       <td>SpaceX</td>
-      <td>PROPN</td>
+      <td><span class="caps">PROPN</span></td>
       <td>compound</td>
       <td>spaceship</td>
       <td>SpaceX</td>
@@ -284,7 +284,7 @@ shape_
     <tr>
       <th>2</th>
       <td>spaceship</td>
-      <td>NOUN</td>
+      <td><span class="caps">NOUN</span></td>
       <td>nsubj</td>
       <td>travelled</td>
       <td>spaceship</td>
@@ -293,8 +293,8 @@ shape_
     <tr>
       <th>3</th>
       <td>travelled</td>
-      <td>VERB</td>
-      <td>ROOT</td>
+      <td><span class="caps">VERB</span></td>
+      <td><span class="caps">ROOT</span></td>
       <td>travelled</td>
       <td>travel</td>
       <td>xxxx</td>
@@ -302,7 +302,7 @@ shape_
     <tr>
       <th>4</th>
       <td>12</td>
-      <td>NUM</td>
+      <td><span class="caps">NUM</span></td>
       <td>compound</td>
       <td>billion</td>
       <td>12</td>
@@ -311,7 +311,7 @@ shape_
     <tr>
       <th>5</th>
       <td>billion</td>
-      <td>NUM</td>
+      <td><span class="caps">NUM</span></td>
       <td>nummod</td>
       <td>years</td>
       <td>billion</td>
@@ -320,7 +320,7 @@ shape_
     <tr>
       <th>6</th>
       <td>light</td>
-      <td>ADJ</td>
+      <td><span class="caps">ADJ</span></td>
       <td>amod</td>
       <td>years</td>
       <td>light</td>
@@ -329,7 +329,7 @@ shape_
     <tr>
       <th>7</th>
       <td>years</td>
-      <td>NOUN</td>
+      <td><span class="caps">NOUN</span></td>
       <td>dobj</td>
       <td>travelled</td>
       <td>year</td>
@@ -338,7 +338,7 @@ shape_
     <tr>
       <th>8</th>
       <td>to</td>
-      <td>PART</td>
+      <td><span class="caps">PART</span></td>
       <td>aux</td>
       <td>explore</td>
       <td>to</td>
@@ -347,7 +347,7 @@ shape_
     <tr>
       <th>9</th>
       <td>explore</td>
-      <td>VERB</td>
+      <td><span class="caps">VERB</span></td>
       <td>advcl</td>
       <td>travelled</td>
       <td>explore</td>
@@ -356,7 +356,7 @@ shape_
     <tr>
       <th>10</th>
       <td>new</td>
-      <td>ADJ</td>
+      <td><span class="caps">ADJ</span></td>
       <td>amod</td>
       <td>galaxies</td>
       <td>new</td>
@@ -365,7 +365,7 @@ shape_
     <tr>
       <th>11</th>
       <td>galaxies</td>
-      <td>NOUN</td>
+      <td><span class="caps">NOUN</span></td>
       <td>dobj</td>
       <td>explore</td>
       <td>galaxy</td>
@@ -374,7 +374,7 @@ shape_
     <tr>
       <th>12</th>
       <td>.</td>
-      <td>PUNCT</td>
+      <td><span class="caps">PUNCT</span></td>
       <td>punct</td>
       <td>travelled</td>
       <td>.</td>
@@ -384,7 +384,7 @@ shape_
 </table>
 </div>
 
-<p>We can use <code>like_num</code> to find any numeric tokens in the text. This includes both digits and words for numbers.</p>
+<p>We can use <code>like_num</code> to find any numeric tokens in the text. This includes both digits and words for&nbsp;numbers.</p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">like_num</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Token: {token}   Index: {token.i}&#39;</span><span class="p">)</span>
@@ -396,7 +396,7 @@ shape_
 </pre></div>
 
 
-<p>We can check to see if the model recognized SpaceX as an entity...</p>
+<p>We can check to see if the model recognized SpaceX as an&nbsp;entity&#8230;</p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">)</span>
 </pre></div>
@@ -406,25 +406,25 @@ shape_
 </pre></div>
 
 
-<p>...Looks like it didn't. "12 billion light" is also <strong>not</strong> money here.</p>
-<p>However, all is not lost! We can use a special feature called <strong>match patterns</strong>, along with manually adding this element to our list of entities, <code>doc.ents</code> (which we'll get to shortly), to set things straight.</p>
-<h2>Match Patterns</h2>
+<p>&#8230;Looks like it didn&#8217;t. &#8220;12 billion light&#8221; is also <strong>not</strong> money&nbsp;here.</p>
+<p>However, all is not lost! We can use a special feature called <strong>match patterns</strong>, along with manually adding this element to our list of entities, <code>doc.ents</code> (which we&#8217;ll get to shortly), to set things&nbsp;straight.</p>
+<h2>Match&nbsp;Patterns</h2>
 <p><img src="https://i.imgur.com/OlxGPEH.jpg" title="source: imgur.com" style='width:400px;' /></p>
 <h5>What do they <b>do? </b></h5>
-<p>One of the coolest things about spaCy is its built-in ability to let us search for patterns without having to rely on regular expressions. <strong>Match patterns</strong> (the spaCy regex equivalent) let you search for a pattern within a text, which can be a string, a doc or a token object &mdash; whereas regular expressions can only take string arguments.</p>
-<p>Match patterns also let you customize what <em>kind</em> of pattern you're looking for &mdash; which isn't always a simple sequence of characters. When we're doing NLP analyses, we might want to look for words belonging to a particular POS category, or words with a particular lemma. For instance, setting the lemma search to "run" would return tokens that contain the base form, such as "running" or "runs".</p>
-<h5>So... what exactly are match patterns? What do they look like?</h5>
-<p>Match patterns are lists of dictionaries, wherein each key is the attribute and each value is the corresponding value you're looking for.</p>
+<p>One of the coolest things about spaCy is its built-in ability to let us search for patterns without having to rely on regular expressions. <strong>Match patterns</strong> (the spaCy regex equivalent) let you search for a pattern within a text, which can be a string, a doc or a token object &mdash; whereas regular expressions can only take string&nbsp;arguments.</p>
+<p>Match patterns also let you customize what <em>kind</em> of pattern you&#8217;re looking for &mdash; which isn&#8217;t always a simple sequence of characters. When we&#8217;re doing <span class="caps">NLP</span> analyses, we might want to look for words belonging to a particular <span class="caps">POS</span> category, or words with a particular lemma. For instance, setting the lemma search to &#8220;run&#8221; would return tokens that contain the base form, such as &#8220;running&#8221; or&nbsp;&#8220;runs&#8221;.</p>
+<h5>So&#8230; what exactly are match patterns? What do they look&nbsp;like?</h5>
+<p>Match patterns are lists of dictionaries, wherein each key is the attribute and each value is the corresponding value you&#8217;re looking&nbsp;for.</p>
 <div class="highlight"><pre><span></span>pattern = [{&#39;ATTRIBUTE&#39;: &#39;VALUE&#39;}]
 </pre></div>
 
 
-<p>Each dictionary corresponds to exactly one token. If you have more than one dictionary, the list of dictionaries will correspond to a sequence of tokens appearing in that order (if that sequence exists in the doc).</p>
-<p>Let's say we have a doc containing the string <code>"Hello world!"</code> as well as <code>"it's nice to say hello"</code>and we want to find all instances of <code>"hello"</code> where it's followed by a noun, as well as also all instances where it's not.</p>
+<p>Each dictionary corresponds to exactly one token. If you have more than one dictionary, the list of dictionaries will correspond to a sequence of tokens appearing in that order (if that sequence exists in the&nbsp;doc).</p>
+<p>Let&#8217;s say we have a doc containing the string <code>"Hello world!"</code> as well as <code>"it's nice to say hello"</code>and we want to find all instances of <code>"hello"</code> where it&#8217;s followed by a noun, as well as also all instances where it&#8217;s&nbsp;not.</p>
 <p><img src="https://imgur.com/zYMm9ox.jpg" title="source: imgur.com" style='width:650px;' /></p>
-<p>We can use the <code>OP</code> attribute with the <code>*</code> key to indicate that this token is optional (i.e., "find this element 0 or more times").</p>
-<p><em>For this particular case, this step is somewhat redundant, but I want to illustrate the optional feature in the simplest way possible.</em></p>
-<p>Some attributes for rule-based matching:</p>
+<p>We can use the <code>OP</code> attribute with the <code>*</code> key to indicate that this token is optional (i.e., &#8220;find this element 0 or more&nbsp;times&#8221;).</p>
+<p><em>For this particular case, this step is somewhat redundant, but I want to illustrate the optional feature in the simplest way&nbsp;possible.</em></p>
+<p>Some attributes for rule-based&nbsp;matching:</p>
 <div class="highlight"><pre><span></span>            return bool:
 
 TEXT        IS_ALPHA     IS_LOWER   
@@ -435,7 +435,7 @@ OP          IS_STOP
 </pre></div>
 
 
-<p><strong>To start using match patterns, run the following lines of code:</strong></p>
+<p><strong>To start using match patterns, run the following lines of&nbsp;code:</strong></p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy.matcher</span> <span class="kn">import</span> <span class="n">Matcher</span>
 
 <span class="c1"># initialize matcher using vocabulary shared with the nlp object</span>
@@ -443,7 +443,7 @@ OP          IS_STOP
 </pre></div>
 
 
-<p>Note: this <a href="https://explosion.ai/demos/matcher">Matcher Explorer</a> is a really nice tool for checking and trying out various match patterns &mdash; give it a whirl.</p>
+<p>Note: this <a href="https://explosion.ai/demos/matcher">Matcher Explorer</a> is a really nice tool for checking and trying out various match patterns &mdash; give it a&nbsp;whirl.</p>
 <div class="highlight"><pre><span></span><span class="c1"># first we set the pattern</span>
 <span class="n">pattern</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;TEXT&#39;</span><span class="p">:</span> <span class="s1">&#39;SpaceX&#39;</span><span class="p">}]</span>
 
@@ -460,7 +460,7 @@ OP          IS_STOP
 </pre></div>
 
 
-<p>The matcher returns a list of tuples, where the first value is the match ID, the second is the start index, and the third is the end index of the match.</p>
+<p>The matcher returns a list of tuples, where the first value is the match <span class="caps">ID</span>, the second is the start index, and the third is the end index of the&nbsp;match.</p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">match_id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
     <span class="n">matched_span</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span>
     <span class="k">print</span><span class="p">(</span><span class="n">matched_span</span><span class="p">)</span>
@@ -471,28 +471,28 @@ OP          IS_STOP
 </pre></div>
 
 
-<h3>Using Matcher: Overview</h3>
+<h3>Using Matcher:&nbsp;Overview</h3>
 <p><strong>Steps:</strong></p>
 <ol>
 <li>Import Matcher from <code>spacy.matcher</code></li>
 <li>Load model (e.g., <code>'en_core_web_sm'</code>)</li>
-<li>Create nlp object (if not already previously done)</li>
+<li>Create nlp object (if not already previously&nbsp;done)</li>
 <li>Instantiate Matcher with shared vocab (pass in <code>nlp.vocab</code>)</li>
 <li>Pass your match pattern to <code>matcher.add</code>, where:<ul>
-<li>argument 1 = a string representing a unique ID of your choosing to identify the pattern</li>
+<li>argument 1 = a string representing a unique <span class="caps">ID</span> of your choosing to identify the&nbsp;pattern</li>
 <li>argument 2 = optional callback (if none, set <code>None</code>)</li>
-<li>argument 3 = list of token desriptions, i.e., the pattern</li>
+<li>argument 3 = list of token desriptions, i.e., the&nbsp;pattern</li>
 </ul>
 </li>
-<li>Call matcher on the <code>doc</code> object (or whatever you've called your doc object) and toss this into a variable (here, I've used <code>matches</code> to keep things simple)</li>
-<li><strong>Optional</strong>: peek at what's inside. Remember the returned tuple contains the match ID, and the start and stop indices of the match.</li>
-<li>To return the match(es) as a string (to actually see what they are &mdash; we might not always know what strings our match is going to return!), use a loop to iterate over each item in the tuple, as demonstrated above.   </li>
+<li>Call matcher on the <code>doc</code> object (or whatever you&#8217;ve called your doc object) and toss this into a variable (here, I&#8217;ve used <code>matches</code> to keep things&nbsp;simple)</li>
+<li><strong>Optional</strong>: peek at what&#8217;s inside. Remember the returned tuple contains the match <span class="caps">ID</span>, and the start and stop indices of the&nbsp;match.</li>
+<li>To return the match(es) as a string (to actually see what they are &mdash; we might not always know what strings our match is going to return!), use a loop to iterate over each item in the tuple, as demonstrated&nbsp;above.   </li>
 </ol>
-<h2>Hashing, vocab and string stores</h2>
-<p>The way we access the vocabulary in spaCy is through hash IDs and string stores. The vocabulary will depend on which package we passed into <code>spacy.load</code>, and will contain all the unique tokens within that package / dataset.</p>
-<p>spaCy stores tokens in the vocabulary as hashes, such that every identical token string will have the same hash ID (a unique numeric identifier). Hashes enable memory efficiency since this way, if an identical string occurs multiple times (e.g. the word "the"), it only needs to be stored once in the vocabulary (and not multiple times as a string).</p>
-<p>Every hash corresponds to a string token, and every string will have a corresponding hash. You can use either one to look up the other, as long as that string is already in the vocabulary.</p>
-<p>If the word is new to the vocabulary, we must first hash it (as I'll show below). We can always get the hash of a word by looking up a string (if it's not already there, a new one will be generated), but if the word is new and doesn't yet have a hash, we can't search from hash ID to string (it won't exist!).</p>
+<h2>Hashing, vocab and string&nbsp;stores</h2>
+<p>The way we access the vocabulary in spaCy is through hash IDs and string stores. The vocabulary will depend on which package we passed into <code>spacy.load</code>, and will contain all the unique tokens within that package /&nbsp;dataset.</p>
+<p>spaCy stores tokens in the vocabulary as hashes, such that every identical token string will have the same hash <span class="caps">ID</span> (a unique numeric identifier). Hashes enable memory efficiency since this way, if an identical string occurs multiple times (e.g. the word &#8220;the&#8221;), it only needs to be stored once in the vocabulary (and not multiple times as a&nbsp;string).</p>
+<p>Every hash corresponds to a string token, and every string will have a corresponding hash. You can use either one to look up the other, as long as that string is already in the&nbsp;vocabulary.</p>
+<p>If the word is new to the vocabulary, we must first hash it (as I&#8217;ll show below). We can always get the hash of a word by looking up a string (if it&#8217;s not already there, a new one will be generated), but if the word is new and doesn&#8217;t yet have a hash, we can&#8217;t search from hash <span class="caps">ID</span> to string (it won&#8217;t&nbsp;exist!).</p>
 <div class="highlight"><pre><span></span><span class="c1"># reminder of the contents of our doc object</span>
 <span class="n">doc</span><span class="o">.</span><span class="n">text</span>
 </pre></div>
@@ -502,19 +502,19 @@ OP          IS_STOP
 </pre></div>
 
 
-<p>We can search for a hash or a string using</p>
+<p>We can search for a hash or a string&nbsp;using</p>
 <div class="highlight"><pre><span></span>nlp.vocab.strings[&#39;string&#39;]
 nlp.vocab.strings[hash]
 </pre></div>
 
 
-<p>OR</p>
+<p><span class="caps">OR</span></p>
 <div class="highlight"><pre><span></span>doc.vocab.strings[&#39;string&#39;]
 doc.vocab.strings[hash]
 </pre></div>
 
 
-<p>where <code>'string'</code> is the string token you're searching for (or adding to the vocab) and <code>hash</code> is an integer representing the hash ID of an existing string.</p>
+<p>where <code>'string'</code> is the string token you&#8217;re searching for (or adding to the vocab) and <code>hash</code> is an integer representing the hash <span class="caps">ID</span> of an existing&nbsp;string.</p>
 <div class="highlight"><pre><span></span><span class="n">spaceship_hash</span> <span class="o">=</span> <span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">strings</span><span class="p">[</span><span class="s1">&#39;spaceship&#39;</span><span class="p">]</span>
 <span class="n">spaceship_hash</span>
 </pre></div>
@@ -524,7 +524,7 @@ doc.vocab.strings[hash]
 </pre></div>
 
 
-<p>If you search for a hash that doesn't correspond to any string in the vocab, it'll throw an error:</p>
+<p>If you search for a hash that doesn&#8217;t correspond to any string in the vocab, it&#8217;ll throw an&nbsp;error:</p>
 <div class="highlight"><pre><span></span><span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">strings</span><span class="p">[</span><span class="mi">4523523</span><span class="p">]</span> <span class="c1"># has no corresponding string in the vocab</span>
 </pre></div>
 
@@ -533,8 +533,8 @@ doc.vocab.strings[hash]
 </pre></div>
 
 
-<p>The string for hash 4523523 can't be retrieved because it doesn't match any existing item in the vocab.</p>
-<p>Once we know the hash of a string, we can call it within <code>nlp.vocab.strings</code> to once again get back the corresponding string.</p>
+<p>The string for hash 4523523 can&#8217;t be retrieved because it doesn&#8217;t match any existing item in the&nbsp;vocab.</p>
+<p>Once we know the hash of a string, we can call it within <code>nlp.vocab.strings</code> to once again get back the corresponding&nbsp;string.</p>
 <div class="highlight"><pre><span></span><span class="n">spaceship_string</span> <span class="o">=</span> <span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">strings</span><span class="p">[</span><span class="n">spaceship_hash</span><span class="p">]</span>
 <span class="n">spaceship_string</span>
 </pre></div>
@@ -544,8 +544,8 @@ doc.vocab.strings[hash]
 </pre></div>
 
 
-<h3>Fixing up our entities</h3>
-<p>You'll recall that spaCy incorrectly identified "12 billion light" as a <code>MONEY</code> entity, as well as missed SpaceX altogether. SpaceX should be labelled as an organization &ndash; <code>ORG</code> &ndash; while we can create a "distance" label &ndash; <code>DIST</code> &ndash; for "light years".</p>
+<h3>Fixing up our&nbsp;entities</h3>
+<p>You&#8217;ll recall that spaCy incorrectly identified &#8220;12 billion light&#8221; as a <code>MONEY</code> entity, as well as missed SpaceX altogether. SpaceX should be labelled as an organization &ndash; <code>ORG</code> &ndash; while we can create a &#8220;distance&#8221; label &ndash; <code>DIST</code> &ndash; for &#8220;light&nbsp;years&#8221;.</p>
 <div class="highlight"><pre><span></span><span class="n">pattern</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;TEXT&#39;</span><span class="p">:</span> <span class="s1">&#39;SpaceX&#39;</span><span class="p">}]</span>
 <span class="n">spacex_matcher</span> <span class="o">=</span> <span class="n">matcher</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;spacex&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
 
@@ -557,7 +557,7 @@ doc.vocab.strings[hash]
 </pre></div>
 
 
-<p>Now we know the start and stop indices for our SpaceX entity. Let's do the same for "light years"</p>
+<p>Now we know the start and stop indices for our SpaceX entity. Let&#8217;s do the same for &#8220;light&nbsp;years&#8221;</p>
 <div class="highlight"><pre><span></span><span class="n">matcher</span> <span class="o">=</span> <span class="n">Matcher</span><span class="p">(</span><span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="p">)</span>
 
 <span class="n">pattern</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;LIKE_NUM&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;LIKE_NUM&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;POS&#39;</span><span class="p">:</span> <span class="s1">&#39;ADJ&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;POS&#39;</span><span class="p">:</span> <span class="s1">&#39;NOUN&#39;</span><span class="p">}]</span>
@@ -572,7 +572,7 @@ doc.vocab.strings[hash]
 </pre></div>
 
 
-<p>Here I'm iterating over my matches to check that <code>matched_span</code> actually returns what we want it to return, which would indicate that the indices returned by the matcher are correct.</p>
+<p>Here I&#8217;m iterating over my matches to check that <code>matched_span</code> actually returns what we want it to return, which would indicate that the indices returned by the matcher are&nbsp;correct.</p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">match_id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
     <span class="n">matched_span</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span>
     <span class="k">print</span><span class="p">(</span><span class="n">matched_span</span><span class="p">)</span>
@@ -583,8 +583,8 @@ doc.vocab.strings[hash]
 </pre></div>
 
 
-<p>Yep, good to go!</p>
-<p><strong>Note:</strong> <code>matched_span</code> originally returned the whole phrase, "12 billion light years" because of how I wrote the match pattern. I only want "light years" though, so I just added 2 to the start index, to effectively jump past the first two tokens of the match ("12 billion").</p>
+<p>Yep, good to&nbsp;go!</p>
+<p><strong>Note:</strong> <code>matched_span</code> originally returned the whole phrase, &#8220;12 billion light years&#8221; because of how I wrote the match pattern. I only want &#8220;light years&#8221; though, so I just added 2 to the start index, to effectively jump past the first two tokens of the match (&#8220;12&nbsp;billion&#8221;).</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy.tokens</span> <span class="kn">import</span> <span class="n">Doc</span><span class="p">,</span> <span class="n">Span</span>
 
 <span class="c1"># using the start/stop indicies returned to us by the matcher</span>
@@ -609,10 +609,10 @@ light years DIST
 
 
 <h2>displaCy</h2>
-<p>This is probably one of my favourite features of spaCy. Maybe as a linguist I'm slightly biased toward neat visual respresentations of syntactic parses, but I also think this tool is just pretty objectively cool.</p>
-<p><strong>displaCy takes your doc object and visually depicts its syntactic dependencies, in addition to providing the POS of each word.</strong></p>
-<p>First, import displaCy, then instantiate your nlp and doc objects (if you hadn't already done so previously), and then call <code>displacy.render</code> on your doc object (or list of docs!). This will return a dependency-parsed sentence!</p>
-<p>It's at this step, within <code>displacy.render</code>, that you may also specify any additional preferred parameters (which I'll go into more below).</p>
+<p>This is probably one of my favourite features of spaCy. Maybe as a linguist I&#8217;m slightly biased toward neat visual respresentations of syntactic parses, but I also think this tool is just pretty objectively&nbsp;cool.</p>
+<p><strong>displaCy takes your doc object and visually depicts its syntactic dependencies, in addition to providing the <span class="caps">POS</span> of each&nbsp;word.</strong></p>
+<p>First, import displaCy, then instantiate your nlp and doc objects (if you hadn&#8217;t already done so previously), and then call <code>displacy.render</code> on your doc object (or list of docs!). This will return a dependency-parsed&nbsp;sentence!</p>
+<p>It&#8217;s at this step, within <code>displacy.render</code>, that you may also specify any additional preferred parameters (which I&#8217;ll go into more&nbsp;below).</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy</span> <span class="kn">import</span> <span class="n">displacy</span>
 </pre></div>
 
@@ -622,18 +622,18 @@ light years DIST
 </pre></div>
 
 
-<p>To simplify things a little bit, I'll create two new doc objects called "dogs" and "cats".</p>
+<p>To simplify things a little bit, I&#8217;ll create two new doc objects called &#8220;dogs&#8221; and&nbsp;&#8220;cats&#8221;.</p>
 <div class="highlight"><pre><span></span><span class="n">dogs</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;Megan loves dogs.&quot;</span><span class="p">)</span>
 <span class="n">cats</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;Mary loves cats.&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<p>In <code>displacy.render</code>, there are two style options:</p>
+<p>In <code>displacy.render</code>, there are two style&nbsp;options:</p>
 <ul>
-<li><code>dep</code> returns a visualization of the syntactic dependencies (default)</li>
-<li><code>ent</code> returns a prettified sentence which highlights the entities it contains.</li>
+<li><code>dep</code> returns a visualization of the syntactic dependencies&nbsp;(default)</li>
+<li><code>ent</code> returns a prettified sentence which highlights the entities it&nbsp;contains.</li>
 </ul>
-<p>For example:</p>
+<p>For&nbsp;example:</p>
 <div class="highlight"><pre><span></span><span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">([</span><span class="n">dogs</span><span class="p">,</span> <span class="n">cats</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;ent&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -641,14 +641,14 @@ light years DIST
 <div class="entities" style="line-height: 2.5; direction: ltr">
 <mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone">
     Megan
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem"><span class="caps">PERSON</span></span>
 </mark>
  loves dogs.</div>
 
 <div class="entities" style="line-height: 2.5; direction: ltr">
 <mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone">
     Mary
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem"><span class="caps">PERSON</span></span>
 </mark>
  loves cats.</div>
 
@@ -661,17 +661,17 @@ light years DIST
 <div class="entities" style="line-height: 2.5; direction: ltr">The
 <mark class="entity" style="background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone">
     SpaceX
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">ORG</span>
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem"><span class="caps">ORG</span></span>
 </mark>
  spaceship travelled 12 billion
 <mark class="entity" style="background: #ddd; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone">
     light years
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">DIST</span>
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem"><span class="caps">DIST</span></span>
 </mark>
  to explore new galaxies.</div>
 
 <h4>Customization</h4>
-<p>The function signature for displaCy is as follows:</p>
+<p>The function signature for displaCy is as&nbsp;follows:</p>
 <div class="highlight"><pre><span></span><span class="n">Signature</span><span class="o">:</span>
 <span class="n">displacy</span><span class="o">.</span><span class="na">render</span><span class="o">(</span>
     <span class="n">docs</span><span class="o">,</span>
@@ -687,7 +687,7 @@ light years DIST
 </pre></div>
 
 
-<p>We can pass a dictionary of attributes into the <code>options</code> argument to ultra-customize the viz. Below is a list of valid attributes (option dict keys).</p>
+<p>We can pass a dictionary of attributes into the <code>options</code> argument to ultra-customize the viz. Below is a list of valid attributes (option dict&nbsp;keys).</p>
 <p><strong>Options:</strong></p>
 <div class="highlight"><pre><span></span>fine_grained
 collapse_punct
@@ -705,7 +705,7 @@ distance
 </pre></div>
 
 
-<p>We'll go through a few, but to read more about what each of these arguments does, check out the displaCy documentation <a href="https://spacy.io/api/top-level#options">here</a>.</p>
+<p>We&#8217;ll go through a few, but to read more about what each of these arguments does, check out the displaCy documentation <a href="https://spacy.io/api/top-level#options">here</a>.</p>
 <div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;word_spacing&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">}</span>
 </pre></div>
 
@@ -724,16 +724,16 @@ distance
 
 
 <p><img src='https://i.imgur.com/jBUcUgv.png' style='width:450px;'></p>
-<p>In the code block below, I'm populating the <code>options</code> dictionary with the features I want to adjust:</p>
+<p>In the code block below, I&#8217;m populating the <code>options</code> dictionary with the features I want to&nbsp;adjust:</p>
 <ul>
-<li><code>word_spacing</code> sets the (vertical) space between the words and the arrows</li>
-<li><code>compact</code> makes the arrows squared to conserve space</li>
-<li><code>distance</code> sets the distance between each of the words (basically, the width of the entire viz)</li>
-<li><code>arrow_spacing</code> sets the space between arrows (so the smaller the int value you pass, the less space between arrows)</li>
-<li><code>offset_x</code> is the amount of space between the "edge" of the viz and the first word that appears</li>
-<li><code>arrow_width</code> sets the size of the "arrowhead"</li>
-<li><code>color</code> sets the color of the text and arrows</li>
-<li><code>bg</code> sets the background color.</li>
+<li><code>word_spacing</code> sets the (vertical) space between the words and the&nbsp;arrows</li>
+<li><code>compact</code> makes the arrows squared to conserve&nbsp;space</li>
+<li><code>distance</code> sets the distance between each of the words (basically, the width of the entire&nbsp;viz)</li>
+<li><code>arrow_spacing</code> sets the space between arrows (so the smaller the int value you pass, the less space between&nbsp;arrows)</li>
+<li><code>offset_x</code> is the amount of space between the &#8220;edge&#8221; of the viz and the first word that&nbsp;appears</li>
+<li><code>arrow_width</code> sets the size of the&nbsp;&#8220;arrowhead&#8221;</li>
+<li><code>color</code> sets the color of the text and&nbsp;arrows</li>
+<li><code>bg</code> sets the background&nbsp;color.</li>
 </ul>
 <div class="highlight"><pre><span></span>options = {
     &#39;word_spacing&#39;: 25,
@@ -751,9 +751,9 @@ displacy.render(doc, style=&#39;dep&#39;, options=options)
 
 
 <p><img src='https://i.imgur.com/6aV8j93.png' style='width:1100px;'></p>
-<h3>One last thing...</h3>
+<h3>One last&nbsp;thing&#8230;</h3>
 <h3><code>spacy.explain</code></h3>
-<p>This method is super great when dealing with abbreviations and shorthands, which tend to be ubiquitous in a package filled with descriptors like "adverbial clause modifier". Not exactly compact. From time to time, we might encounter an abbreviation/label we're unfamiliar with, and in such cases we can call <code>spacy.explain</code>, which <strong>takes any spaCy abbreviation, shorthand or label as a string argument and returns the full name.</strong> Check it out:</p>
+<p>This method is super great when dealing with abbreviations and shorthands, which tend to be ubiquitous in a package filled with descriptors like &#8220;adverbial clause modifier&#8221;. Not exactly compact. From time to time, we might encounter an abbreviation/label we&#8217;re unfamiliar with, and in such cases we can call <code>spacy.explain</code>, which <strong>takes any spaCy abbreviation, shorthand or label as a string argument and returns the full name.</strong> Check it&nbsp;out:</p>
 <div class="highlight"><pre><span></span><span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s1">&#39;JJ&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -762,7 +762,7 @@ displacy.render(doc, style=&#39;dep&#39;, options=options)
 </pre></div>
 
 
-<p>Here's a few more:</p>
+<p>Here&#8217;s a few&nbsp;more:</p>
 <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;advcl:&#39;</span><span class="p">,</span> <span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s1">&#39;advcl&#39;</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">amod:&#39;</span><span class="p">,</span> <span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s1">&#39;amod&#39;</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">nummod:&#39;</span><span class="p">,</span> <span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s1">&#39;nummod&#39;</span><span class="p">))</span>
@@ -806,7 +806,7 @@ displacy.render(doc, style=&#39;dep&#39;, options=options)
 </pre></div>
 
 
-<p>We can use a simple zip function to create a list of tuples containing each of the tags, along with their respective "definitions".</p>
+<p>We can use a simple zip function to create a list of tuples containing each of the tags, along with their respective&nbsp;&#8220;definitions&#8221;.</p>
 <div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">tags_explained</span><span class="p">))</span>
 </pre></div>
 
@@ -827,8 +827,10 @@ displacy.render(doc, style=&#39;dep&#39;, options=options)
 </pre></div>
 
 
-<h4>Hope you enjoyed this introduction to spaCy! Now go have some fun with words 😏</h4>
+<h4>Hope you enjoyed this introduction to spaCy! Now go have some fun with words&nbsp;😏</h4>
 </div>
+<!-- Last modified: 2020-07-06 00:00:00-04:00
+ -->
 <footer class="page-footer">
 	<div style="font-size:8pt">
 			&copy; <script>document.write(new Date().getFullYear());</script> Megan Karabin

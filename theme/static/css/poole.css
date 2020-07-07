@@ -353,20 +353,26 @@ tbody tr:nth-child(odd) th {
 }
 
 /* Tags style (below post title, date)*/
+
+.tag-icon {
+  padding-top: 20px;
+  display: inline;
+}
+
 .tag {
-  /* display: block; */
+  display: inline;
   margin-top: -.7rem;
   margin-bottom: 1rem;
   font-family: 'Droid Sans', Arial, sans-serif;
-  font-size: 12pt;
+  font-size: 14px;
   background: #90a959;
   display: inline-block;
   color: #fff;
   position: relative;
   padding-left: 9px;
   padding-right: 9px;
-  padding-bottom: 4px;
-  padding-top: 4px;
+  padding-bottom: 3px;
+  padding-top: 3px;
   border-radius: 6px;
   -webkit-transition: background-color 0.4s ease-in-out;
   /* margin: 0 30px 0 0; */
@@ -381,6 +387,7 @@ tbody tr:nth-child(odd) th {
 .tag:hover:after {
   border-color: transparent transparent transparent #AFC878;
 }
+
 
 /* Related posts */
 .related {
@@ -408,8 +415,8 @@ tbody tr:nth-child(odd) th {
 }
 
 .read-more {
-  padding: .5rem .8rem;
-  border: 1px solid #eee;
+  /* padding: .5rem ; */
+  /* border: 1px solid #eee; */
   font-size: .8rem;
   margin-top: 1rem;
   font-weight: bold;
@@ -435,7 +442,7 @@ tbody tr:nth-child(odd) th {
 .pagination-item {
   display: block;
   padding: 1rem;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
 }
 .pagination-item:first-child {
   margin-bottom: -1px;

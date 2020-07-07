@@ -14,9 +14,9 @@
 		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
 		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
 
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/poole.css" />
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/hyde.css" />
-		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static//css/syntax.css" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/poole.css" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/hyde.css?v=1" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/syntax.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 		<!-- RSS -->
@@ -31,20 +31,20 @@
 				<a class="sidebar-about" href="https://megankarabin.github.io/cyberlingual">
 					<img class="profile-picture"
 					src="https://lh3.googleusercontent.com/c4Lq6ofLQEJgrxFZyB8GW9MHBAheCcecymUM-8LRfyGwH01YtEyMWnIV4KEpSe8hyMsyNRFtU1VPKtF8M1WqtEWZAtjyoFGbmRToy369ETUJCvDA0P3zJGPiXyCdmunYHZT8Sjv7jw=w2400?source=screenshot.guru">
-					cyberlingual
+					<!-- cyberlingual -->
+					<p style="opacity:0.85"> c y b e r l i n g u a l </p>
 				</a>
 			</h1>
-			<!-- <p class="lead" style="font-size: 11pt"> </p> -->
+			<!-- <p class="lead" style="font-size: 11pt">  </p> -->
 			<!-- <div class='pages-list'> -->
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/about.html">
-				<ul class="pages-list"> about </ul>
-			</a>
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
-				<ul class="pages-list"> projects </ul>
-			</a>
-			<a class="lead" href="https://megankarabin.github.io/cyberlingual">
-				<ul class="pages-list"> posts </ul>
-			</a>
+			<ul class="pages-list">
+			<li><a href="https://megankarabin.github.io/cyberlingual">
+				posts </a></li>
+			<li><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
+				projects</a></li>
+			<li><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
+				about</a></li>
+				 </ul>
 			<!-- </div> -->
 		</div>
 		<nav class="sidebar-nav">
@@ -75,12 +75,12 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Altair to the Rescue</h1>
+	<h1 class="post-title">Altair to the&nbsp;Rescue</h1>
 	<span class="post-date">Sun 07 July 2019</span>
-	<h3>Bad charts made better: A beginner-friendly altair tutorial</h3>
-<p>Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense&mdash;though at first glance, they might not appear as pernicious as they really are. By manipulating data, not only is it possible to tell a story, but to frame it in a way that fits a particular narrative. How we choose to represent data visually is of the utmost importance as a data scientist, of course, but also as anyone who needs to depict information in a meaningful way.</p>
-<p>In this blog, I'll take some bad charts (boring, misleading, logic-breaking, etc.) and remake them into their best selves.</p>
-<p>But first, I'll go over the basics of Altair, walking through the first few steps needed to create a visualization.</p>
+	<h3>Bad charts made better: A beginner-friendly altair&nbsp;tutorial</h3>
+<p>Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense&mdash;though at first glance, they might not appear as pernicious as they really are. By manipulating data, not only is it possible to tell a story, but to frame it in a way that fits a particular narrative. How we choose to represent data visually is of the utmost importance as a data scientist, of course, but also as anyone who needs to depict information in a meaningful&nbsp;way.</p>
+<p>In this blog, I&#8217;ll take some bad charts (boring, misleading, logic-breaking, etc.) and remake them into their best&nbsp;selves.</p>
+<p>But first, I&#8217;ll go over the basics of Altair, walking through the first few steps needed to create a&nbsp;visualization.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="kn">as</span> <span class="nn">alt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -88,28 +88,28 @@
 </pre></div>
 
 
-<h2>✨Before &amp; Afters ✨</h2>
-<h4>Chart 1</h4>
+<h2>✨Before <span class="amp">&amp;</span> Afters&nbsp;✨</h2>
+<h4>Chart&nbsp;1</h4>
 <p><tr>
     <td> <img src="images\images\donut-complaints.png" alt="Drawing" style="width: 300px;"/> </td>
     <td> <img src="images\images\complaints.svg" alt="Drawing" style="width: 650px;"/> </td>
     </tr></p>
-<h4>Chart 2</h4>
+<h4>Chart&nbsp;2</h4>
 <p><tr>
     <td> <img src="images\ghg-emissions.jpeg" alt="Drawing" style="width: 600px;"/> </td>
     <td> <img src="images\emissions-1.svg" alt="Drawing" style="width: 700px;"/> </td>
     </tr></p>
-<h4>Chart 3</h4>
+<h4>Chart&nbsp;3</h4>
 <p><tr>
     <td> <img src="images\aul-fakenews.jpeg" alt="Drawing" style="width: 500px;"/> </td>
     <td> <img src="images\pp-visualization.svg" alt="Drawing" style="width: 500px;"/> </td>
     </tr></p>
-<p>The "bad" chart depicting Ontario's greenhouse gas emissions might actually look a bit prettier than the one I made, but it's not the better viz. Read why below.</p>
-<h2>Making bar charts in Altair</h2>
-<p>Humans aren't great at estimating area or visual divisions of area. A donut chart just isn't a great way to compare two proportions visually&mdash;a bar chart works much better.</p>
+<p>The &#8220;bad&#8221; chart depicting Ontario&#8217;s greenhouse gas emissions might actually look a bit prettier than the one I made, but it&#8217;s not the better viz. Read why&nbsp;below.</p>
+<h2>Making bar charts in&nbsp;Altair</h2>
+<p>Humans aren&#8217;t great at estimating area or visual divisions of area. A donut chart just isn&#8217;t a great way to compare two proportions visually&mdash;a bar chart works much&nbsp;better.</p>
 <p><img src="images\donut-complaints.png" alt="Drawing" style="width: 400px;"/></p>
-<p><em>This graphic is a breakdown of the discrimination complaints received by the Canadian Human Rights Commission in 2017-18. In that year, disability complaints represented 59% of complaints while 41% of complaints were other.</em> (From the 2018 Federal budget)</p>
-<h4>The easiest way to fix this is to spin up a super simple dataset representing these data.</h4>
+<p><em>This graphic is a breakdown of the discrimination complaints received by the Canadian Human Rights Commission in 2017-18. In that year, disability complaints represented 59% of complaints while 41% of complaints were other.</em> (From the 2018 Federal&nbsp;budget)</p>
+<h4>The easiest way to fix this is to spin up a super simple dataset representing these&nbsp;data.</h4>
 <p>Altair charts take pandas dataframes as arguments, so we throw our simple dataset into one with <code>pd.DataFrame()</code>.</p>
 <div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">&#39;complaint type&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;disability-related&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">],</span>
@@ -157,7 +157,7 @@
 </table>
 </div>
 
-<p>Now we'll try out the simplest visualization possible (one that is hopefully already a more successful representation of data than donut chart up there).</p>
+<p>Now we&#8217;ll try out the simplest visualization possible (one that is hopefully already a more successful representation of data than donut chart up&nbsp;there).</p>
 <div class="highlight"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sum(quantity)&#39;</span><span class="p">,</span> <span class="c1"># the &#39;x&#39; channel</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;complaint type&#39;</span><span class="p">)</span> <span class="c1"># the &#39;y&#39; channel</span>
@@ -170,15 +170,15 @@
 
 
 <p><img alt="png" src="images/blog-2-altair_24_2.png"></p>
-<p><strong>Here's a quick breakdown of what's happening here:</strong></p>
+<p><strong>Here&#8217;s a quick breakdown of what&#8217;s happening&nbsp;here:</strong></p>
 <blockquote>
-<p><code>alt.Chart(df)</code> specifies the data you want to use in your chart (where df = your pandas dataframe)</p>
-<p><code>.mark_bar()</code> specifies a bar chart as the type of visualization you want to use.</p>
+<p><code>alt.Chart(df)</code> specifies the data you want to use in your chart (where df = your pandas&nbsp;dataframe)</p>
+<p><code>.mark_bar()</code> specifies a bar chart as the type of visualization you want to&nbsp;use.</p>
 <p><code>.encode()</code> is where you input (i.e., encode) your chart axes.
- - You can map any column in your dataset to either the 'x' or 'y' encoding channel (each channel corresponds to the x- and y-axis, respectively).
+ - You can map any column in your dataset to either the &#8216;x&#8217; or &#8216;y&#8217; encoding channel (each channel corresponds to the x- and y-axis, respectively).
  - Read more in the Altair documentation <a href="https://altair-viz.github.io/getting_started/starting.html#basic-tutorial-encodings-and-marks">here</a>.</p>
 </blockquote>
-<h3>Using colours</h3>
+<h3>Using&nbsp;colours</h3>
 <div class="highlight"><pre><span></span><span class="n">color</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;complaint type&#39;</span><span class="p">)</span> <span class="c1"># setting colour to correspond to the selected column</span>
 
 <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
@@ -210,14 +210,14 @@
 
 
 <p><img alt="png" src="images/blog-2-altair_29_2.png"></p>
-<p><strong>Here are a few more single-hue colour schemes:</strong></p>
+<p><strong>Here are a few more single-hue colour&nbsp;schemes:</strong></p>
 <ul>
 <li>teals</li>
 <li>oranges</li>
 <li>reds</li>
-<li>purples (...you get the point.)</li>
+<li>purples (&#8230;you get the&nbsp;point.)</li>
 </ul>
-<p><strong>The following are several more categorical and multi-hue schemes I like:</strong></p>
+<p><strong>The following are several more categorical and multi-hue schemes I&nbsp;like:</strong></p>
 <ul>
 <li>plasma</li>
 <li>magma</li>
@@ -226,17 +226,17 @@
 <li>set3</li>
 <li>tableau10</li>
 </ul>
-<p>Visit Vega's <a href="https://vega.github.io/vega/docs/schemes/#categorical">colour scheme page</a> for even more options!</p>
-<p>A default legend is provided when you set colour on a column to show you what category/value each colour corresponds to. This can be helpful but might actually be redundant, and therefore unnecessary in this case, since the information provieded by the legend is already encoded and labelled on the chart itself. To remove the legend, simply set <code>legend=None</code> in the color property. It should look something like this:</p>
+<p>Visit Vega&#8217;s <a href="https://vega.github.io/vega/docs/schemes/#categorical">colour scheme page</a> for even more&nbsp;options!</p>
+<p>A default legend is provided when you set colour on a column to show you what category/value each colour corresponds to. This can be helpful but might actually be redundant, and therefore unnecessary in this case, since the information provieded by the legend is already encoded and labelled on the chart itself. To remove the legend, simply set <code>legend=None</code> in the color property. It should look something like&nbsp;this:</p>
 <p><code>alt.Color('column to set color on', legend=None)</code></p>
-<h4>What if I want to swap the colours of the bars?</h4>
-<p>In the <code>alt.Color()</code> method, which uses Vega's colour schemes, discrete colours are assigned such that the index of the value in the column you've set <code>color</code> on matches the index of the colour in the scheme (at the row that corresponds to the number of values present in your column). I encoded the values for <code>'complaint type'</code> as <code>['disability-related', 'other']</code>, so the default setting assigns <code>'disability-related'</code> the lighter, first-appearing colour in the image below at row 2.</p>
+<h4>What if I want to swap the colours of the&nbsp;bars?</h4>
+<p>In the <code>alt.Color()</code> method, which uses Vega&#8217;s colour schemes, discrete colours are assigned such that the index of the value in the column you&#8217;ve set <code>color</code> on matches the index of the colour in the scheme (at the row that corresponds to the number of values present in your column). I encoded the values for <code>'complaint type'</code> as <code>['disability-related', 'other']</code>, so the default setting assigns <code>'disability-related'</code> the lighter, first-appearing colour in the image below at row&nbsp;2.</p>
 <p><img src="images/colour_scheme.png" style="width: 400px;"></p>
-<p>In the <code>domain</code> argument of Scale &ndash; inside <code>alt.Color(scheme=alt.Scale())</code>) &ndash; we can rearrange the order of the values so that they correspond to the order of the colours we want to assign them. Since the categories were originally encoded as <code>['disability-related', 'other']</code>, and we want to switch the colour assignments, we do so such that the order matches the order of the colours&mdash;so, in this case we'd want:</p>
+<p>In the <code>domain</code> argument of Scale &ndash; inside <code>alt.Color(scheme=alt.Scale())</code>) &ndash; we can rearrange the order of the values so that they correspond to the order of the colours we want to assign them. Since the categories were originally encoded as <code>['disability-related', 'other']</code>, and we want to switch the colour assignments, we do so such that the order matches the order of the colours&mdash;so, in this case we&#8217;d&nbsp;want:</p>
 <blockquote>
 <p><code>domain=['other', 'disability-related']</code>.</p>
 </blockquote>
-<p>Of course alternatively we could just go back and change the order of the values where we first encoded them into the dataset, but this is an easy way to alter things without having to go back and make actual changes to the data.</p>
+<p>Of course alternatively we could just go back and change the order of the values where we first encoded them into the dataset, but this is an easy way to alter things without having to go back and make actual changes to the&nbsp;data.</p>
 <div class="highlight"><pre><span></span><span class="n">color</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;complaint type&#39;</span><span class="p">,</span>
                   <span class="n">legend</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                   <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;disability-related&#39;</span><span class="p">]))</span>
@@ -254,16 +254,16 @@
 
 
 <p><img alt="png" src="images/blog-2-altair_36_2.png"></p>
-<h3>Specifying axis information</h3>
-<p>We use <code>alt.X()</code> when we want to encode more than just the column name&mdash;maybe we want to include an axis title, formatting (e.g., displaying as percentage, adjusting scale), labels and ticks, etc.</p>
-<p>To add formatting and set the axis title, I'll use <code>alt.Axis()</code> with the arguments "format", which sets the text formatting pattern, and "title" (as shown in the following code). I like to keep the code in the chart specification as clean as possible, so I prefer building up this extra information outside of the <code>alt.Chart()</code> function. I'll assign <code>alt.Axis(format='%', title='percentage of total complaints')</code> to a variable called <code>x_axis</code> so that I can simply call it from within <code>alt.X()</code> and pass it as the axis argument.</p>
+<h3>Specifying axis&nbsp;information</h3>
+<p>We use <code>alt.X()</code> when we want to encode more than just the column name&mdash;maybe we want to include an axis title, formatting (e.g., displaying as percentage, adjusting scale), labels and ticks,&nbsp;etc.</p>
+<p>To add formatting and set the axis title, I&#8217;ll use <code>alt.Axis()</code> with the arguments &#8220;format&#8221;, which sets the text formatting pattern, and &#8220;title&#8221; (as shown in the following code). I like to keep the code in the chart specification as clean as possible, so I prefer building up this extra information outside of the <code>alt.Chart()</code> function. I&#8217;ll assign <code>alt.Axis(format='%', title='percentage of total complaints')</code> to a variable called <code>x_axis</code> so that I can simply call it from within <code>alt.X()</code> and pass it as the axis&nbsp;argument.</p>
 <div class="highlight"><pre><span></span><span class="n">x_axis</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;percentage of total complaints&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <h3>Size</h3>
 <h4>Bars:</h4>
-<p>You can alter the width of the bars by setting <code>size=desired size as float or int</code> in the <code>mark_*</code> method, as I've done below to make the bars a bit wider than the default width.</p>
+<p>You can alter the width of the bars by setting <code>size=desired size as float or int</code> in the <code>mark_*</code> method, as I&#8217;ve done below to make the bars a bit wider than the default&nbsp;width.</p>
 <h4>Chart:</h4>
 <p>To adjust the size of the chart, we can set custom measurements with <code>width</code> and <code>height</code> in the <code>.properties()</code> method.</p>
 <div class="highlight"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
@@ -281,15 +281,15 @@
 
 <h3>Title</h3>
 <p>Every chart should have a title&mdash;donut chart is lacking here. To customize your chart title, use <code>chart.configure_title</code> .</p>
-<p>Some useful attributes:</p>
+<p>Some useful&nbsp;attributes:</p>
 <ul>
-<li><code>anchor</code> sets the title alignment. Valid inputs are 'start' (right alignment), 'middle' (centre) and 'end' (left).</li>
-<li><code>orient</code> set the position of the title. Valid inputs are 'top', 'bottom', 'left' and 'right' (with top/bottom corresponding to above/below the chart).</li>
+<li><code>anchor</code> sets the title alignment. Valid inputs are &#8216;start&#8217; (right alignment), &#8216;middle&#8217; (centre) and &#8216;end&#8217;&nbsp;(left).</li>
+<li><code>orient</code> set the position of the title. Valid inputs are &#8216;top&#8217;, &#8216;bottom&#8217;, &#8216;left&#8217; and &#8216;right&#8217; (with top/bottom corresponding to above/below the&nbsp;chart).</li>
 <li><code>fontSize</code></li>
 <li><code>font</code></li>
 <li><code>color</code></li>
 </ul>
-<p>Note: By throwing our chart into a variable called <code>chart</code>, we can access it in other instances without having to repeatedly include all of the code for the visualization.</p>
+<p>Note: By throwing our chart into a variable called <code>chart</code>, we can access it in other instances without having to repeatedly include all of the code for the&nbsp;visualization.</p>
 <div class="highlight"><pre><span></span><span class="n">chart</span><span class="o">.</span><span class="n">configure_title</span><span class="p">(</span>
     <span class="n">fontSize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
     <span class="n">font</span><span class="o">=</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span>
@@ -304,13 +304,13 @@
 
 
 <p><img alt="png" src="images/blog-2-altair_45_2.png"></p>
-<p>Voilà! Now this data is truly living its best life.</p>
-<h2>Line charts</h2>
+<p>Voilà! Now this data is truly living its best&nbsp;life.</p>
+<h2>Line&nbsp;charts</h2>
 <p><img src='images/ghg-emissions.jpeg' style="width: 700px;"></p>
-<p><em>Taken from the provinical government's <a href="http://budget.ontario.ca/2019/chapter-1c.html#c1-20">2019 budget</a></em></p>
-<h3>What's wrong with this picture?</h3>
-<p>There's no unit given for the scale on the y-axis. At first glance, it seems that while Ontario and Canada begin at the same starting point ("1") in 2005, Ontario's GHG emissions decline sharply while "the rest of Canada" experiences little variation over the same period. Notice, however, the incongruency between the title and subtitle (which supposedly describes what's being measured)&mdash;"Ontario &amp; Friends' Greenhouse Gas <em>Emissions</em> from 2005 to 2016" versus "GHG Emissions <em>Index</em>". An index of emissions is quite different from actual emissions in a valid unit of measurement, like megatonnes (Mt) of CO2. This is the unit used in the source data, and the unit I'll be using in my reconstructed visualization.</p>
-<p>Just doing some basic data cleaning here so I can access the relevant data from the <a href="http://publications.gc.ca/collections/collection_2018/eccc/En81-4-2016-1-eng.pdf">National Inventory Report from Environment Canada</a> (the same source used for the above chart).</p>
+<p><em>Taken from the provinical government&#8217;s <a href="http://budget.ontario.ca/2019/chapter-1c.html#c1-20">2019&nbsp;budget</a></em></p>
+<h3>What&#8217;s wrong with this&nbsp;picture?</h3>
+<p>There&#8217;s no unit given for the scale on the y-axis. At first glance, it seems that while Ontario and Canada begin at the same starting point (&#8220;1&#8221;) in 2005, Ontario&#8217;s <span class="caps">GHG</span> emissions decline sharply while &#8220;the rest of Canada&#8221; experiences little variation over the same period. Notice, however, the incongruency between the title and subtitle (which supposedly describes what&#8217;s being measured)&mdash;&#8220;Ontario <span class="amp">&amp;</span> Friends&#8217; Greenhouse Gas <em>Emissions</em> from 2005 to 2016&#8221; versus &#8220;<span class="caps">GHG</span> Emissions <em>Index</em>&#8220;. An index of emissions is quite different from actual emissions in a valid unit of measurement, like megatonnes (Mt) of <span class="caps">CO2</span>. This is the unit used in the source data, and the unit I&#8217;ll be using in my reconstructed&nbsp;visualization.</p>
+<p>Just doing some basic data cleaning here so I can access the relevant data from the <a href="http://publications.gc.ca/collections/collection_2018/eccc/En81-4-2016-1-eng.pdf">National Inventory Report from Environment Canada</a> (the same source used for the above&nbsp;chart).</p>
 <div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ghg-emissions-data.csv&quot;</span><span class="p">)</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
@@ -346,8 +346,8 @@
 </pre></div>
 
 
-<p>Here I've created a dataframe containing data on Canada's greenhouse gas (GHG) emissions and including the number of emissions (in Mt of CO2), the year over which the emissions were released, and the province the emissions came from. <code>provs</code> is a second dataset not including the national total of emissions, whereas this figure is included in <code>data</code> .</p>
-<p>There's also a <code>point</code> argument for the <code>mark_line()</code> method. If we set <code>point=True</code>, we get the line as well as a visual representation of each of the individual data points it intersects. This can be useful for when the data is on the sparse side, and makes it clear where the actual data sit. Remember, unless you have an inordinate number of datapoints, the line is just the trend between two points. Anywhere on the line <em>between</em> two points&mdash;say, Canada's line at the x-value halfway between 2012 and 2013&mdash;isn't necessarily representative of the true y-values (emissions) at that value of x (circa July 2012).</p>
+<p>Here I&#8217;ve created a dataframe containing data on Canada&#8217;s greenhouse gas (<span class="caps">GHG</span>) emissions and including the number of emissions (in Mt of <span class="caps">CO2</span>), the year over which the emissions were released, and the province the emissions came from. <code>provs</code> is a second dataset not including the national total of emissions, whereas this figure is included in <code>data</code> .</p>
+<p>There&#8217;s also a <code>point</code> argument for the <code>mark_line()</code> method. If we set <code>point=True</code>, we get the line as well as a visual representation of each of the individual data points it intersects. This can be useful for when the data is on the sparse side, and makes it clear where the actual data sit. Remember, unless you have an inordinate number of datapoints, the line is just the trend between two points. Anywhere on the line <em>between</em> two points&mdash;say, Canada&#8217;s line at the x-value halfway between 2012 and 2013&mdash;isn&#8217;t necessarily representative of the true y-values (emissions) at that value of x (circa July&nbsp;2012).</p>
 <div class="highlight"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">provs</span><span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:N&#39;</span><span class="p">),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;emissions:Q&#39;</span><span class="p">),</span>
@@ -369,9 +369,9 @@
 
 
 <p><img alt="png" src="images/blog-2-altair_55_2.png"></p>
-<p>As we can see, Ontario is actually still producing a far greater quantity of emissions than any other province except for Alberta. The following is the text accompanying the original chart:</p>
-<p><em>Ontario has been a leader in the efforts to tackle climate change. Compared with 2005, the province’s total greenhouse gas emissions have dropped by 22 per cent — even while the rest of Canada saw emissions increase by three per cent during the same time period.</em></p>
-<p>In splitting the data this way (Ontario vs. the rest of Canada) the trend observed for "the rest of Canada" is highly influenced by Alberta's emissions. That is, the only reason the rest of Canada saw a 3% increase in emissions is because Alberta saw a substantial increase, while most other provinces either stayed the same or saw a decrease in emissions.</p>
+<p>As we can see, Ontario is actually still producing a far greater quantity of emissions than any other province except for Alberta. The following is the text accompanying the original&nbsp;chart:</p>
+<p><em>Ontario has been a leader in the efforts to tackle climate change. Compared with 2005, the province’s total greenhouse gas emissions have dropped by 22 per cent — even while the rest of Canada saw emissions increase by three per cent during the same time&nbsp;period.</em></p>
+<p>In splitting the data this way (Ontario vs. the rest of Canada) the trend observed for &#8220;the rest of Canada&#8221; is highly influenced by Alberta&#8217;s emissions. That is, the only reason the rest of Canada saw a 3% increase in emissions is because Alberta saw a substantial increase, while most other provinces either stayed the same or saw a decrease in&nbsp;emissions.</p>
 <p><img src='images/i-see-u.jpeg' style="width: 200px;"></p>
 <div class="highlight"><pre><span></span><span class="n">canada_tot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;province&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Canada&#39;</span><span class="p">]</span>
 
@@ -420,7 +420,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </pre></div>
 
 
-<h4>Finally, a slightly more accurate visual depiction of these data.</h4>
+<h4>Finally, a slightly more accurate visual depiction of these&nbsp;data.</h4>
 <div class="highlight"><pre><span></span><span class="n">axis</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;emissions (in Mt of CO2)&#39;</span><span class="p">)</span>
 
 <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">can_vs_on</span><span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
@@ -444,24 +444,24 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 
 
 <p><img alt="png" src="images/blog-2-altair_60_2.png"></p>
-<p>From this representation, it's clear that Ontario and the rest of Canada have drastically different starting points&mdash;quite contrary to what the chart from the budget would have you think!</p>
-<h2>More line charts</h2>
+<p>From this representation, it&#8217;s clear that Ontario and the rest of Canada have drastically different starting points&mdash;quite contrary to what the chart from the budget would have you&nbsp;think!</p>
+<h2>More line&nbsp;charts</h2>
 <p><img src="images/aul-fakenews.jpeg" style="width: 600px;">  </p>
-<h4>What's wrong with this picture?</h4>
+<h4>What&#8217;s wrong with this&nbsp;picture?</h4>
 <ul>
 <li>
-<p>No scale for y-axis</p>
+<p>No scale for&nbsp;y-axis</p>
 </li>
 <li>
-<p>Missing axis labels</p>
+<p>Missing axis&nbsp;labels</p>
 </li>
 <li>
-<p>Differing y-axes for each line, since the number of prevention services performed in 2013 still far exceeds the number of abortions (in the order of 600,000), and yet the prevention data at 2013 is depicted as below the data for abortions at the exact same x-value.</p>
+<p>Differing y-axes for each line, since the number of prevention services performed in 2013 still far exceeds the number of abortions (in the order of 600,000), and yet the prevention data at 2013 is depicted as below the data for abortions at the exact same&nbsp;x-value.</p>
 </li>
 </ul>
 <p><img src='images/side-eye.png' style="width: 300px;"></p>
 <ul>
-<li>You'll also notice the slopes of the lines are about the same, upon quick visual inspection. The difference between abortions performed in 2006 (289,750) and those performed in 2013 (327,000) is much less than the difference between prevention services performed in 2006 (2,007,371) and those performed in 2013 (935,573). We can further quantify this by comparing the slopes:</li>
+<li>You&#8217;ll also notice the slopes of the lines are about the same, upon quick visual inspection. The difference between abortions performed in 2006 (289,750) and those performed in 2013 (327,000) is much less than the difference between prevention services performed in 2006 (2,007,371) and those performed in 2013 (935,573). We can further quantify this by comparing the&nbsp;slopes:</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;The slope of A (abortions) is: {round((327_000 - 289_750) / (2013 - 2006), 2)}&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;The slope of B (cancer screening and prevention services) is: {(935_573 - 2_007_371) / (2013 - 2006)}&#39;</span><span class="p">)</span>
@@ -474,14 +474,14 @@ The slope of B (cancer screening and prevention services) is: -153114.0
 
 
 <p><center>
-$m_A = 5321.43$</p>
+$m_A =&nbsp;5321.43$</p>
 <p><center>
-$m_B = -153114.0$</p>
+$m_B =&nbsp;-153114.0$</p>
 <p></center>
  </center></p>
 <blockquote>
-<p>Every year (i.e., for every 1 unit in increase along the x-axis), there are 5321 more abortions performed.</p>
-<p>Every year, there are 153114 fewer prevention and screening services performed.</p>
+<p>Every year (i.e., for every 1 unit in increase along the x-axis), there are 5321 more abortions&nbsp;performed.</p>
+<p>Every year, there are 153114 fewer prevention and screening services&nbsp;performed.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><span class="n">aul_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">&#39;service&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;abortion&#39;</span><span class="p">,</span> <span class="s1">&#39;abortion&#39;</span><span class="p">,</span> <span class="s1">&#39;cancer screening &amp; prevention&#39;</span><span class="p">,</span> \
@@ -535,20 +535,21 @@ $m_B = -153114.0$</p>
 
 
 <p><img alt="png" src="images/blog-2-altair_70_2.png"></p>
-<p>How this chart is better:</p>
+<p>How this chart is&nbsp;better:</p>
 <ul>
 <li>
-<p>uses a valid, to-scale y-axis</p>
+<p>uses a valid, to-scale&nbsp;y-axis</p>
 </li>
 <li>
-<p>labels for both axes</p>
+<p>labels for both&nbsp;axes</p>
 </li>
 <li>
-<p>it has a consistent, shared y-axis for both lines.</p>
+<p>it has a consistent, shared y-axis for both&nbsp;lines.</p>
 </li>
 </ul>
-<h3>Hope you enjoyed! Good luck making great visualizations with Altair 🚀</h3>
+<h3>Hope you enjoyed! Good luck making great visualizations with Altair&nbsp;🚀</h3>
 </div>
+<!--  -->
 <footer class="page-footer">
 	<div style="font-size:8pt">
 			&copy; <script>document.write(new Date().getFullYear());</script> Megan Karabin
