@@ -134,7 +134,7 @@ Just append this to &lt;code&gt;alpha&lt;/code&gt; and we&amp;#8217;re good to&a
 &lt;p&gt;&lt;code&gt;enumerate()&lt;/code&gt; iterates over an iterable and produces an enumerate object, which is a tuple of the form &lt;code&gt;(count, value)&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Where a value &lt;i&gt;x&lt;/i&gt; is the &lt;i&gt;n&lt;/i&gt;th item in an iterable, &lt;code&gt;count&lt;/code&gt; = &lt;i&gt;n&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;Where a value &lt;i&gt;x&lt;/i&gt; is the &lt;i&gt;n&lt;/i&gt;th item in an iterable, &lt;code&gt;count&lt;/code&gt; = &lt;i&gt;n&lt;/i&gt; and &lt;code&gt;value&lt;/code&gt; = &lt;i&gt;x&lt;/i&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the following code, this is used to access the index of items in the iterable. See &lt;a href="https://docs.python.org/3/library/functions.html#enumerate"&gt;the documentation&lt;/a&gt; for how this works in a little more&amp;nbsp;detail.&lt;/p&gt;
