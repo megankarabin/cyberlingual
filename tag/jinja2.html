@@ -21,6 +21,28 @@
 
 		<!-- RSS -->
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+		<style>
+			#myBtn {
+			  display: none;
+			  position: fixed;
+			  bottom: 20px;
+			  right: 30px;
+			  z-index: 99;
+			  font-size: 18px;
+			  border: none;
+			  outline: none;
+			  background-color: #718A3A;
+			  color: white;
+			  cursor: pointer;
+			  padding: 15px;
+			  border-radius: 4px;
+				-webkit-transition: background .3s ease-in-out;
+			}
+
+			#myBtn:hover {
+			  background-color: #AFC878;
+			}
+		</style>
 	</head>
 
 	<body class="theme-base-0b">
@@ -38,11 +60,11 @@
 			<!-- <p class="lead" style="font-size: 11pt">  </p> -->
 			<!-- <div class='pages-list'> -->
 			<ul class="pages-list">
-			<li><a href="https://megankarabin.github.io/cyberlingual">
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual">
 				posts </a></li>
-			<li><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
 				projects</a></li>
-			<li><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
 				about</a></li>
 				 </ul>
 			<!-- </div> -->
@@ -88,8 +110,10 @@
 				<span  class="tag">
 					Jinja2
 				</span>
-				<p>	<p>Want to learn how to be a Jinja ninja? (Since discovering Jinja I&#8217;ve wanted to use those words together in a sentence and this seemed like the perfect opportunity&nbsp;#notsorry)</p>
-<p>In this post I&#8217;ll explain how you can use Jinja filters to access python functions and libraries from …</p>	</p>
+				<p>	<p><img src="images\jinja_logo.png" alt="Drawing" style="width: 500px;"/>
+<em><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jinja_software_logo.svg/1200px-Jinja_software_logo.svg.png">Image&nbsp;source</a></em></p>
+<p>Want to learn how to be a Jinja ninja? (Since discovering Jinja I&#8217;ve wanted to use those words together in a sentence and this seemed like the perfect&nbsp;opportunity.)</p>
+<p>The current post explains how you can use Jinja filters to access python functions and libraries from within …</p>	</p>
 				<a class="read-more" href="advanced-jinja.html">Read more →</a>
 			</div>
 	</div>
@@ -107,5 +131,30 @@
 		</div>
 	 </footer>
 		</div>
+
+		<!-- JS -->
+		<button onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
+
+		<script>
+		//Get the button
+		var mybutton = document.getElementById("myBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+		    mybutton.style.display = "block";
+		  } else {
+		    mybutton.style.display = "none";
+		  }
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		  document.body.scrollTop = 0;
+		  document.documentElement.scrollTop = 0;
+		}
+		</script>
 	</body>
 </html>

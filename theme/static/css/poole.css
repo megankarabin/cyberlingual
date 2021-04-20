@@ -23,6 +23,7 @@
  * Container
  * Masthead
  * Posts and pages
+  * back to top button
  * Tags
  * Pagination
  * Reverse layout
@@ -351,6 +352,7 @@ tbody tr:nth-child(odd) th {
   margin-bottom: 1rem;
   color: #9a9a9a;
 }
+
 
 /* Tags style (below post title, date)*/
 

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>cyberlingual - blog</title><link href="https://megankarabin.github.io/cyberlingual/" rel="alternate"></link><link href="https://megankarabin.github.io/cyberlingual/feeds/blog.atom.xml" rel="self"></link><id>https://megankarabin.github.io/cyberlingual/</id><updated>2020-07-06T00:00:00-04:00</updated><entry><title>Advanced Jinja: filters &amp; variables</title><link href="https://megankarabin.github.io/cyberlingual/advanced-jinja.html" rel="alternate"></link><published>2019-08-06T13:43:00-04:00</published><updated>2019-08-06T13:43:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-08-06:/cyberlingual/advanced-jinja.html</id><summary type="html">&lt;p&gt;Want to learn how to be a Jinja ninja? (Since discovering Jinja I&amp;#8217;ve wanted to use those words together in a sentence and this seemed like the perfect opportunity&amp;nbsp;#notsorry)&lt;/p&gt;
-&lt;p&gt;In this post I&amp;#8217;ll explain how you can use Jinja filters to access python functions and libraries from …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Want to learn how to be a Jinja ninja? (Since discovering Jinja I&amp;#8217;ve wanted to use those words together in a sentence and this seemed like the perfect opportunity&amp;nbsp;#notsorry)&lt;/p&gt;
-&lt;p&gt;In this post I&amp;#8217;ll explain how you can use Jinja filters to access python functions and libraries from within an html doc, as well as how to create new variables from &lt;em&gt;within&lt;/em&gt; your Jinja template (rather than from the python script linked to the template). I&amp;#8217;ll be assuming that readers are familiar with basic Jinja, but if you&amp;#8217;re totally new to it and want to brush up on the basics before reading further, check out &lt;a href="https://vishalsharma01.github.io/Blog/blog-3.html"&gt;this blog post&lt;/a&gt;!&lt;/p&gt;
-&lt;h3&gt;Recap: What is&amp;nbsp;Jinja?&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>cyberlingual - blog</title><link href="https://megankarabin.github.io/cyberlingual/" rel="alternate"></link><link href="https://megankarabin.github.io/cyberlingual/feeds/blog.atom.xml" rel="self"></link><id>https://megankarabin.github.io/cyberlingual/</id><updated>2020-07-06T00:00:00-04:00</updated><entry><title>Advanced Jinja: filters &amp; variables</title><link href="https://megankarabin.github.io/cyberlingual/advanced-jinja.html" rel="alternate"></link><published>2019-08-06T13:43:00-04:00</published><updated>2019-08-06T13:43:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-08-06:/cyberlingual/advanced-jinja.html</id><summary type="html">&lt;p&gt;&lt;img src="images\jinja_logo.png" alt="Drawing" style="width: 500px;"/&gt;
+&lt;em&gt;&lt;a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jinja_software_logo.svg/1200px-Jinja_software_logo.svg.png"&gt;Image&amp;nbsp;source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Want to learn how to be a Jinja ninja? (Since discovering Jinja I&amp;#8217;ve wanted to use those words together in a sentence and this seemed like the perfect&amp;nbsp;opportunity.)&lt;/p&gt;
+&lt;p&gt;The current post explains how you can use Jinja filters to access python functions and libraries from within …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img src="images\jinja_logo.png" alt="Drawing" style="width: 500px;"/&gt;
+&lt;em&gt;&lt;a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jinja_software_logo.svg/1200px-Jinja_software_logo.svg.png"&gt;Image&amp;nbsp;source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Want to learn how to be a Jinja ninja? (Since discovering Jinja I&amp;#8217;ve wanted to use those words together in a sentence and this seemed like the perfect&amp;nbsp;opportunity.)&lt;/p&gt;
+&lt;p&gt;The current post explains how you can use Jinja filters to access python functions and libraries from within an html doc, and how to create new variables from &lt;em&gt;within&lt;/em&gt; your Jinja template (rather than from the python script linked to the&amp;nbsp;template).&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ll be assuming basic familiarity with Jinja, so if you need to brush up on the basics first, check out my friend Vishal&amp;#8217;s &lt;a href="https://vishalsharma01.github.io/Blog/blog-3.html"&gt;introductory Jinja2 blog post&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Table of&amp;nbsp;contents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#jinja"&gt;Recap: What is&amp;nbsp;Jinja?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#install"&gt;Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#temp_load"&gt;Loading data with template&amp;nbsp;loader&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#filters"&gt;Filters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#functions"&gt;Custom&amp;nbsp;functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#vars"&gt;Setting&amp;nbsp;variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Recap: What is Jinja?&lt;a name='jinja'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Jinja is a python library and a &lt;strong&gt;template engine&lt;/strong&gt;, which is a software designed to let you produce a text output from your code. Of course, in python, we could just do that using &lt;code&gt;print('your text output')&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;So, what&amp;#8217;s special about a template engine and why might we need&amp;nbsp;one?&lt;/p&gt;
-&lt;p&gt;Basically, Jinja enables your code to communicate with a template, like an &lt;span class="caps"&gt;HTML&lt;/span&gt; document, for example, which traditionally only allows for static inputs/outputs. &lt;span class="caps"&gt;HTML&lt;/span&gt; doesn&amp;#8217;t have an ability to use control flow, or encode mutable variables, for instance. There are many template engines out there, but Jinja is built specifically to interact with python. Using Jinja, we can actually use python programming within a text/&lt;span class="caps"&gt;HTML&lt;/span&gt; document such that our result outputs are consistent with any data (in models) we&amp;#8217;re using for our web&amp;nbsp;application.&lt;/p&gt;
-&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;What&amp;#8217;s special about a template engine and why might I need&amp;nbsp;one?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Jinja enables your code to communicate with a template, like an &lt;span class="caps"&gt;HTML&lt;/span&gt; document, which traditionally only allows for static inputs and outputs. &lt;span class="caps"&gt;HTML&lt;/span&gt; doesn&amp;#8217;t have an ability to use control flow, or encode mutable variables, for instance. There are many template engines out there, but Jinja is built specifically to interact with python. Using Jinja, you can use python programming within an &lt;span class="caps"&gt;HTML&lt;/span&gt; document such that our outputs are dynamic and consistent with any document-external data you&amp;#8217;re using in your web&amp;nbsp;application.&lt;/p&gt;
+&lt;h3&gt;Installation&lt;a name='install'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;If you haven&amp;#8217;t already done so, you can install Jinja by running either of the following&amp;nbsp;commands:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;easy_install Jinja2
 pip install Jinja2
@@ -26,6 +40,7 @@ pip install Jinja2
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;h3&gt;Template loader &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Environment&lt;a name='temp_load'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;file_loader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FileSystemLoader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;j-templates&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="c1"&gt;# loads files from a specified directory (the so-called &amp;quot;file system&amp;quot; -- here, the one&lt;/span&gt;
             &lt;span class="c1"&gt;# we&amp;#39;ve just created, &amp;#39;j-templates&amp;#39;)&lt;/span&gt;
@@ -35,35 +50,29 @@ pip install Jinja2
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;The template loader is the file system (i.e., directory) from which you&amp;#8217;ll be accessing files/templates. It&amp;#8217;s helpful to do this when you&amp;#8217;ll be spinning up toy files to practice on or for the sake of demonstration, like I&amp;#8217;ll be doing in this&amp;nbsp;post.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The template class &amp;#8220;&lt;code&gt;Environment&lt;/code&gt;&amp;#8221; is the core component of Jinja. Instances of it are used to store global variables and load templates, but generally you won&amp;#8217;t need to configure custom instances of it when you&amp;#8217;re using Jinja in an application &amp;mdash; most instantiate just once (automatically) upon initializing the&amp;nbsp;application.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I&amp;#8217;m going to be using a pokemon dataset, so here I&amp;#8217;m just reading that&amp;nbsp;in.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;template loader&lt;/strong&gt; is the file system (i.e., directory) from which you&amp;#8217;ll be accessing files/templates. It&amp;#8217;s helpful to do this when you&amp;#8217;ll be spinning up toy files to practice on or use for&amp;nbsp;demonstration.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;template class &amp;#8220;&lt;code&gt;Environment&lt;/code&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;&lt;/strong&gt; is the core component of Jinja. Instances of it are used to store global variables and load templates, but generally you won&amp;#8217;t need to configure custom instances of it when you&amp;#8217;re using Jinja in an application &amp;mdash; most instantiate just once (automatically) upon initializing the&amp;nbsp;application.&lt;/p&gt;
+&lt;p&gt;The examples use a pokemon dataset, so here I&amp;#8217;m just reading that&amp;nbsp;in.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hackathon/data/pokemon.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;pokemon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Filters&lt;/h3&gt;
+&lt;h3&gt;Filters&lt;a name='filters'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Filters are an incredibly helpful feature baked into Jinja &amp;ndash; &lt;strong&gt;they allow you to use any desired python functions (including ones you&amp;#8217;ve written), libraries and/or modules along with their associated&amp;nbsp;methods.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Below, I want to get a randomly generated pokemon from my list of pokemon, and for that I&amp;#8217;ll need &lt;code&gt;np.random.choice&lt;/code&gt;. I am &lt;strong&gt;not&lt;/strong&gt; able to simply use code that looks like the following code&amp;nbsp;block:&lt;/p&gt;
 &lt;p&gt;&lt;img src='https://i.imgur.com/ySrLNu6.png' width=350px;&gt;&lt;/p&gt;
-&lt;p&gt;This code is invalid and won&amp;#8217;t run. But it isn&amp;#8217;t over yet &amp;mdash; &lt;strong&gt;Jinja can still access libraries through&amp;nbsp;filters!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The above code is invalid and won&amp;#8217;t run. This is where the magic of Jinja2 comes in: &lt;strong&gt;Jinja can access libraries through&amp;nbsp;filters.&lt;/strong&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;code&gt;env.filters&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;The filters for an environment can be viewed by calling the dot filters method, which will provide you with a dictionary whose keys are the filters (their names) and whose values are the particular object they&amp;nbsp;house.&lt;/p&gt;
-&lt;p&gt;By creating our own filter as a key-value pair, we can use virtually any function (or library) available to us in Python in Jinja! Below I&amp;#8217;m setting a new key called &lt;code&gt;"select_random"&lt;/code&gt; containing the random choice&amp;nbsp;function.&lt;/p&gt;
+&lt;p&gt;The filters for an environment can be viewed by calling the dot filters (&lt;code&gt;.filters&lt;/code&gt;) method, which will provide you with a dictionary whose keys are the filters (their names) and whose values are the particular object they&amp;nbsp;house.&lt;/p&gt;
+&lt;p&gt;By creating your own filter as a key-value pair, you can use virtually any Python function or library via Jinja! Below I&amp;#8217;m setting a new key called &lt;code&gt;"select_random"&lt;/code&gt; containing the random choice&amp;nbsp;function.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Make sure to import the necessary libraries, modules and/or functions beforehand and create any aliases you want to use &amp;mdash; e.g., I imported numpy as np&amp;nbsp;earlier.&lt;/em&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;select_random&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now, as you can see in the following code output, my new &lt;code&gt;select_random&lt;/code&gt; key has been added to the dictionary (at the very&amp;nbsp;bottom).&lt;/p&gt;
+&lt;p&gt;Now, as shown in the following code output, the new &lt;code&gt;select_random&lt;/code&gt; key has been added to the dictionary (at the very&amp;nbsp;bottom).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# this will tell us how many actual keys there are&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -72,7 +81,7 @@ pip install Jinja2
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# here I&amp;#39;m indexing the last 10 just to demonstrate what the&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# indexing the last 10 to demonstrate what the&lt;/span&gt;
 &lt;span class="c1"&gt;# dictionary looks like without having 50+ key-value pairs&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;:]:&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;{i}&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt; :&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
@@ -96,7 +105,7 @@ pip install Jinja2
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now we can call the function that it contains &lt;strong&gt;in&lt;/strong&gt; Jinja! The way this is done is quite simple, though slightly different from how we&amp;#8217;re used to calling functions with the usual python syntax. For a function in python code that looks like&amp;nbsp;this:&lt;/p&gt;
+&lt;p&gt;Now, in Jinja, you can call the function that this filter contains. The way this is done is quite simple, though slightly different from how we&amp;#8217;re used to calling functions with typical python syntax. For a function in python that looks like&amp;nbsp;this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;function(arg)
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -143,24 +152,20 @@ pip install Jinja2
 
 &lt;p&gt;&lt;p&gt;My randomly selected pokémon :&amp;nbsp;Starmie &lt;/p&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/html&gt;&lt;/p&gt;
-&lt;p&gt;Let&amp;#8217;s break down what&amp;#8217;s happening&amp;nbsp;here:&lt;/p&gt;
+&lt;p&gt;To break down what&amp;#8217;s happening&amp;nbsp;here:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;env.get_template()
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;blockquote&gt;
 &lt;p&gt;Calling this method on our environment will load whatever we input (i.e., the desired file) as a Jinja template.
 This is how we &amp;#8220;tell&amp;#8221; Jinja that this is the file we want to use. We&amp;#8217;re then throwing the result into a variable called &lt;code&gt;template&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;template.render
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;blockquote&gt;
 &lt;p&gt;Performing the previous step sets up the file as a Jinja template, which then means we can use the &lt;code&gt;.render&lt;/code&gt; method on it. The arguments passed to &lt;code&gt;template.render&lt;/code&gt; are the names of all variables to be used in the script.
 This step is crucial to ensuring that the template can communicate with/access variables in our python&amp;nbsp;script.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;Custom functions &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; setting variables in&amp;nbsp;Jinja&lt;/h3&gt;
+&lt;h2&gt;Custom functions&lt;a name='functions'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The beauty of filters is that we can write any function in python and &amp;#8220;import&amp;#8221; it into jinja this&amp;nbsp;way.&lt;/p&gt;
 &lt;p&gt;Building on top of the last example, where we built in the random generator, let&amp;#8217;s say that I only like fire pokemon, and want to print &amp;#8220;good&amp;#8221; every time the randomly selected pokemon is a fire type and &amp;#8220;bad&amp;#8221; for every one &lt;em&gt;not&lt;/em&gt; of type fire, along with their actual type. I can write a quick function to do this and then use a filter to bring it into&amp;nbsp;Jinja.&lt;/p&gt;
 &lt;p&gt;Note that because we want to reuse the randomly generated pokemon, we&amp;#8217;ll have to use a variable (Jinja&amp;#8217;s syntax isn&amp;#8217;t as flexible as python&amp;#8217;s and doesn&amp;#8217;t allow for infinite nesting using brackets). This is made fairly simple using Jinja&amp;#8217;s &lt;code&gt;{% set x = y %}&lt;/code&gt; syntax.&lt;/p&gt;
@@ -192,8 +197,8 @@ This step is crucial to ensuring that the template can communicate with/access v
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Notice that we don&amp;#8217;t write &lt;code&gt;is_fire_pokemon(pokemon)&lt;/code&gt;&amp;mdash; instead, we input the function as its name on its own, &lt;strong&gt;without&lt;/strong&gt; brackets. We don&amp;#8217;t want to call the function at this point, because the the function&amp;#8217;s output  would get stored as the value of the key we&amp;#8217;re setting. Rather, we want to provide a reference to the function&amp;nbsp;object.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note on calling a function vs. the function&amp;nbsp;object:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Notice that we don&amp;#8217;t write &lt;code&gt;is_fire_pokemon(pokemon)&lt;/code&gt;&amp;mdash; instead, input the function as its name on its own, &lt;strong&gt;without&lt;/strong&gt; brackets. You don&amp;#8217;t want to call the function at this point, because the the function&amp;#8217;s output would get stored as the value of the key we&amp;#8217;re setting. Rather, you want to provide a reference to the function&amp;nbsp;object.&lt;/p&gt;
 &lt;p&gt;Take a look at the difference in what&amp;#8217;s being stored when we set &lt;code&gt;env.filters['is_fire'] = is_fire_pokemon&lt;/code&gt; versus &lt;code&gt;is_fire_pokemon(pokemon)&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;is_fire&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;is_fire_pokemon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pokemon&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -215,8 +220,8 @@ This step is crucial to ensuring that the template can communicate with/access v
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In the first case, what we&amp;#8217;re storing as the filter is the actual value returned by the function &amp;ndash; essentially, we&amp;#8217;re calling our function &lt;em&gt;as&lt;/em&gt; we store it, and in doing so, saving whatever it returns as the filter, which isn&amp;#8217;t what we want. We want to set the function itself as a filter, and we do this by omitting brackets and&amp;nbsp;arguments.&lt;/p&gt;
-&lt;h3&gt;Setting&amp;nbsp;variables&lt;/h3&gt;
+&lt;p&gt;In the first case, what&amp;#8217;s being stored as the filter is the value returned by the function &amp;ndash; essentially, you&amp;#8217;re calling the function &lt;em&gt;as&lt;/em&gt; it&amp;#8217;s being stored, and in doing so, saving whatever it returns as the filter, which isn&amp;#8217;t what you want.  It&amp;#8217;s the function object itself that must be set as a filter, and this is done by omitting brackets and&amp;nbsp;arguments.&lt;/p&gt;
+&lt;h2&gt;Setting variables&lt;a name='vars'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now that we&amp;#8217;re familiar with the calling of functions in Jinja through filters, we can add another layer:&amp;nbsp;variables.&lt;/p&gt;
 &lt;p&gt;If you&amp;#8217;ve made it this far, I probably don&amp;#8217;t need to elaborate on the usefulness of local variables, so let&amp;#8217;s dive right into the&amp;nbsp;code.&lt;/p&gt;
 &lt;p&gt;The instantiation process is quite straightforward: identical to how one assigns variables in regular python, with the one added step of wrapping your variable assignment&amp;nbsp;inside&lt;/p&gt;
@@ -266,18 +271,40 @@ This step is crucial to ensuring that the template can communicate with/access v
 
 
 &lt;p&gt;&lt;/html&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src='https://vignette.wikia.nocookie.net/looneytunes/images/e/e1/All.jpg/revision/latest?cb=20150313020828' style='width:500px;'&gt;&lt;/p&gt;
-&lt;p&gt;Good luck on your Jinja adventures&amp;nbsp;:-)&lt;/p&gt;</content><category term="python"></category><category term="Jinja2"></category></entry><entry><title>Intro to spaCy</title><link href="https://megankarabin.github.io/cyberlingual/intro-to-spacy.html" rel="alternate"></link><published>2019-07-28T15:46:00-04:00</published><updated>2020-07-06T00:00:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-28:/cyberlingual/intro-to-spacy.html</id><summary type="html">&lt;p&gt;spaCy is an &lt;span class="caps"&gt;NLP&lt;/span&gt; tool for language and text processing. The most well-known package for &lt;span class="caps"&gt;NLP&lt;/span&gt; is &lt;span class="caps"&gt;NLTK&lt;/span&gt;, which though it&amp;#8217;s a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data. Although spaCy definitely has ease-of-use on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;spaCy is an &lt;span class="caps"&gt;NLP&lt;/span&gt; tool for language and text processing. The most well-known package for &lt;span class="caps"&gt;NLP&lt;/span&gt; is &lt;span class="caps"&gt;NLTK&lt;/span&gt;, which though it&amp;#8217;s a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data. Although spaCy definitely has ease-of-use on its side, I know there are people out there who are quite comfortable using &lt;span class="caps"&gt;NLTK&lt;/span&gt;. However, there are several features available in spaCy that simply don&amp;#8217;t exist in &lt;span class="caps"&gt;NLTK&lt;/span&gt;, so hopefully after this tutorial you&amp;#8217;ll be convinced that spaCy is the way to&amp;nbsp;go!&lt;/p&gt;
-&lt;p&gt;In this tutorial, I&amp;#8217;ll go over the basics of spaCy, showing you first how to install and get started, and then helping you to become familiar with some of the core concepts and features built into&amp;nbsp;spaCy.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;&amp;nbsp;Outline&lt;/b&gt;&lt;/p&gt;
+&lt;!-- &lt;img src='https://vignette.wikia.nocookie.net/looneytunes/images/e/e1/All.jpg/revision/latest?cb=20150313020828' style='width:500px;'&gt; --&gt;
+
+&lt;h2&gt;Good luck on your Jinja adventures&amp;nbsp;:-)&lt;/h2&gt;</content><category term="python"></category><category term="Jinja2"></category></entry><entry><title>Intro to spaCy</title><link href="https://megankarabin.github.io/cyberlingual/intro-to-spacy.html" rel="alternate"></link><published>2019-07-28T15:46:00-04:00</published><updated>2020-07-06T00:00:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-28:/cyberlingual/intro-to-spacy.html</id><summary type="html">&lt;p&gt;&lt;img src="images\nlp.png" alt="Drawing" style="width: 500px;"/&gt;
+&lt;em&gt;&lt;a href="https://lh3.googleusercontent.com/Os6W2e25wv-BwJHgRZlheKbEzm_OvJzKY_PgaehWBrIdLmc9gzl1Kn8JcvOo7huHRpUUXijvTyKAv8NOyCBZURc0Nfao3w=s600"&gt;Image&amp;nbsp;source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;!-- *[Image source](https://www.wordfrequency.info/images/words.jpg)* --&gt;
+
+&lt;p&gt;spaCy is a tool for natural language processing (&lt;span class="caps"&gt;NLP&lt;/span&gt;). It&amp;#8217;s incredibly user-friendly and has several unique, useful&amp;nbsp;features.&lt;/p&gt;
+&lt;p&gt;This tutorial covers the basics of spaCy, showing you how to install and get started, and then helping you to become familiar with some of the core concepts and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img src="images\nlp.png" alt="Drawing" style="width: 500px;"/&gt;
+&lt;em&gt;&lt;a href="https://lh3.googleusercontent.com/Os6W2e25wv-BwJHgRZlheKbEzm_OvJzKY_PgaehWBrIdLmc9gzl1Kn8JcvOo7huHRpUUXijvTyKAv8NOyCBZURc0Nfao3w=s600"&gt;Image&amp;nbsp;source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;!-- *[Image source](https://www.wordfrequency.info/images/words.jpg)* --&gt;
+
+&lt;p&gt;spaCy is a tool for natural language processing (&lt;span class="caps"&gt;NLP&lt;/span&gt;). It&amp;#8217;s incredibly user-friendly and has several unique, useful&amp;nbsp;features.&lt;/p&gt;
+&lt;p&gt;This tutorial covers the basics of spaCy, showing you how to install and get started, and then helping you to become familiar with some of the core concepts and features built into spaCy. It also introduces displaCy, spaCy&amp;#8217;s viz package. With displaCy, we can view the syntactic dependencies of a doc (text object) in really pretty visualizations, as well as label and colour-code&amp;nbsp;entities.&lt;/p&gt;
+&lt;h2&gt;Table of&amp;nbsp;Contents&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;the &lt;span class="caps"&gt;NLP&lt;/span&gt; and Doc&amp;nbsp;objects&lt;/li&gt;
-&lt;li&gt;tokens / tokenization (and lexical attributes of tokens, including parts-of-speech tags, syntactic dependencies, and lemmas, among several&amp;nbsp;others)&lt;/li&gt;
-&lt;li&gt;match patterns (spaCy&amp;#8217;s superior version of&amp;nbsp;regex)&lt;/li&gt;
-&lt;li&gt;entity&amp;nbsp;identification&lt;/li&gt;
-&lt;li&gt;displaCy&lt;/li&gt;
+&lt;li&gt;&lt;a href="#install"&gt;Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#objects"&gt;&lt;span class="caps"&gt;NLP&lt;/span&gt; and Doc&amp;nbsp;objects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#tokens"&gt;Tokens&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#lex_atr"&gt;Lexical&amp;nbsp;attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#add_atr"&gt;Additional&amp;nbsp;attributes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;displaCy is spaCy&amp;#8217;s visualization package. With displaCy, we can view the syntactic dependencies of a doc (text object) in really pretty visualizations, as well as label and colour-code&amp;nbsp;entities.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#matcher"&gt;Match patterns&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#matcher_overview"&gt;Matcher:&amp;nbsp;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#hashing"&gt;Hashing, string stores and&amp;nbsp;vocab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#id"&gt;Entity&amp;nbsp;identification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#displacy"&gt;displaCy&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#custom"&gt;Customization&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#spacy_explain"&gt;&lt;code&gt;spacy.explain&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
@@ -288,7 +315,7 @@ This step is crucial to ensuring that the template can communicate with/access v
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Installing and&amp;nbsp;downloading&lt;/h2&gt;
+&lt;h2&gt;Installing and downloading&lt;a name='install'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To install spaCy, simply run the following lines of&amp;nbsp;code.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt;
 &lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="n"&gt;en_core_web_sm&lt;/span&gt;
@@ -301,9 +328,9 @@ You can now load the model via spacy.load(&amp;#39;en_core_web_sm&amp;#39;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;The &lt;span class="caps"&gt;NLP&lt;/span&gt; object and the Doc&amp;nbsp;object&lt;/h2&gt;
-&lt;p&gt;The &lt;span class="caps"&gt;NLP&lt;/span&gt; object contains the processing pipeline. Once instantiated, we can use it to analyze&amp;nbsp;text.&lt;/p&gt;
-&lt;p&gt;We instantiate like&amp;nbsp;so:&lt;/p&gt;
+&lt;h2&gt;The &lt;span class="caps"&gt;NLP&lt;/span&gt; object and the Doc object &lt;a name='objects'&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;span class="caps"&gt;NLP&lt;/span&gt; object contains the processing pipeline. Once instantiated, it can be used to analyze&amp;nbsp;text.&lt;/p&gt;
+&lt;p&gt;It is instantiated as&amp;nbsp;follows:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;spacy.lang.en&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;English&lt;/span&gt;
 
 &lt;span class="n"&gt;nlp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;English&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -353,7 +380,7 @@ You can now load the model via spacy.load(&amp;#39;en_core_web_sm&amp;#39;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Tokens&lt;/h2&gt;
+&lt;h2&gt;Tokens&lt;a name='tokens'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Tokens are just another word for &amp;#8220;item&amp;#8221;. In &lt;span class="caps"&gt;NLP&lt;/span&gt;, any individual, discrete object within the text (e.g., a word, punctuation mark, or number) would be a token. We can access individual tokens in a text by iterating over the doc object, and can thus see what types of tokens it contains, along with their lexical&amp;nbsp;attributes.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Lexical just means &amp;#8220;relating to the words or vocabulary of a language&amp;#8221;, and so a &amp;#8220;lexical attribute&amp;#8221; is just some feature relating to the words/vocabulary of your&amp;nbsp;doc.&lt;/em&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -377,8 +404,8 @@ galaxies
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Lexical Attributes in&amp;nbsp;spaCy&lt;/h3&gt;
-&lt;h5&gt;Mini linguistics&amp;nbsp;refresher:&lt;/h5&gt;
+&lt;h3&gt;Lexical Attributes in spaCy&lt;a name='lex_atr'&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h5&gt;Linguistics&amp;nbsp;refresher:&lt;/h5&gt;
 &lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;POS&lt;/span&gt;&lt;/strong&gt;: the syntactic category a word (or here, token) belongs to, e.g., noun, verb,&amp;nbsp;adjective&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Dependency&lt;/strong&gt;: the grammatical role of a word, relative to the other words in the sentence, e.g. direct/indirect&amp;nbsp;object&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Head&lt;/strong&gt;: the lexical node (on a tree) that governs the word in&amp;nbsp;question&lt;/p&gt;
@@ -402,7 +429,7 @@ shape_
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Additional&amp;nbsp;Attributes&lt;/h4&gt;
+&lt;h4&gt;Additional Attributes&lt;a name='add_atr'&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;We can call &lt;code&gt;doc.ents&lt;/code&gt; to get the entities and iterate over this to find the label (i.e., the category) for each entity (which we&amp;#8217;ll do in a minute) using the &lt;code&gt;label_&lt;/code&gt; attribute.&lt;/p&gt;
 &lt;p&gt;Below I&amp;#8217;ll run each of the attributes for every token using list comprehensions and toss those outputs into a dataframe, which will now contain all the relevant lexical information we gathered for each of the&amp;nbsp;tokens.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;tokens&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -598,12 +625,12 @@ shape_
 
 &lt;p&gt;&amp;#8230;Looks like it didn&amp;#8217;t. &amp;#8220;12 billion light&amp;#8221; is also &lt;strong&gt;not&lt;/strong&gt; money&amp;nbsp;here.&lt;/p&gt;
 &lt;p&gt;However, all is not lost! We can use a special feature called &lt;strong&gt;match patterns&lt;/strong&gt;, along with manually adding this element to our list of entities, &lt;code&gt;doc.ents&lt;/code&gt; (which we&amp;#8217;ll get to shortly), to set things&amp;nbsp;straight.&lt;/p&gt;
-&lt;h2&gt;Match&amp;nbsp;Patterns&lt;/h2&gt;
+&lt;h2&gt;Match Patterns&lt;a name='matcher'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/OlxGPEH.jpg" title="source: imgur.com" style='width:400px;' /&gt;&lt;/p&gt;
 &lt;h5&gt;What do they &lt;b&gt;do? &lt;/b&gt;&lt;/h5&gt;
 &lt;p&gt;One of the coolest things about spaCy is its built-in ability to let us search for patterns without having to rely on regular expressions. &lt;strong&gt;Match patterns&lt;/strong&gt; (the spaCy regex equivalent) let you search for a pattern within a text, which can be a string, a doc or a token object &amp;mdash; whereas regular expressions can only take string&amp;nbsp;arguments.&lt;/p&gt;
 &lt;p&gt;Match patterns also let you customize what &lt;em&gt;kind&lt;/em&gt; of pattern you&amp;#8217;re looking for &amp;mdash; which isn&amp;#8217;t always a simple sequence of characters. When we&amp;#8217;re doing &lt;span class="caps"&gt;NLP&lt;/span&gt; analyses, we might want to look for words belonging to a particular &lt;span class="caps"&gt;POS&lt;/span&gt; category, or words with a particular lemma. For instance, setting the lemma search to &amp;#8220;run&amp;#8221; would return tokens that contain the base form, such as &amp;#8220;running&amp;#8221; or&amp;nbsp;&amp;#8220;runs&amp;#8221;.&lt;/p&gt;
-&lt;h5&gt;So&amp;#8230; what exactly are match patterns? What do they look&amp;nbsp;like?&lt;/h5&gt;
+&lt;h5&gt;What do they look&amp;nbsp;like?&lt;/h5&gt;
 &lt;p&gt;Match patterns are lists of dictionaries, wherein each key is the attribute and each value is the corresponding value you&amp;#8217;re looking&amp;nbsp;for.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pattern = [{&amp;#39;ATTRIBUTE&amp;#39;: &amp;#39;VALUE&amp;#39;}]
 &lt;/pre&gt;&lt;/div&gt;
@@ -661,7 +688,7 @@ OP          IS_STOP
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Using Matcher:&amp;nbsp;Overview&lt;/h3&gt;
+&lt;h3&gt;Using Matcher: Overview&lt;a name='matcher_overview'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Steps:&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Import Matcher from &lt;code&gt;spacy.matcher&lt;/code&gt;&lt;/li&gt;
@@ -678,7 +705,7 @@ OP          IS_STOP
 &lt;li&gt;&lt;strong&gt;Optional&lt;/strong&gt;: peek at what&amp;#8217;s inside. Remember the returned tuple contains the match &lt;span class="caps"&gt;ID&lt;/span&gt;, and the start and stop indices of the&amp;nbsp;match.&lt;/li&gt;
 &lt;li&gt;To return the match(es) as a string (to actually see what they are &amp;mdash; we might not always know what strings our match is going to return!), use a loop to iterate over each item in the tuple, as demonstrated&amp;nbsp;above.   &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2&gt;Hashing, vocab and string&amp;nbsp;stores&lt;/h2&gt;
+&lt;h2&gt;Hashing, vocab and string stores&lt;a name='hashing'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The way we access the vocabulary in spaCy is through hash IDs and string stores. The vocabulary will depend on which package we passed into &lt;code&gt;spacy.load&lt;/code&gt;, and will contain all the unique tokens within that package /&amp;nbsp;dataset.&lt;/p&gt;
 &lt;p&gt;spaCy stores tokens in the vocabulary as hashes, such that every identical token string will have the same hash &lt;span class="caps"&gt;ID&lt;/span&gt; (a unique numeric identifier). Hashes enable memory efficiency since this way, if an identical string occurs multiple times (e.g. the word &amp;#8220;the&amp;#8221;), it only needs to be stored once in the vocabulary (and not multiple times as a&amp;nbsp;string).&lt;/p&gt;
 &lt;p&gt;Every hash corresponds to a string token, and every string will have a corresponding hash. You can use either one to look up the other, as long as that string is already in the&amp;nbsp;vocabulary.&lt;/p&gt;
@@ -734,7 +761,7 @@ doc.vocab.strings[hash]
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Fixing up our&amp;nbsp;entities&lt;/h3&gt;
+&lt;h2&gt;Entity identification: Fixing up our entities&lt;a name='id'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You&amp;#8217;ll recall that spaCy incorrectly identified &amp;#8220;12 billion light&amp;#8221; as a &lt;code&gt;MONEY&lt;/code&gt; entity, as well as missed SpaceX altogether. SpaceX should be labelled as an organization &amp;ndash; &lt;code&gt;ORG&lt;/code&gt; &amp;ndash; while we can create a &amp;#8220;distance&amp;#8221; label &amp;ndash; &lt;code&gt;DIST&lt;/code&gt; &amp;ndash; for &amp;#8220;light&amp;nbsp;years&amp;#8221;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;TEXT&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SpaceX&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;
 &lt;span class="n"&gt;spacex_matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;spacex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -798,8 +825,8 @@ light years DIST
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;displaCy&lt;/h2&gt;
-&lt;p&gt;This is probably one of my favourite features of spaCy. Maybe as a linguist I&amp;#8217;m slightly biased toward neat visual respresentations of syntactic parses, but I also think this tool is just pretty objectively&amp;nbsp;cool.&lt;/p&gt;
+&lt;h2&gt;displaCy&lt;a name='displacy'&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is probably my favourite feature. Maybe as a linguist I&amp;#8217;m slightly biased toward neat visual respresentations of syntactic parses, but I also think this tool is just pretty objectively&amp;nbsp;cool.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;displaCy takes your doc object and visually depicts its syntactic dependencies, in addition to providing the &lt;span class="caps"&gt;POS&lt;/span&gt; of each&amp;nbsp;word.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;First, import displaCy, then instantiate your nlp and doc objects (if you hadn&amp;#8217;t already done so previously), and then call &lt;code&gt;displacy.render&lt;/code&gt; on your doc object (or list of docs!). This will return a dependency-parsed&amp;nbsp;sentence!&lt;/p&gt;
 &lt;p&gt;It&amp;#8217;s at this step, within &lt;code&gt;displacy.render&lt;/code&gt;, that you may also specify any additional preferred parameters (which I&amp;#8217;ll go into more&amp;nbsp;below).&lt;/p&gt;
@@ -860,7 +887,7 @@ light years DIST
 &lt;/mark&gt;
  to explore new galaxies.&lt;/div&gt;
 
-&lt;h4&gt;Customization&lt;/h4&gt;
+&lt;h3&gt;Customization&lt;a name='custom'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The function signature for displaCy is as&amp;nbsp;follows:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Signature&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
 &lt;span class="n"&gt;displacy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;render&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;
@@ -941,8 +968,8 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 
 
 &lt;p&gt;&lt;img src='https://i.imgur.com/6aV8j93.png' style='width:1100px;'&gt;&lt;/p&gt;
-&lt;h3&gt;One last&amp;nbsp;thing&amp;#8230;&lt;/h3&gt;
-&lt;h3&gt;&lt;code&gt;spacy.explain&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;  &lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;spacy.explain&lt;/code&gt;&lt;a name='spacy_explain'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This method is super great when dealing with abbreviations and shorthands, which tend to be ubiquitous in a package filled with descriptors like &amp;#8220;adverbial clause modifier&amp;#8221;. Not exactly compact. From time to time, we might encounter an abbreviation/label we&amp;#8217;re unfamiliar with, and in such cases we can call &lt;code&gt;spacy.explain&lt;/code&gt;, which &lt;strong&gt;takes any spaCy abbreviation, shorthand or label as a string argument and returns the full name.&lt;/strong&gt; Check it&amp;nbsp;out:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;spacy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;explain&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;JJ&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1017,11 +1044,26 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Hope you enjoyed this introduction to spaCy! Now go have some fun with words&amp;nbsp;😏&lt;/h4&gt;</content><category term="python"></category><category term="spaCy"></category><category term="NLP"></category></entry><entry><title>Altair to the Rescue</title><link href="https://megankarabin.github.io/cyberlingual/altair.html" rel="alternate"></link><published>2019-07-07T08:00:00-04:00</published><updated>2019-07-07T08:00:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-07:/cyberlingual/altair.html</id><summary type="html">&lt;h3&gt;Bad charts made better: A beginner-friendly altair&amp;nbsp;tutorial&lt;/h3&gt;
-&lt;p&gt;Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense&amp;mdash;though …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Bad charts made better: A beginner-friendly altair&amp;nbsp;tutorial&lt;/h3&gt;
-&lt;p&gt;Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense&amp;mdash;though at first glance, they might not appear as pernicious as they really are. By manipulating data, not only is it possible to tell a story, but to frame it in a way that fits a particular narrative. How we choose to represent data visually is of the utmost importance as a data scientist, of course, but also as anyone who needs to depict information in a meaningful&amp;nbsp;way.&lt;/p&gt;
-&lt;p&gt;In this blog, I&amp;#8217;ll take some bad charts (boring, misleading, logic-breaking, etc.) and remake them into their best&amp;nbsp;selves.&lt;/p&gt;
-&lt;p&gt;But first, I&amp;#8217;ll go over the basics of Altair, walking through the first few steps needed to create a&amp;nbsp;visualization.&lt;/p&gt;
+&lt;h4&gt;Hope you enjoyed this introduction to spaCy! Now go have some fun with words&amp;nbsp;😏&lt;/h4&gt;</content><category term="python"></category><category term="spaCy"></category><category term="NLP"></category></entry><entry><title>Altair to the Rescue: A beginner-friendly altair tutorial</title><link href="https://megankarabin.github.io/cyberlingual/altair.html" rel="alternate"></link><published>2019-07-07T08:00:00-04:00</published><updated>2019-07-07T08:00:00-04:00</updated><author><name>Megan Karabin</name></author><id>tag:megankarabin.github.io,2019-07-07:/cyberlingual/altair.html</id><summary type="html">&lt;p&gt;&lt;img src='images\charts_stock.png' alt='Drawing' style='width:500px;'&gt;
+&lt;em&gt;&lt;a href="https://www.economist.com/offthecharts/_next/static/images/offTheCharts-8552c80b7b927f2d0f3b91fe70b96521.png"&gt;Image&amp;nbsp;source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense. By manipulating data, not only is it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img src='images\charts_stock.png' alt='Drawing' style='width:500px;'&gt;
+&lt;em&gt;&lt;a href="https://www.economist.com/offthecharts/_next/static/images/offTheCharts-8552c80b7b927f2d0f3b91fe70b96521.png"&gt;Image&amp;nbsp;source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense. By manipulating data, not only is it possible to tell a story, but to frame it in a way that fits a particular narrative. How we choose to represent data visually is a crucial part of telling the&amp;nbsp;story.&lt;/p&gt;
+&lt;p&gt;This post covers the basics of Altair, walking through the first steps needed to create a visualization, and involves taking some pretty terrible charts and remaking them into their best&amp;nbsp;selves.&lt;/p&gt;
+&lt;h2&gt;Table of&amp;nbsp;Contents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#bar_charts"&gt;Making bar charts in Altair&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#colours"&gt;Using&amp;nbsp;colours&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#axis_info"&gt;Specifying axis&amp;nbsp;information&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#size"&gt;Size&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#title"&gt;Title&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#line_chart_makeover"&gt;Line chart makeover&amp;nbsp;1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#line_chart_makeover_2"&gt;Line chart makeover&amp;nbsp;2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#before_afters"&gt;Before &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt;&amp;nbsp;Afters&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Packages&amp;nbsp;used:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;altair&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;alt&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
@@ -1029,29 +1071,16 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;✨Before &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Afters&amp;nbsp;✨&lt;/h2&gt;
-&lt;h4&gt;Chart&amp;nbsp;1&lt;/h4&gt;
-&lt;p&gt;&lt;tr&gt;
-    &lt;td&gt; &lt;img src="images\images\donut-complaints.png" alt="Drawing" style="width: 300px;"/&gt; &lt;/td&gt;
-    &lt;td&gt; &lt;img src="images\images\complaints.svg" alt="Drawing" style="width: 650px;"/&gt; &lt;/td&gt;
-    &lt;/tr&gt;&lt;/p&gt;
-&lt;h4&gt;Chart&amp;nbsp;2&lt;/h4&gt;
-&lt;p&gt;&lt;tr&gt;
-    &lt;td&gt; &lt;img src="images\ghg-emissions.jpeg" alt="Drawing" style="width: 600px;"/&gt; &lt;/td&gt;
-    &lt;td&gt; &lt;img src="images\emissions-1.svg" alt="Drawing" style="width: 700px;"/&gt; &lt;/td&gt;
-    &lt;/tr&gt;&lt;/p&gt;
-&lt;h4&gt;Chart&amp;nbsp;3&lt;/h4&gt;
-&lt;p&gt;&lt;tr&gt;
-    &lt;td&gt; &lt;img src="images\aul-fakenews.jpeg" alt="Drawing" style="width: 500px;"/&gt; &lt;/td&gt;
-    &lt;td&gt; &lt;img src="images\pp-visualization.svg" alt="Drawing" style="width: 500px;"/&gt; &lt;/td&gt;
-    &lt;/tr&gt;&lt;/p&gt;
-&lt;p&gt;The &amp;#8220;bad&amp;#8221; chart depicting Ontario&amp;#8217;s greenhouse gas emissions might actually look a bit prettier than the one I made, but it&amp;#8217;s not the better viz. Read why&amp;nbsp;below.&lt;/p&gt;
-&lt;h2&gt;Making bar charts in&amp;nbsp;Altair&lt;/h2&gt;
-&lt;p&gt;Humans aren&amp;#8217;t great at estimating area or visual divisions of area. A donut chart just isn&amp;#8217;t a great way to compare two proportions visually&amp;mdash;a bar chart works much&amp;nbsp;better.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;  &lt;/p&gt;
+&lt;h2&gt;Making bar charts in Altair &lt;a name='bar_charts'&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Humans aren&amp;#8217;t great at estimating area or visual divisions of area. For this reason, donut charts are not optimal for comparing two proportions visually&amp;mdash;bar charts work much better for&amp;nbsp;this.&lt;/p&gt;
 &lt;p&gt;&lt;img src="images\donut-complaints.png" alt="Drawing" style="width: 400px;"/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This graphic is a breakdown of the discrimination complaints received by the Canadian Human Rights Commission in 2017-18. In that year, disability complaints represented 59% of complaints while 41% of complaints were other.&lt;/em&gt; (From the 2018 Federal&amp;nbsp;budget)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;This graphic is a breakdown of the discrimination complaints received by the Canadian Human Rights Commission in 2017-18. In that year, disability complaints represented 59% of complaints while 41% of complaints were other.&amp;#8221;&lt;/em&gt; (From the 2018 Federal&amp;nbsp;budget)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h4&gt;The easiest way to fix this is to spin up a super simple dataset representing these&amp;nbsp;data.&lt;/h4&gt;
-&lt;p&gt;Altair charts take pandas dataframes as arguments, so we throw our simple dataset into one with &lt;code&gt;pd.DataFrame()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;br&gt;
+Altair charts take pandas dataframes as arguments, so we throw our simple dataset into one with &lt;code&gt;pd.DataFrame()&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;complaint type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;disability-related&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;other&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;quantity&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0.59&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.41&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -1061,6 +1090,7 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;&amp;nbsp;  &lt;/p&gt;
 &lt;div&gt;
 &lt;style scoped&gt;
     .dataframe tbody tr th:only-of-type {
@@ -1098,15 +1128,13 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/table&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Now we&amp;#8217;ll try out the simplest visualization possible (one that is hopefully already a more successful representation of data than donut chart up&amp;nbsp;there).&lt;/p&gt;
+&lt;p&gt;Now we&amp;#8217;ll try out the simplest visualization possible.
+ &lt;!-- (one that is hopefully already a more successful representation of data than donut chart up there) --&gt;
+&amp;nbsp;  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Chart&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mark_bar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sum(quantity)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# the &amp;#39;x&amp;#39; channel&lt;/span&gt;
     &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;complaint type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# the &amp;#39;y&amp;#39; channel&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x109f02908&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1119,7 +1147,7 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
  - You can map any column in your dataset to either the &amp;#8216;x&amp;#8217; or &amp;#8216;y&amp;#8217; encoding channel (each channel corresponds to the x- and y-axis, respectively).
  - Read more in the Altair documentation &lt;a href="https://altair-viz.github.io/getting_started/starting.html#basic-tutorial-encodings-and-marks"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3&gt;Using&amp;nbsp;colours&lt;/h3&gt;
+&lt;h3&gt;Using colours&lt;a name='colours'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Color&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;complaint type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# setting colour to correspond to the selected column&lt;/span&gt;
 
 &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Chart&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mark_bar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
@@ -1127,10 +1155,6 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
     &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;complaint type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
     &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x10a01aa58&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1143,10 +1167,6 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
     &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;complaint type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
     &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x10a815e48&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1174,9 +1194,10 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;p&gt;In the &lt;code&gt;alt.Color()&lt;/code&gt; method, which uses Vega&amp;#8217;s colour schemes, discrete colours are assigned such that the index of the value in the column you&amp;#8217;ve set &lt;code&gt;color&lt;/code&gt; on matches the index of the colour in the scheme (at the row that corresponds to the number of values present in your column). I encoded the values for &lt;code&gt;'complaint type'&lt;/code&gt; as &lt;code&gt;['disability-related', 'other']&lt;/code&gt;, so the default setting assigns &lt;code&gt;'disability-related'&lt;/code&gt; the lighter, first-appearing colour in the image below at row&amp;nbsp;2.&lt;/p&gt;
 &lt;p&gt;&lt;img src="images/colour_scheme.png" style="width: 400px;"&gt;&lt;/p&gt;
 &lt;p&gt;In the &lt;code&gt;domain&lt;/code&gt; argument of Scale &amp;ndash; inside &lt;code&gt;alt.Color(scheme=alt.Scale())&lt;/code&gt;) &amp;ndash; we can rearrange the order of the values so that they correspond to the order of the colours we want to assign them. Since the categories were originally encoded as &lt;code&gt;['disability-related', 'other']&lt;/code&gt;, and we want to switch the colour assignments, we do so such that the order matches the order of the colours&amp;mdash;so, in this case we&amp;#8217;d&amp;nbsp;want:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;domain=['other', 'disability-related']&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;`domain=[&amp;#39;other&amp;#39;, &amp;#39;disability-related&amp;#39;]`.
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;Of course alternatively we could just go back and change the order of the values where we first encoded them into the dataset, but this is an easy way to alter things without having to go back and make actual changes to the&amp;nbsp;data.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Color&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;complaint type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                   &lt;span class="n"&gt;legend&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -1190,19 +1211,15 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x10a8390f0&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;&lt;img alt="png" src="images/blog-2-altair_36_2.png"&gt;&lt;/p&gt;
-&lt;h3&gt;Specifying axis&amp;nbsp;information&lt;/h3&gt;
+&lt;h3&gt;Specifying axis information&lt;a name='axis_info'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;We use &lt;code&gt;alt.X()&lt;/code&gt; when we want to encode more than just the column name&amp;mdash;maybe we want to include an axis title, formatting (e.g., displaying as percentage, adjusting scale), labels and ticks,&amp;nbsp;etc.&lt;/p&gt;
 &lt;p&gt;To add formatting and set the axis title, I&amp;#8217;ll use &lt;code&gt;alt.Axis()&lt;/code&gt; with the arguments &amp;#8220;format&amp;#8221;, which sets the text formatting pattern, and &amp;#8220;title&amp;#8221; (as shown in the following code). I like to keep the code in the chart specification as clean as possible, so I prefer building up this extra information outside of the &lt;code&gt;alt.Chart()&lt;/code&gt; function. I&amp;#8217;ll assign &lt;code&gt;alt.Axis(format='%', title='percentage of total complaints')&lt;/code&gt; to a variable called &lt;code&gt;x_axis&lt;/code&gt; so that I can simply call it from within &lt;code&gt;alt.X()&lt;/code&gt; and pass it as the axis&amp;nbsp;argument.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x_axis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Axis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;percentage of total complaints&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Size&lt;/h3&gt;
+&lt;h3&gt;Size&lt;a name='size'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;h4&gt;Bars:&lt;/h4&gt;
 &lt;p&gt;You can alter the width of the bars by setting &lt;code&gt;size=desired size as float or int&lt;/code&gt; in the &lt;code&gt;mark_*&lt;/code&gt; method, as I&amp;#8217;ve done below to make the bars a bit wider than the default&amp;nbsp;width.&lt;/p&gt;
 &lt;h4&gt;Chart:&lt;/h4&gt;
@@ -1220,7 +1237,7 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Title&lt;/h3&gt;
+&lt;h3&gt;Title&lt;a name='title'&gt;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Every chart should have a title&amp;mdash;donut chart is lacking here. To customize your chart title, use &lt;code&gt;chart.configure_title&lt;/code&gt; .&lt;/p&gt;
 &lt;p&gt;Some useful&amp;nbsp;attributes:&lt;/p&gt;
 &lt;ul&gt;
@@ -1240,13 +1257,9 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x10a83c4e0&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;&lt;img alt="png" src="images/blog-2-altair_45_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;Voilà! Now this data is truly living its best&amp;nbsp;life.&lt;/p&gt;
-&lt;h2&gt;Line&amp;nbsp;charts&lt;/h2&gt;
+&lt;h2&gt;Line chart makeover&lt;a name='line_chart_makeover'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src='images/ghg-emissions.jpeg' style="width: 700px;"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Taken from the provinical government&amp;#8217;s &lt;a href="http://budget.ontario.ca/2019/chapter-1c.html#c1-20"&gt;2019&amp;nbsp;budget&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h3&gt;What&amp;#8217;s wrong with this&amp;nbsp;picture?&lt;/h3&gt;
@@ -1305,15 +1318,13 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x1092646d8&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;&lt;img alt="png" src="images/blog-2-altair_55_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;As we can see, Ontario is actually still producing a far greater quantity of emissions than any other province except for Alberta. The following is the text accompanying the original&amp;nbsp;chart:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Ontario has been a leader in the efforts to tackle climate change. Compared with 2005, the province’s total greenhouse gas emissions have dropped by 22 per cent — even while the rest of Canada saw emissions increase by three per cent during the same time&amp;nbsp;period.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;Ontario has been a leader in the efforts to tackle climate change. Compared with 2005, the province’s total greenhouse gas emissions have dropped by 22 per cent — even while the rest of Canada saw emissions increase by three per cent during the same time&amp;nbsp;period.&amp;#8221;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;In splitting the data this way (Ontario vs. the rest of Canada) the trend observed for &amp;#8220;the rest of Canada&amp;#8221; is highly influenced by Alberta&amp;#8217;s emissions. That is, the only reason the rest of Canada saw a 3% increase in emissions is because Alberta saw a substantial increase, while most other provinces either stayed the same or saw a decrease in&amp;nbsp;emissions.&lt;/p&gt;
-&lt;p&gt;&lt;img src='images/i-see-u.jpeg' style="width: 200px;"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='images/i-see-u.jpeg' style="width: 100px;"&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;canada_tot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;province&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Canada&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
 &lt;span class="n"&gt;ontario&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;province&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ON&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -1353,14 +1364,6 @@ displacy.render(doc, style=&amp;#39;dep&amp;#39;, options=options)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py:4025: SettingWithCopyWarning:
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  return super(DataFrame, self).rename(**kwargs)
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;h4&gt;Finally, a slightly more accurate visual depiction of these&amp;nbsp;data.&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Axis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;emissions (in Mt of CO2)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -1380,13 +1383,9 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x10a83c6d8&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;&lt;img alt="png" src="images/blog-2-altair_60_2.png"&gt;&lt;/p&gt;
-&lt;p&gt;From this representation, it&amp;#8217;s clear that Ontario and the rest of Canada have drastically different starting points&amp;mdash;quite contrary to what the chart from the budget would have you&amp;nbsp;think!&lt;/p&gt;
-&lt;h2&gt;More line&amp;nbsp;charts&lt;/h2&gt;
+&lt;p&gt;From this representation, it&amp;#8217;s clear that Ontario and the rest of Canada have drastically different starting points&amp;mdash;quite contrary to what the chart from the budget would have you&amp;nbsp;think.&lt;/p&gt;
+&lt;h2&gt;Another line chart makeover&lt;a name='line_chart_makeover_2'&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src="images/aul-fakenews.jpeg" style="width: 600px;"&gt;  &lt;/p&gt;
 &lt;h4&gt;What&amp;#8217;s wrong with this&amp;nbsp;picture?&lt;/h4&gt;
 &lt;ul&gt;
@@ -1398,11 +1397,11 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Differing y-axes for each line, since the number of prevention services performed in 2013 still far exceeds the number of abortions (in the order of 600,000), and yet the prevention data at 2013 is depicted as below the data for abortions at the exact same&amp;nbsp;x-value.&lt;/p&gt;
+&lt;p&gt;&lt;img src='images/side-eye.png' style="width: 200px;"&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src='images/side-eye.png' style="width: 300px;"&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;You&amp;#8217;ll also notice the slopes of the lines are about the same, upon quick visual inspection. The difference between abortions performed in 2006 (289,750) and those performed in 2013 (327,000) is much less than the difference between prevention services performed in 2006 (2,007,371) and those performed in 2013 (935,573). We can further quantify this by comparing the&amp;nbsp;slopes:&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You&amp;#8217;ll also notice the slopes of the lines are about the same, upon quick visual inspection. The difference between abortions performed in 2006 (289,750) and those performed in 2013 (327,000) is much less than the difference between prevention services performed in 2006 (2,007,371) and those performed in 2013 (935,573). We can further quantify this by comparing the&amp;nbsp;slopes:&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;The slope of A (abortions) is: {round((327_000 - 289_750) / (2013 - 2006), 2)}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;The slope of B (cancer screening and prevention services) is: {(935_573 - 2_007_371) / (2013 - 2006)}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1415,15 +1414,14 @@ The slope of B (cancer screening and prevention services) is: -153114.0
 
 
 &lt;p&gt;&lt;center&gt;
-$m_A =&amp;nbsp;5321.43$&lt;/p&gt;
+&lt;em&gt;m&lt;sub&gt;A&lt;/sub&gt;&lt;/em&gt; =&amp;nbsp;5321.43&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-$m_B =&amp;nbsp;-153114.0$&lt;/p&gt;
+&lt;em&gt;m&lt;sub&gt;B&lt;/sub&gt;&lt;/em&gt; =&amp;nbsp;-153114.0&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;
  &lt;/center&gt;&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What does this&amp;nbsp;mean?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Every year (i.e., for every 1 unit in increase along the x-axis), there are 5321 more abortions&amp;nbsp;performed.&lt;/p&gt;
 &lt;p&gt;Every year, there are 153114 fewer prevention and screening services&amp;nbsp;performed.&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;aul_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;service&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;abortion&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;abortion&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;cancer screening &amp;amp; prevention&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; \
                 &lt;span class="s1"&gt;&amp;#39;cancer screening &amp;amp; prevention&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
@@ -1471,10 +1469,6 @@ $m_B =&amp;nbsp;-153114.0$&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;vega.vegalite.VegaLite at 0x10acf5860&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;&lt;img alt="png" src="images/blog-2-altair_70_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;How this chart is&amp;nbsp;better:&lt;/p&gt;
 &lt;ul&gt;
@@ -1488,4 +1482,20 @@ $m_B =&amp;nbsp;-153114.0$&lt;/p&gt;
 &lt;p&gt;it has a consistent, shared y-axis for both&amp;nbsp;lines.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;Hope you enjoyed! Good luck making great visualizations with Altair&amp;nbsp;🚀&lt;/h3&gt;</content><category term="python"></category><category term="altair"></category><category term="data visualization"></category></entry></feed>
+&lt;h1&gt;✨Before &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Afters ✨&lt;a name='before_afters'&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h2&gt;Chart&amp;nbsp;1&lt;/h2&gt;
+&lt;p&gt;&lt;tr&gt;
+    &lt;td&gt; &lt;img src="images\images\donut-complaints.png" alt="Drawing" style="width: 300px;"/&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;img src="images\images\complaints.svg" alt="Drawing" style="width: 650px;"/&gt; &lt;/td&gt;
+    &lt;/tr&gt;&lt;/p&gt;
+&lt;h2&gt;Chart&amp;nbsp;2&lt;/h2&gt;
+&lt;p&gt;&lt;tr&gt;
+    &lt;td&gt; &lt;img src="images\ghg-emissions.jpeg" alt="Drawing" style="width: 600px;"/&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;img src="images\emissions-1.svg" alt="Drawing" style="width: 700px;"/&gt; &lt;/td&gt;
+    &lt;/tr&gt;&lt;/p&gt;
+&lt;h2&gt;Chart&amp;nbsp;3&lt;/h2&gt;
+&lt;p&gt;&lt;tr&gt;
+    &lt;td&gt; &lt;img src="images\aul-fakenews.jpeg" alt="Drawing" style="width: 500px;"/&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;img src="images\pp-visualization.svg" alt="Drawing" style="width: 500px;"/&gt; &lt;/td&gt;
+    &lt;/tr&gt;&lt;/p&gt;
+&lt;h3&gt;Good luck making great visualizations with Altair&amp;nbsp;🚀&lt;/h3&gt;</content><category term="python"></category><category term="altair"></category><category term="data visualization"></category></entry></feed>

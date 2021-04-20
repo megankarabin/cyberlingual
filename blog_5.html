@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+		<title>cyberlingual</title>
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/poole.css" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/hyde.css?v=1" />
+		<link rel="stylesheet" href="https://megankarabin.github.io/cyberlingual/theme/static/css/syntax.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!-- RSS -->
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+		<style>
+			#myBtn {
+			  display: none;
+			  position: fixed;
+			  bottom: 20px;
+			  right: 30px;
+			  z-index: 99;
+			  font-size: 18px;
+			  border: none;
+			  outline: none;
+			  background-color: #718A3A;
+			  color: white;
+			  cursor: pointer;
+			  padding: 15px;
+			  border-radius: 4px;
+				-webkit-transition: background .3s ease-in-out;
+			}
+
+			#myBtn:hover {
+			  background-color: #AFC878;
+			}
+		</style>
+	</head>
+
+	<body class="theme-base-0b">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+			<h1 class="sidebar-about">
+				<a class="sidebar-about" href="https://megankarabin.github.io/cyberlingual">
+					<img class="profile-picture"
+					src="https://lh3.googleusercontent.com/c4Lq6ofLQEJgrxFZyB8GW9MHBAheCcecymUM-8LRfyGwH01YtEyMWnIV4KEpSe8hyMsyNRFtU1VPKtF8M1WqtEWZAtjyoFGbmRToy369ETUJCvDA0P3zJGPiXyCdmunYHZT8Sjv7jw=w2400?source=screenshot.guru">
+					<!-- cyberlingual -->
+					<p style="opacity:0.85"> c y b e r l i n g u a l </p>
+				</a>
+			</h1>
+			<!-- <p class="lead" style="font-size: 11pt">  </p> -->
+			<!-- <div class='pages-list'> -->
+			<ul class="pages-list">
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual">
+				posts </a></li>
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
+				projects</a></li>
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
+				about</a></li>
+				 </ul>
+			<!-- </div> -->
+		</div>
+		<nav class="sidebar-nav">
+			<!-- <a class="sidebar-nav-item" href="megankarabin12@gmail.com">
+				<i class="fa fa-envelope"></i> -->
+			<!-- </a> -->
+			<a class="sidebar-nav-item" href="https://github.com/megankarabin">
+				<i class="fa fa-github"></i>
+			</a>
+			<a class="sidebar-nav-item" href="https://www.linkedin.com/in/megan-karabin-08413aa9/">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			<a class="sidebar-nav-item" href="mailto:megankarabin12@gmail.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			<!-- <a href="https://pseudowordz.herokuapp.com/">
+			<a class="sidebar-nav-item" href="">
+				<i class="fa fa-feed"></i>
+			</a> -->
+		</nav>
+		<footer class="sidebar-footer">
+			<div>
+			&copy; <script>document.write(new Date().getFullYear());</script> Megan Karabin
+			</div>
+			<!-- <div > Built with Pelican <i class="fa fa-heart-o" aria-hidden="true"></i> </div> -->
+				<!-- Inspired by pelican-hyde -->
+		</footer>
+	</div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">An Exercise in <span class="caps">BS4</span>: Scraping language typological&nbsp;data</h1>
+	<span class="post-date">Sun 18 April 2021</span>
+	<p><img src="images\world-greetings.jpg" alt="Drawing" style="width: 500px;"/>
+<em><a href="https://assets.ltkcontent.com/images/24318/30881.world-greetings_0066f46bde.jpg">Image&nbsp;source</a></em></p>
+<p>This post demonstrates how bs4&#8217;s BeautifulSoup can be deployed to scrape webpages. The example I&#8217;ve created here uses data on languages and language families from <a href="https://www.ethnologue.com/">Ethnologue.com</a>, a robust digital catalogue of typological information on the world&#8217;s&nbsp;languages.</p>
+<p>Check out &#8220;Spin the Wheel&#8221;, the function I created to randomly select a language and display its primary typological features (name, country of origin, language family, genetic subgroups). A fun and easy way to learn about the countless (well, 7400ish) other terrestrial languages hitherto unknown to me!
+<!-- My linguistics background is considerably focused on Indo-European languages,  --></p>
+<h2>Table of&nbsp;Contents</h2>
+<ul>
+<li><a href="#step_one">Step One: Get a list of page&nbsp;URLs</a></li>
+<li><a href="#step_two">Step Two: Create basic language&nbsp;dictionaries</a></li>
+<li><a href="#step_three">Step Three: Add language-specific info from each language&nbsp;page</a></li>
+<li><a href="#step_four">Step Four: Write a function to pick a language, any&nbsp;language</a></li>
+</ul>
+<p><strong>Packages&nbsp;used:</strong></p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+</pre></div>
+
+
+<!-- # Scraping language data from webpages -->
+
+<p>&nbsp;  </p>
+<h2>Step One: Get a list of page URLs🔗<a name='step_one'></a></h2>
+<p>Each <a href="https://www.ethnologue.com/browse/names/a">Browse by Language Name</a> page (corresponding to a letter from A-Z) contains an enormous list of languages. In order to access every language individually, we must first be able to access each&nbsp;page.</p>
+<ul>
+<li>
+<p>The <span class="caps">URL</span> for the &#8220;A&#8221; page is https://www.ethnologue.com/browse/names/a, the &#8220;B&#8221; page is https://www.ethnologue.com/browse/names/b,&nbsp;usw.</p>
+</li>
+<li>
+<p>We&#8217;ll use a loop to compile a list of URLs, each made up of the common base (https://www.ethnologue.com/browse/names/) plus each respective letter of the&nbsp;alphabet.</p>
+</li>
+</ul>
+<h4>1. Use the <code>map</code> method to access the lowercase alphabet from the built-in character&nbsp;list.</h4>
+<div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">chr</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">97</span><span class="p">,</span> <span class="mi">123</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>There&#8217;s one additional page after Z &mdash; &#8220;ǀ&#8221;, which is the <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet"><span class="caps">IPA</span></a> symbol for a <a href="https://en.wiktionary.org/wiki/%C7%80">dental click</a>.
+Just append this to <code>alpha</code> and we&#8217;re good to&nbsp;go.</p>
+<p><i>Note: although it resembles the standard pipe operator (and despite the fact that it&#8217;s also called a &#8220;pipe letter&#8221;), these are not the same&nbsp;symbol. </i></p>
+<div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;ǀ&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h4>2. Create a list containing the corresponding <span class="caps">URL</span> for each letter a-z by looping over the <code>alpha</code> list.</h4>
+<ul>
+<li>
+<p>First create an empty list called <code>urls</code>. Then take the base of the <span class="caps">URL</span> that&#8217;s common to each page, and assign it to the variable <code>url_start</code>.</p>
+</li>
+<li>
+<p>The for loop adds the complete <span class="caps">URL</span> to <code>urls</code>.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">urls</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">url_start</span> <span class="o">=</span> <span class="s1">&#39;https://www.ethnologue.com/browse/names/&#39;</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">alpha</span><span class="p">:</span>
+        <span class="n">urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url_start</span><span class="o">+</span><span class="n">letter</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Inspecting the list of URLs we just added&nbsp;to:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">urls</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+
+  <span class="p">[</span><span class="s1">&#39;https://www.ethnologue.com/browse/names/x&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;https://www.ethnologue.com/browse/names/y&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;https://www.ethnologue.com/browse/names/z&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;https://www.ethnologue.com/browse/names/ǀ&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>I&#8217;ll be using the root <span class="caps">URL</span> a few times in the next couple of steps, so here I&#8217;m assigning it to a variable called <code>main</code>.</p>
+<div class="highlight"><pre><span></span><span class="n">main</span> <span class="o">=</span> <span class="s1">&#39;https://www.ethnologue.com&#39;</span>
+</pre></div>
+
+
+<p>&nbsp;  </p>
+<h2>Step Two: Create basic language dicts📚<a name='step_two'></a></h2>
+<p>Next, loop through all pages A-Z and make a list containing language&nbsp;dictionaries.</p>
+<p>The language dictionaries will store all of the relevant language information available on the current&nbsp;page.</p>
+<div class="highlight"><pre><span></span><span class="c1"># empty list to contain language dicts</span>
+<span class="n">languages</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># iterating through each page A-Z</span>
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+    <span class="n">item_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;field-content&#39;</span><span class="p">})</span> <span class="c1"># each item is a language listed on the page</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">item_list</span><span class="p">:</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># initialize empty dict to store the available info for the language</span>
+        <span class="n">slug</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+        <span class="n">language</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">language</span><span class="p">[</span><span class="s1">&#39;slug&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">slug</span>
+        <span class="n">language</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main</span><span class="o">+</span><span class="n">slug</span>
+        <span class="n">languages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">language</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Peeking at the last three entries in our <code>languages</code> list:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">languages</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+
+  <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Zuni&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slug&#39;</span><span class="p">:</span> <span class="s1">&#39;/language/zun&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.ethnologue.com/language/zun&#39;</span><span class="p">},</span>
+   <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;ǀGwi&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slug&#39;</span><span class="p">:</span> <span class="s1">&#39;/language/gwj&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.ethnologue.com/language/gwj&#39;</span><span class="p">},</span>
+   <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;ǀXam&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slug&#39;</span><span class="p">:</span> <span class="s1">&#39;/language/xam&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.ethnologue.com/language/xam&#39;</span><span class="p">}]</span>
+</pre></div>
+
+
+<p>Checking how many languages are in the&nbsp;list:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">languages</span><span class="p">)</span>
+
+  <span class="mi">7545</span>
+</pre></div>
+
+
+<p>Cool. We now have a master list containing the name, slug and page link for each of the 7545 languages listed in the &#8220;Browse by Language Name&#8221;&nbsp;pages.</p>
+<p>I definitely want to add to the language dicts more specific information, which can be scraped from the individual language pages in Step&nbsp;Three.</p>
+<p>&nbsp;  </p>
+<h2>Step Three: Add language-specific info from each language page📄<a name='step_three'></a></h2>
+<h4>Quick Tip: <code>enumerate()</code> in for&nbsp;loops</h4>
+<ul>
+<li>
+<p><code>enumerate()</code> iterates over an iterable and produces an enumerate object, which is a tuple of the form <code>(count, value)</code>.</p>
+</li>
+<li>
+<p>Where a value <i>x</i> is the <i>n</i>th item in an iterable, <code>count</code> = <i>n</i>.</p>
+</li>
+</ul>
+<p>In the following code, this is used to access the index of items in the iterable. See <a href="https://docs.python.org/3/library/functions.html#enumerate">the documentation</a> for how this works in a little more&nbsp;detail.</p>
+<p><strong>Warning</strong>: this took almost three hours to compile, what with a modest 7545 pages to scrape. Not for the faint of&nbsp;heart/processor.</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">languages</span><span class="p">):</span>
+
+    <span class="c1"># getting the location of the current item</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># scraping</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;link&#39;</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span> <span class="c1"># I like to use this to see where the code is at as it&#39;s running</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+
+    <span class="c1"># getting relevant info from the html</span>
+    <span class="n">country_origin</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;field-content&#39;</span><span class="p">})(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">resources</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;views-field views-field-nothing-2&#39;</span><span class="p">})(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">](</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+    <span class="n">subgroups_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">subgroups</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;lineage-item&#39;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">subgroups</span><span class="p">:</span>
+        <span class="n">subgroups_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># adding key-value pairs with relevant info to existing language dict</span>
+    <span class="n">languages</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;country_origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">country_origin</span>
+    <span class="n">languages</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;lineage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subgroups_list</span>
+    <span class="n">languages</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;additional_resources&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">resources</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgroups_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">languages</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># some languages have no family (e.g. language isolates)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">languages</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subgroups_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<p>&nbsp;<br>
+Saving the updated <code>languages</code> object with <a href="https://docs.python.org/3/library/pickle.html">pickle</a>:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="n">languages_obj</span> <span class="o">=</span> <span class="n">languages</span>
+<span class="n">languages_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;languages.obj&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">languages_obj</span><span class="p">,</span> <span class="n">languages_file</span><span class="p">)</span>
+</pre></div>
+
+
+<p>&nbsp;<br>
+Just writing a quick function to grab a random number (one that will correspond to the index of some language dict in  <code>languages</code>):</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_random</span><span class="p">():</span>
+    <span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">languages</span><span class="p">),</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">rand</span>
+</pre></div>
+
+
+<p>&nbsp;<br>
+Now it&#8217;s possible to index <code>languages</code> at a random location with the <code>get_random()</code> function.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">languages</span><span class="p">[</span><span class="n">get_random</span><span class="p">()]</span>
+
+  <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Mixtec, Ayutla&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;slug&#39;</span><span class="p">:</span> <span class="s1">&#39;/language/miy&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.ethnologue.com/language/miy&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;country_origin&#39;</span><span class="p">:</span> <span class="s1">&#39;Mexico&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;lineage&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Otomanguean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Eastern Otomanguean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Amuzgo-Mixtecan&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Mixtecan&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Mixtec&#39;</span><span class="p">],</span>
+   <span class="s1">&#39;additional_resources&#39;</span><span class="p">:</span> <span class="s1">&#39;http://language-archives.org/language/miy&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;Otomanguean&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<p>&nbsp;  </p>
+<h2>Step Four: Write a function to pick a language, any language🎲<a name='step_four'></a></h2>
+<p>Use the following code to produce a random language and its typological information from the list of 7545 languages&nbsp;🥳</p>
+<p>Note: there&#8217;s no return statement in the following function, since the desired output is purely for visual&nbsp;purposes.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">spin_the_wheel</span><span class="p">():</span>
+
+    <span class="n">rand</span> <span class="o">=</span> <span class="n">get_random</span><span class="p">()</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">languages</span><span class="p">[</span><span class="n">rand</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+    <span class="n">origin</span> <span class="o">=</span> <span class="n">languages</span><span class="p">[</span><span class="n">rand</span><span class="p">][</span><span class="s1">&#39;country_origin&#39;</span><span class="p">]</span>
+    <span class="n">family</span> <span class="o">=</span> <span class="n">languages</span><span class="p">[</span><span class="n">rand</span><span class="p">][</span><span class="s1">&#39;family&#39;</span><span class="p">]</span>
+    <span class="n">lineage</span> <span class="o">=</span> <span class="n">languages</span><span class="p">[</span><span class="n">rand</span><span class="p">][</span><span class="s1">&#39;lineage&#39;</span><span class="p">]</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Language name: {name} </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+          <span class="n">f</span><span class="s1">&#39;Country of origin: {origin} </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+          <span class="n">f</span><span class="s1">&#39;Language Family: {family}&#39;</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;--- </span><span class="se">\n</span><span class="s1">Lineage: (in descending order from highest-level group)</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lineage</span><span class="p">)):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">lineage</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+
+<p>&nbsp;<br>
+<strong>Give it a&nbsp;spin&#8230;</strong></p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">spin_the_wheel</span><span class="p">()</span>
+
+    <span class="n">Language</span> <span class="n">name</span><span class="p">:</span> <span class="n">Balochi</span><span class="p">,</span> <span class="n">Eastern</span>
+    <span class="n">Country</span> <span class="n">of</span> <span class="n">origin</span><span class="p">:</span> <span class="n">Pakistan</span>
+    <span class="n">Language</span> <span class="n">Family</span><span class="p">:</span> <span class="n">Indo</span><span class="o">-</span><span class="n">European</span>
+    <span class="o">---</span>
+    <span class="n">Lineage</span><span class="p">:</span> <span class="p">(</span><span class="ow">in</span> <span class="n">descending</span> <span class="n">order</span> <span class="kn">from</span> <span class="nn">highest</span><span class="o">-</span><span class="n">level</span> <span class="n">group</span><span class="p">)</span>
+
+    <span class="n">Indo</span><span class="o">-</span><span class="n">European</span>
+    <span class="n">Indo</span><span class="o">-</span><span class="n">Iranian</span>
+    <span class="n">Iranian</span>
+    <span class="n">Western</span>
+    <span class="n">Northwestern</span>
+    <span class="n">Balochi</span>
+</pre></div>
+
+
+<p>&nbsp;  </p>
+<h2>Step Five: Discover some new&nbsp;languages🗣💬</h2>
+</div>
+<!--  -->
+<footer class="page-footer">
+	<div style="font-size:8pt">
+			&copy; <script>document.write(new Date().getFullYear());</script> Megan Karabin
+	</div>
+	<div style="font-size:8pt;">
+		Built with Pelican <i class="fa fa-heart-o" aria-hidden="true"></i> Theme derived from
+		<a href="https://github.com/jvanz/pelican-hyde"> pelican-hyde </a>
+	</div>
+ </footer>
+		</div>
+
+		<!-- JS -->
+		<button onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
+
+		<script>
+		//Get the button
+		var mybutton = document.getElementById("myBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+		    mybutton.style.display = "block";
+		  } else {
+		    mybutton.style.display = "none";
+		  }
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		  document.body.scrollTop = 0;
+		  document.documentElement.scrollTop = 0;
+		}
+		</script>
+	</body>
+</html>

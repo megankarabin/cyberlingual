@@ -21,6 +21,28 @@
 
 		<!-- RSS -->
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+		<style>
+			#myBtn {
+			  display: none;
+			  position: fixed;
+			  bottom: 20px;
+			  right: 30px;
+			  z-index: 99;
+			  font-size: 18px;
+			  border: none;
+			  outline: none;
+			  background-color: #718A3A;
+			  color: white;
+			  cursor: pointer;
+			  padding: 15px;
+			  border-radius: 4px;
+				-webkit-transition: background .3s ease-in-out;
+			}
+
+			#myBtn:hover {
+			  background-color: #AFC878;
+			}
+		</style>
 	</head>
 
 	<body class="theme-base-0b">
@@ -38,11 +60,11 @@
 			<!-- <p class="lead" style="font-size: 11pt">  </p> -->
 			<!-- <div class='pages-list'> -->
 			<ul class="pages-list">
-			<li><a href="https://megankarabin.github.io/cyberlingual">
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual">
 				posts </a></li>
-			<li><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual/pages/projects.html">
 				projects</a></li>
-			<li><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
+			<li class="pages-list-item"><a href="https://megankarabin.github.io/cyberlingual/pages/about.html">
 				about</a></li>
 				 </ul>
 			<!-- </div> -->
@@ -76,6 +98,31 @@
 </div>		<div class="content container">
 	<div class="posts">
 			<div class="post">
+				<h1 class="post-title" href="https://megankarabin.github.io/cyberlingual/blog_5.html#blog_5">
+					<a class="post-title" href="https://megankarabin.github.io/cyberlingual/blog_5.html#blog_5">An Exercise in <span class="caps">BS4</span>: Scraping language typological&nbsp;data</a>
+				</h1>
+				<span class="post-date">Sun 18 April 2021</span>
+				<div class="tag-icon">
+				<i class="fa fa-tag"> </i></div>
+				<span  class="tag">
+					python
+				</span>
+				<span  class="tag">
+					bs4
+				</span>
+				<span  class="tag">
+					scraping
+				</span>
+				<span  class="tag">
+					natural languages
+				</span>
+				<p>	<p><img src="images\world-greetings.jpg" alt="Drawing" style="width: 500px;"/>
+<em><a href="https://assets.ltkcontent.com/images/24318/30881.world-greetings_0066f46bde.jpg">Image&nbsp;source</a></em></p>
+<p>This post demonstrates how bs4&#8217;s BeautifulSoup can be deployed to scrape webpages. The example I&#8217;ve created here uses data on languages and language families from <a href="https://www.ethnologue.com/">Ethnologue.com</a>, a robust digital catalogue of typological information on the world&#8217;s&nbsp;languages.</p>
+<p>Check out &#8220;Spin the Wheel&#8221;, the function …</p>	</p>
+				<a class="read-more" href="blog_5.html">Read more →</a>
+			</div>
+			<div class="post">
 				<h1 class="post-title" href="https://megankarabin.github.io/cyberlingual/advanced-jinja.html#advanced-jinja">
 					<a class="post-title" href="https://megankarabin.github.io/cyberlingual/advanced-jinja.html#advanced-jinja">Advanced Jinja: filters <span class="amp">&amp;</span>&nbsp;variables</a>
 				</h1>
@@ -88,8 +135,10 @@
 				<span  class="tag">
 					Jinja2
 				</span>
-				<p>	<p>Want to learn how to be a Jinja ninja? (Since discovering Jinja I&#8217;ve wanted to use those words together in a sentence and this seemed like the perfect opportunity&nbsp;#notsorry)</p>
-<p>In this post I&#8217;ll explain how you can use Jinja filters to access python functions and libraries from …</p>	</p>
+				<p>	<p><img src="images\jinja_logo.png" alt="Drawing" style="width: 500px;"/>
+<em><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jinja_software_logo.svg/1200px-Jinja_software_logo.svg.png">Image&nbsp;source</a></em></p>
+<p>Want to learn how to be a Jinja ninja? (Since discovering Jinja I&#8217;ve wanted to use those words together in a sentence and this seemed like the perfect&nbsp;opportunity.)</p>
+<p>The current post explains how you can use Jinja filters to access python functions and libraries from within …</p>	</p>
 				<a class="read-more" href="advanced-jinja.html">Read more →</a>
 			</div>
 			<div class="post">
@@ -108,12 +157,17 @@
 				<span  class="tag">
 					NLP
 				</span>
-				<p>	<p>spaCy is an <span class="caps">NLP</span> tool for language and text processing. The most well-known package for <span class="caps">NLP</span> is <span class="caps">NLTK</span>, which though it&#8217;s a robust, well-respected library, comes nowhere near spaCy in terms of user-friendliness when it comes to handling, parsing and presenting language data. Although spaCy definitely has ease-of-use on …</p>	</p>
+				<p>	<p><img src="images\nlp.png" alt="Drawing" style="width: 500px;"/>
+<em><a href="https://lh3.googleusercontent.com/Os6W2e25wv-BwJHgRZlheKbEzm_OvJzKY_PgaehWBrIdLmc9gzl1Kn8JcvOo7huHRpUUXijvTyKAv8NOyCBZURc0Nfao3w=s600">Image&nbsp;source</a></em></p>
+<!-- *[Image source](https://www.wordfrequency.info/images/words.jpg)* -->
+
+<p>spaCy is a tool for natural language processing (<span class="caps">NLP</span>). It&#8217;s incredibly user-friendly and has several unique, useful&nbsp;features.</p>
+<p>This tutorial covers the basics of spaCy, showing you how to install and get started, and then helping you to become familiar with some of the core concepts and …</p>	</p>
 				<a class="read-more" href="intro-to-spacy.html">Read more →</a>
 			</div>
 			<div class="post">
 				<h1 class="post-title" href="https://megankarabin.github.io/cyberlingual/altair.html#altair">
-					<a class="post-title" href="https://megankarabin.github.io/cyberlingual/altair.html#altair">Altair to the&nbsp;Rescue</a>
+					<a class="post-title" href="https://megankarabin.github.io/cyberlingual/altair.html#altair">Altair to the Rescue: A beginner-friendly altair&nbsp;tutorial</a>
 				</h1>
 				<span class="post-date">Sun 07 July 2019</span>
 				<div class="tag-icon">
@@ -127,8 +181,9 @@
 				<span  class="tag">
 					data visualization
 				</span>
-				<p>	<h3>Bad charts made better: A beginner-friendly altair&nbsp;tutorial</h3>
-<p>Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense&mdash;though …</p>	</p>
+				<p>	<p><img src='images\charts_stock.png' alt='Drawing' style='width:500px;'>
+<em><a href="https://www.economist.com/offthecharts/_next/static/images/offTheCharts-8552c80b7b927f2d0f3b91fe70b96521.png">Image&nbsp;source</a></em></p>
+<p>Some charts are confusing, some hard to interpret, and others are just boring, while still others (albeit a special, minority few) require that the rules of math and logic break in order to establish a reality in which they make sense. By manipulating data, not only is it …</p>	</p>
 				<a class="read-more" href="altair.html">Read more →</a>
 			</div>
 	</div>
@@ -146,5 +201,30 @@
 		</div>
 	 </footer>
 		</div>
+
+		<!-- JS -->
+		<button onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
+
+		<script>
+		//Get the button
+		var mybutton = document.getElementById("myBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+		    mybutton.style.display = "block";
+		  } else {
+		    mybutton.style.display = "none";
+		  }
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		  document.body.scrollTop = 0;
+		  document.documentElement.scrollTop = 0;
+		}
+		</script>
 	</body>
 </html>
